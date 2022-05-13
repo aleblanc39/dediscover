@@ -1,58 +1,16 @@
-# dediscover
+# DEDiscover
 
-This is a re-release of the DEDiscover software that was developed at the University of Rochester between 2006 and 2014. 
+DEDiscover is a very small scientific workbench based of the software on the same name that was developed at the 
+University of Rochester between 2006 and 2014, and for which it seems that no trace remains. 
+It is a GUI application that runs on the desktop. It is meant to allow non-mathematicians and non-programmers to easily create
+and analyze models based on differential equations.
 
+This project implement a subset of 
+the functionality of the original software. It uses some of the original code but also went through a lot a rewrite and redesign.
 
-Prepare:
+It currently run only on Linux, and for some very specific version of java8 and gcc.
 
-curl -s "https://get.sdkman.io" | bash
+This is an alpha version. It will work most of the time, but also crash more than it should.
 
-sdk install gradle 6.8.2
+More details and documentation, as well as detailed installation and building information, can be found at the [dediscover website](https://dediscover.org).
 
-sdk install java 8.0.282.fx-zulu
-
-git clone git@github.com:aleblanc39/gradle-cmake-plugin.git
-
-From the gradle-cmake-plugin directory:
-- gradle publishToMavenLocal
-
-
-## Packages to Install
-
-- gcc-g++
-- gcc-cfortran
-- cmake
-- make
-
-
-## On Centos8
-- dnf install boost
-- dnf install blas
-- dnf install lapack
-
-Will install locally,
-
-Need to compile gradle-cmake plugin since the version in the repo has been compiled with java 11
-
-To Build:
-
-gradle ded-cpp:cmakeBuild (Will take a long time.)
-
-
-## Setting up the development environment
-
-There are many options.
-
-# Ideaj
-
-(tornadofx, kotlin, gradle)
-
-# vscode
-
-Add xde-cpp folder to workspace. Add C++, CMake extensions.
-(cmake options for XDE_CPP_DIR)
-
-
-# Running
-
-Need to set DED_DATABASE_FILE environment variable. For now.
