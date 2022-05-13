@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'net.freudasoft:gradle-cmake-plugin:0.0.5'
+    }
+
+}
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+
+}
+apply plugin: "maven-publish"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'org.woodhill'
+            artifactId 'ded-cpp'
+            version '1.0-SNAPSHOT'
+            from components.java
+        }
+    }
+}
+
+
+group 'org.woodhill'
+version '1.0-SNAPSHOT'
+
+apply plugin: "net.freudasoft.gradle-cmake-plugin"
+apply plugin: "maven"
+apply plugin: "c"
+
+defaultTasks 'cmakeBuild'
+
+cmake {
+    // optional working folder. default is ./build/cmake
+    workingFolder=file("$buildDir/cmake")
+
+    ////////////////////
+    // cmakeConfigure parameters
+    ////////////////////
+    // optional source folder. This is where the main CMakeLists.txt file resides. Default is ./src/main/cpp
+    sourceFolder=file("$projectDir")
+    // optional install prefix. By default, install prefix is empty.
+    installPrefix="${System.properties['user.home']}"
+    // select a generator (optional, otherwise cmake's default generator is used)
+    //generator='Visual Studio 15 2017'
+    // set a platform for generators that support it (usually Visual Studio)
+    //platform='x64'
+    // set a toolset generators that support it (usually only Visual Studio)
+    //toolset='v141'
+    // optionally set to build static libs
+    //buildStaticLibs=true
+    // optionally set to build shared libs
+    //buildSharedLibs=true
+    // define arbitrary CMake parameters. The below adds -Dtest=hello to cmake command line.
+    //def.test='hello'
+    //    def.XDE_CPP_DIR='/home/alain/projects/ded-cpp-2'
+    // def.XDE_CPP_DIR="${rootDir}/ded-cpp"
+
+    def.XDE_CPP_DIR="${rootDir}/ded-cpp"
+    ////////////////////
+    // cmakeBuild parameters
+    ////////////////////
+    // optional configuration to build
+    buildConfig='Release'
+    // optional build target
+    buildTarget='install'
+    // optional build clean. if set to true, calls cmake --build with --clean-first
+    buildClean=false
+}
+
+
+
+
+
+
+sourceCompatibility = 1.8

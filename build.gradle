@@ -1,0 +1,53 @@
+
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
+    id 'maven-publish'
+}
+
+apply plugin: "maven-publish"
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+
+}
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+}
+
+
+
+allprojects {
+   group = 'com.example.gradle'
+   version = '0.1.0'
+
+}
+
+
+/**
+ * TODO Can probably put everything in same task, but
+ * putting ded-gui:run after the other 2 dependsOn causes run
+ * to be executed before jni is done compiling
+ */
+
+task runDED {
+    dependsOn('builds')
+    dependsOn('ded-gui:run')
+
+//    doLast {
+//        run()
+//    }
+}
+
+task builds {
+    dependsOn('ded-cpp:cmakeBuild')
+    dependsOn('ded-jni:cmakeBuild')
+
+}

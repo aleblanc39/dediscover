@@ -1,0 +1,125 @@
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'distribution'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'maven-publish'
+
+}
+apply plugin: "maven-publish"
+
+group 'org.woodhill'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+
+//task buildMyArtifact(type: Jar) {
+//    from 'build.gradle'
+//    archiveBaseName = 'ded-gui'
+//    destinationDirectory = buildDir
+//}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'org.woodhill'
+            artifactId 'ded-gui'
+            version '1.0-SNAPSHOT'
+            //artifact jar
+            from components.java
+        }
+    }
+}
+
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+
+}
+
+dependencies {
+    implementation project (':ded-jni')
+
+    implementation("org.jfree:jfreechart:1.5.0")
+    implementation("org.jfree:fxgraphics2d:1.8")
+
+    implementation("org.sbml.jsbml:jsbml:1.5")
+    //implementation 'junit:junit:4.13.2'
+
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation("junit:junit:4.13.2")
+
+
+
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.mockito:mockito-core:2.+'
+    testCompile 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation group: 'io.mockk', name: 'mockk', version: '1.9.3'
+
+    compile group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.7'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+
+    compile 'no.tornado:tornadofx:1.7.20'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+
+    compile 'org.xerial:sqlite-jdbc:3.30.1'
+    compile 'org.nield:rxkotlin-jdbc:0.2.5'
+    compile 'com.github.thomasnield:rxkotlinfx:2.2.2'
+    compile 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.3.61"
+    implementation("com.github.doyaaaaaken:kotlin-csv-jvm:0.10.4")
+
+}
+
+tasks.withType(Test) {
+    environment 'LD_LIBRARY_PATH',"${rootDir}/ded-jni/build/cmake"
+}
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+
+ext.USER_HOME = System.getProperty("user.home")
+
+application {
+    applicationDefaultJvmArgs = ["-Djava.library.path=${rootDir}/ded-jni/build/cmake"]
+    mainClassName = "org.woodhill.ded.application.DEDApp"
+}
+
+task createDocs {
+    def docs = file("$buildDir/docs")
+    outputs.dir docs
+    doLast {
+        docs.mkdirs()
+        new File(docs, 'readme.txt').write('Read me!')
+    }
+}
+
+distributions {
+    main {
+        distributionBaseName = 'DEDiscover'
+        contents {
+            from(createDocs) {
+                into 'docs'
+            }
+            from('/home/alain/') {
+                include('*.properties')
+                into 'cpp-libs'
+            }
+
+        }
+    }
+}

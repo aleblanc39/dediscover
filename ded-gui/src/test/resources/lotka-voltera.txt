@@ -1,0 +1,2 @@
+dPrey/dt = (birth - predation * Predator) * Prey
+dPredator/dt = (growth * Prey - death) * Predator
