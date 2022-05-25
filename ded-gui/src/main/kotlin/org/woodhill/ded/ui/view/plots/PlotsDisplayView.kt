@@ -11,7 +11,7 @@ import org.woodhill.ded.results.ChartableSimulationResultModel
 import org.woodhill.ded.results.SimulationResultWrapper
 import org.woodhill.ded.ui.view.PlotsUpdatingEvent
 import org.woodhill.ded.ui.view.util.SimulationChartingStyle
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class PlotsDisplayView : DEDTabView("Charts") {

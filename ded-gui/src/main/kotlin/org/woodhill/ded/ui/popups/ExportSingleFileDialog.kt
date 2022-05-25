@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace.popups
+package org.woodhill.ded.ui.popups
 
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty

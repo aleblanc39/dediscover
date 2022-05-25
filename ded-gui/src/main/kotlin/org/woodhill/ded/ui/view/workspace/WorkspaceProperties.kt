@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.beans.property.SimpleBooleanProperty
 import org.woodhill.ded.session.SessionViewModel

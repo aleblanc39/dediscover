@@ -9,7 +9,7 @@ import org.woodhill.ded.ui.chartoptions.ParameterChartOptions
 import org.woodhill.ded.ui.fxext.columnCheckboxContextMenu
 import org.woodhill.ded.ui.view.PlotsUpdatingEvent
 import org.woodhill.ded.ui.view.EquationsChangeEvent
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class ChartingOptionsUpdatingEvent(scope: Scope) : FXEvent(EventBus.RunOn.ApplicationThread, scope)

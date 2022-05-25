@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace.popups
+package org.woodhill.ded.ui.popups
 
 import org.woodhill.ded.models.EstimableParameterValue
 import tornadofx.*

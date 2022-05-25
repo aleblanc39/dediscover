@@ -2,12 +2,11 @@ package org.woodhill.ded.ui.view.util
 
 import edu.rochester.urmc.cbim.jni.Algorithm
 import javafx.beans.property.Property
-import javafx.beans.property.SimpleStringProperty
 import javafx.event.EventTarget
 import org.woodhill.ded.models.KMappingInfo
 import org.woodhill.ded.properties.AlgorithmProperty
 import org.woodhill.ded.session.SessionViewModel
-import org.woodhill.ded.ui.ControlParameterProperties
+import org.woodhill.ded.models.ControlParameterProperties
 import tornadofx.*
 
 

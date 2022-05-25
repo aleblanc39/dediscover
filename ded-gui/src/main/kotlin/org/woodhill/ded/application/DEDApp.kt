@@ -1,8 +1,8 @@
 package org.woodhill.ded.application
 
 import javafx.scene.control.Alert
-import org.woodhill.ded.workspace.DEDWorkspace
-import org.woodhill.ded.workspace.MainWindow
+import org.woodhill.ded.ui.view.workspace.DEDWorkspace
+import org.woodhill.ded.ui.view.workspace.MainWindow
 import tornadofx.*
 import java.io.File
 import java.sql.DriverManager

@@ -1,11 +1,8 @@
-package org.woodhill.ded.ui
+package org.woodhill.ded.models
 
-import com.sun.org.apache.xpath.internal.operations.Bool
 import edu.rochester.urmc.cbim.jni.JGeneralParameter
 import javafx.beans.property.*
-import javafx.beans.value.ObservableValue
 import javafx.event.EventTarget
-import javafx.scene.Node
 import javafx.scene.control.Alert
 import javafx.scene.control.Control
 import javafx.scene.layout.Region
@@ -13,12 +10,7 @@ import org.woodhill.ded.ui.view.util.doubletextfield
 import org.woodhill.ded.ui.view.util.integertextfield
 import org.woodhill.ded.util.parseControlParameters
 import org.woodhill.ded.util.stringPairsToJson
-import tornadofx.Fieldset
 import tornadofx.*
-import tornadofx.Stylesheet.Companion.field
-import tornadofx.Stylesheet.Companion.fieldset
-import javax.naming.Context
-import kotlin.reflect.typeOf
 
 /**
  * Class to handle control parameters present in many circumstances.

@@ -1,6 +1,6 @@
 package org.woodhill.ded.ui.view.datatable
 
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.vbox
 
 class DatatableView: DEDTabView("Data") {

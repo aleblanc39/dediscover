@@ -1,9 +1,9 @@
-package org.woodhill.ded.data
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.collections.ObservableList
 import org.woodhill.ded.models.KModel
-import org.woodhill.ded.util.DBLoadMethods
+import org.woodhill.ded.models.ModelPackage
 import org.woodhill.ded.util.DBModel
 import tornadofx.observableListOf
 
@@ -23,7 +23,7 @@ data class Group(val name: String, val thisPackage:String = "", val children: Ob
 
 class SessionTree {
 
-    val rootNode: Group = getSessionsFromDB()
+    val rootNode: Group
 
     fun addSession(modelID: Int, packageName: String, sessionName: String, editable:Boolean) {
         insertPackage(packageName, rootNode, expandable = true, editable = true)
@@ -101,17 +101,17 @@ class SessionTree {
         }
     }
 
-    private  fun getSessionsFromDB(): Group {
+    /**
+     * TODO
+     */
+    private  fun getSessionsFromDB(allPackages: List<ModelPackage>, allModels: List<DBModel>): Group {
 
-        val allPackages = DBLoadMethods.instance.getAllPackages()
         val rootPackage = allPackages.find {
             !it.name.contains('.')
         } ?: throw Exception("Bad package structure in database -- no root found")
 
         val returnedGroup = Group(name = rootPackage.name, id = 0, expandable = SimpleBooleanProperty(false), editable = SimpleBooleanProperty(false))
         allPackages.forEach { insertPackage(it.name, returnedGroup, expandable = it.expandable, editable = it.editable) }
-
-        val allModels = DBLoadMethods.instance.getAllModelsWithPackage()
         addModels(allModels, returnedGroup)
 
         return returnedGroup // assigned to sessions
@@ -139,7 +139,7 @@ class SessionTree {
     }
 
 
-    private fun findPackageWithName(fullPkgName: String, node:Group = rootNode):Group? {
+    private fun findPackageWithName(fullPkgName: String, node: Group = rootNode): Group? {
         if (fullPkgName == node.fullName()) {
             return node
         }
@@ -176,4 +176,7 @@ class SessionTree {
         return ret
     }
 
+    constructor (allPackages: List<ModelPackage>, allModels: List<DBModel>) {
+        this.rootNode = getSessionsFromDB(allPackages, allModels)
+    }
 }

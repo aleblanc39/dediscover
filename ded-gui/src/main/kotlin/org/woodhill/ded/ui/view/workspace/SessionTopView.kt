@@ -1,4 +1,4 @@
-package org.woodhill.ded.ui.view
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.scene.control.TabPane
 import org.woodhill.ded.ui.view.datatable.DatatableView
@@ -8,10 +8,9 @@ import org.woodhill.ded.ui.view.estimation.EstimationResultsView
 import org.woodhill.ded.ui.view.modeleditor.ModelTabView
 import org.woodhill.ded.ui.view.plots.PlotsTabView
 import org.woodhill.ded.ui.view.simulation.SimMethodTabView
-import org.woodhill.ded.workspace.TabbedModelsView
 import tornadofx.*
 
-class WorkspaceTopView() : View() {
+class SessionTopView() : View() {
 
     override val scope = super.scope as TabbedModelsView.SessionScope
     val model = scope.model
@@ -38,11 +37,8 @@ class WorkspaceTopView() : View() {
         ESTIMATION_RESULTS(6),
     }
 
-    fun switchToEstimationResultTab() = scope.tabPane.selectionModel.select(TABINDEX.ESTIMATION_RESULTS.index)
-    fun switchToDatatableTab() = scope.tabPane.selectionModel.select(TABINDEX.DATATABLE.index)
-
     override fun onDelete() {
-        println("Deleted from WorkspaceTopView")
+        println("Deleted from SessionTopView")
     }
 
 }

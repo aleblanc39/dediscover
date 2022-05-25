@@ -2,13 +2,12 @@ package org.woodhill.ded.properties
 
 import edu.rochester.urmc.cbim.jni.Algorithm
 import javafx.beans.property.SimpleStringProperty
-import org.woodhill.ded.ui.ControlParameterProperties
+import org.woodhill.ded.models.ControlParameterProperties
 import java.io.StringReader
 import javax.json.Json
 import kotlin.reflect.KClass
 import tornadofx.getValue
 import tornadofx.observableListOf
-import tornadofx.onChange
 import tornadofx.setValue
 
 class  AlgorithmProperty(algm: String, val clazz: KClass<out Algorithm>, controlParamsAsJson: String) {

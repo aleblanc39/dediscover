@@ -1,10 +1,10 @@
-package org.woodhill.ded.workspace.popups
+package org.woodhill.ded.ui.popups
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
-import org.woodhill.ded.workspace.NewSessionInfo
+import org.woodhill.ded.ui.view.workspace.NewSessionInfo
 import tornadofx.*
 
 class NewSessionUserQuery(initialValue: NewSessionBaseValues, validateNewName: (String, String, String) -> String): Fragment("New Session Values") {

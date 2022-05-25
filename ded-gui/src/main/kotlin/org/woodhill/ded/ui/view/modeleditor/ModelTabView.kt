@@ -1,7 +1,6 @@
 package org.woodhill.ded.ui.view.modeleditor
 
-import javafx.scene.layout.Priority
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class ModelTabView : DEDTabView("Model") {

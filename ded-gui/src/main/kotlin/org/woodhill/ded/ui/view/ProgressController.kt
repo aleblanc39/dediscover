@@ -1,4 +1,4 @@
-package org.woodhill.ded.ui
+package org.woodhill.ded.ui.view
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleStringProperty
@@ -22,7 +22,7 @@ class ProgressController() : Fragment() {
 
 
     enum class ProcessStatus {RUNNING, PAUSED}
-    var processStatus:ProcessStatus = ProcessStatus.RUNNING
+    var processStatus: ProcessStatus = ProcessStatus.RUNNING
     var isCancelled = false
     override val root=vbox {
         prefHeight = 100.0
@@ -82,7 +82,7 @@ class ProgressController() : Fragment() {
             cancelFunction: () -> Unit,
             pauseFunction: () -> Unit,
             resumeFunction: () -> Unit
-        ):ProgressController {
+        ): ProgressController {
             val pg = find(ProgressController::class, scope).apply {
                                        this.cancelFunction = cancelFunction
                 this.resumeFunction = resumeFunction

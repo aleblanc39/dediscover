@@ -12,7 +12,7 @@ import org.woodhill.ded.session.SessionViewModel
 import org.woodhill.ded.ui.view.CovariateMappingChanged
 import org.woodhill.ded.ui.view.DatatatableDataChangeEvent
 import org.woodhill.ded.ui.view.EquationsChangeEvent
-import org.woodhill.ded.workspace.TabbedModelsView
+import org.woodhill.ded.ui.view.workspace.TabbedModelsView
 import tornadofx.*
 
 class CovariateTableEntry(

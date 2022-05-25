@@ -5,11 +5,10 @@ import javafx.geometry.Pos
 import org.woodhill.ded.results.EstimatedRow
 import org.woodhill.ded.results.FixedRow
 import org.woodhill.ded.results.EstimationCIResults
-import org.woodhill.ded.ui.ProgressController
 import org.woodhill.ded.ui.threading.performSimulationOnSets
 import org.woodhill.ded.ui.view.estimation.popups.AddAndSimulate
 import org.woodhill.ded.ui.view.util.doubleTableColumn
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 

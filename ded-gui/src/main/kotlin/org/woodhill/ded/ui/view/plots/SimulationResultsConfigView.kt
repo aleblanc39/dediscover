@@ -3,13 +3,12 @@ package org.woodhill.ded.ui.view.plots
 import edu.rochester.urmc.cbim.jni.JSolver
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.scene.control.Alert
-import javafx.scene.control.ButtonType
 import javafx.scene.control.TextField
 import javafx.scene.layout.Region
 import org.woodhill.ded.ui.threading.performSimulationOnSets
 import org.woodhill.ded.ui.view.util.doubletextfield
 import org.woodhill.ded.ui.view.util.setBackgroundcolor
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class SimulationResultsConfigView : DEDTabView() {

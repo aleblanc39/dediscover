@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import edu.rochester.urmc.cbim.jni.EstimatorResult
 import edu.rochester.urmc.cbim.jni.JConfidenceIntervalResult
@@ -6,11 +6,10 @@ import edu.rochester.urmc.cbim.jni.Threadable
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.Node
 import org.woodhill.ded.session.SessionElements
-import org.woodhill.ded.ui.ProgressController
+import org.woodhill.ded.ui.view.ProgressController
 import org.woodhill.ded.ui.view.MenuAffectingEvent
 import org.woodhill.ded.ui.view.PlotsUpdatingEvent
 import org.woodhill.ded.ui.view.SimulationDoneEvent
-import org.woodhill.ded.ui.view.WorkspaceTopView
 import tornadofx.View
 import tornadofx.onChange
 
@@ -50,7 +49,7 @@ abstract class DEDTabView( title: String = "") : View(title) {
         if (estimationResult is Pair<*,*>) {
             sessionElements.estimationResultsProperties.hasValidResultsProperty.value = true
             sessionElements.estimationResults.updateResults(estimationResult as Pair<EstimatorResult, JConfidenceIntervalResult>, emt.solverAlgm(), emt.ciAlgm(), emt.optimizerAlgm(), emt.objectiveFcnAlgm())
-            scope.tabPane.selectionModel.select(WorkspaceTopView.TABINDEX.ESTIMATION_RESULTS.index)
+            scope.tabPane.selectionModel.select(SessionTopView.TABINDEX.ESTIMATION_RESULTS.index)
 
         } else {
             // TODO Need to be more detailed here. Estimation may have been canceled.

@@ -1,12 +1,11 @@
 package org.woodhill.ded.ui.threading
 
 import edu.rochester.urmc.cbim.jni.JSolverBasedEstimator
-import edu.rochester.urmc.cbim.jni.exception.XDEException
 import javafx.scene.control.Alert
 import javafx.scene.layout.Region
 import org.woodhill.ded.runners.EstimationRunner
 import org.woodhill.ded.session.SessionElements
-import org.woodhill.ded.ui.ProgressController
+import org.woodhill.ded.ui.view.ProgressController
 import tornadofx.*
 
 

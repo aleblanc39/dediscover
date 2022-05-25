@@ -1,11 +1,10 @@
 package org.woodhill.ded.ui.view.simulation
 
 import edu.rochester.urmc.cbim.jni.JSolver
-import org.woodhill.ded.ui.ProgressController
 import org.woodhill.ded.ui.threading.performSimulationOnSets
 import org.woodhill.ded.ui.view.EquationsChangeEvent
 import org.woodhill.ded.ui.view.util.getAlgorithmForm
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.action
 import tornadofx.button
 import tornadofx.hbox

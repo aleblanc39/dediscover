@@ -8,7 +8,7 @@ import org.woodhill.ded.models.KMappingInfo
 import org.woodhill.ded.models.KParameterSet
 import org.woodhill.ded.runners.SimulationRunner
 import org.woodhill.ded.session.SessionViewModel
-import org.woodhill.ded.ui.ProgressController
+import org.woodhill.ded.ui.view.ProgressController
 import org.woodhill.ded.ui.view.plots.updateSolverResultMap
 import tornadofx.*
 import java.lang.Exception

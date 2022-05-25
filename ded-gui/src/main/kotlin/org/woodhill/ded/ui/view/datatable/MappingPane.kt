@@ -15,7 +15,7 @@ import org.woodhill.ded.session.SaveSessionRequest
 import org.woodhill.ded.ui.view.*
 import org.woodhill.ded.ui.view.plots.ChartingOptionsUpdatingEvent
 import org.woodhill.ded.ui.view.util.validateEstimation
-import org.woodhill.ded.workspace.TabbedModelsView
+import org.woodhill.ded.ui.view.workspace.TabbedModelsView
 import tornadofx.*
 
 val FORMULA_STR = "FORMULA"

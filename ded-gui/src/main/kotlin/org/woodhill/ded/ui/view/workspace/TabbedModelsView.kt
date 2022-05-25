@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.scene.Node
 import javafx.scene.control.Tab
@@ -14,10 +14,10 @@ import org.woodhill.ded.ui.view.*
 import org.woodhill.ded.ui.view.datatable.DataPane
 import org.woodhill.ded.util.DBLoadMethods
 import org.woodhill.ded.util.DBSaveMethods
-import org.woodhill.ded.workspace.popups.CSVJsonExportQuery
-import org.woodhill.ded.workspace.popups.ExportFilenames
-import org.woodhill.ded.workspace.popups.ExportPlotDialog
-import org.woodhill.ded.workspace.popups.getDatatableExportFileName
+import org.woodhill.ded.ui.popups.CSVJsonExportQuery
+import org.woodhill.ded.ui.popups.ExportFilenames
+import org.woodhill.ded.ui.popups.ExportPlotDialog
+import org.woodhill.ded.ui.popups.getDatatableExportFileName
 import tornadofx.*
 import java.io.File
 
@@ -54,7 +54,7 @@ class TabbedModelsView : View() {
         openedModels.add(modelObj)
         val scope: SessionScope = setScope(modelObj)
         val sessionViewModel = scope.model
-        val newTab = WorkspaceTopView()
+        val newTab = SessionTopView()
         scope.tabPane = newTab.root
 
         root.add(newTab)
@@ -103,7 +103,7 @@ class TabbedModelsView : View() {
         val sessionElements = SessionElements(modelObj)
         editScope.model.item = sessionElements
         //find(ModelTabView::class, editScope)
-        find(WorkspaceTopView::class, editScope)
+        find(SessionTopView::class, editScope)
         editScope.model.editScope = editScope
         //return editScope.model
         return editScope
@@ -166,7 +166,7 @@ class TabbedModelsView : View() {
 
 
     fun importDatatable() {
-        val datatab = (content() as TabPane).tabs[WorkspaceTopView.TABINDEX.DATATABLE.index].content as VBox
+        val datatab = (content() as TabPane).tabs[SessionTopView.TABINDEX.DATATABLE.index].content as VBox
         // TODO Should this be moved to DatatableView? Do we need this level of details here?
         val datapane = datatab.children[0] as TitledPane
         datapane.uiComponent<DataPane>()?.importData()
@@ -183,7 +183,7 @@ class TabbedModelsView : View() {
 
     }
 
-    fun selectTab(tab: WorkspaceTopView.TABINDEX) {
+    fun selectTab(tab: SessionTopView.TABINDEX) {
         (content() as TabPane).selectionModel.select(tab.index)
     }
 
@@ -261,7 +261,7 @@ class TabbedModelsView : View() {
 
         subscribe<SimulationDoneEvent> {
             print("Into simulation done event")
-            selectTab(WorkspaceTopView.TABINDEX.PLOTS)
+            selectTab(SessionTopView.TABINDEX.PLOTS)
         }
     }
 }

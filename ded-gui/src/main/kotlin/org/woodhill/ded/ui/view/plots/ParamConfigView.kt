@@ -12,7 +12,6 @@ import javafx.util.StringConverter
 import org.woodhill.ded.models.EstimableParameterValue
 import org.woodhill.ded.models.KModel
 import org.woodhill.ded.models.KParameterSet
-import org.woodhill.ded.ui.ProgressController
 import org.woodhill.ded.ui.threading.performSimulationOnSets
 import org.woodhill.ded.ui.view.EquationsChangeEvent
 import org.woodhill.ded.ui.view.PlotsUpdatingEvent
@@ -20,8 +19,8 @@ import org.woodhill.ded.ui.view.ResimulateEvent
 import org.woodhill.ded.ui.view.plots.popups.NewParameterSetPopup
 import org.woodhill.ded.ui.view.util.createDoubletextfield
 import org.woodhill.ded.ui.view.util.validateDouble
-import org.woodhill.ded.workspace.DEDTabView
-import org.woodhill.ded.workspace.popups.expandParameterRangeDialog
+import org.woodhill.ded.ui.view.workspace.DEDTabView
+import org.woodhill.ded.ui.popups.expandParameterRangeDialog
 import tornadofx.*
 
 // TODO Use titledpane

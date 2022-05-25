@@ -3,7 +3,7 @@ package org.woodhill.ded.ui.view.modeleditor
 import javafx.scene.control.Alert
 import org.woodhill.ded.application.Styles
 import org.woodhill.ded.ui.view.EquationsChangeEvent
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 import javafx.scene.control.ButtonType
 

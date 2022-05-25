@@ -13,9 +13,9 @@ import org.woodhill.ded.ui.view.util.notImplemented
 import org.woodhill.ded.ui.view.util.validateEstimation
 import org.woodhill.ded.util.DEDUtils
 import org.woodhill.ded.util.DatatableFile
-import org.woodhill.ded.workspace.TabbedModelsView
-import org.woodhill.ded.workspace.popups.RenameColumnQuery
-import org.woodhill.ded.workspace.popups.getDatatableExportFileName
+import org.woodhill.ded.ui.view.workspace.TabbedModelsView
+import org.woodhill.ded.ui.popups.RenameColumnQuery
+import org.woodhill.ded.ui.popups.getDatatableExportFileName
 import tornadofx.*
 
 

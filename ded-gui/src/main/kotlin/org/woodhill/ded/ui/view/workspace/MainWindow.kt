@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
@@ -6,7 +6,7 @@ import javafx.scene.layout.Region
 import org.woodhill.ded.application.Styles
 import org.woodhill.ded.ui.view.ModelDeletedEvent
 import org.woodhill.ded.util.DBSaveMethods
-import org.woodhill.ded.workspace.popups.NewSessionBaseValues
+import org.woodhill.ded.ui.popups.NewSessionBaseValues
 import tornadofx.*
 
 class MainWindow : View("DEDiscover") {
@@ -21,6 +21,7 @@ class MainWindow : View("DEDiscover") {
 
     }
 
+    // Responses to button bar actions. Button bar set in DEDWorkspace.
     override fun onDelete() {
         super.onDelete()
         val session = tabbedModels.currentSession()
@@ -51,6 +52,7 @@ class MainWindow : View("DEDiscover") {
 
     override fun onSave() {
         super.onSave()
+        println("onSave from MainWindow")
         tabbedModels.saveCurrentSession()
     }
 

@@ -1,9 +1,8 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.application.Platform
-import org.woodhill.ded.ui.view.WorkspaceTopView
 import org.woodhill.ded.ui.view.util.notImplemented
-import org.woodhill.ded.workspace.popups.NewSessionBaseValues
+import org.woodhill.ded.ui.popups.NewSessionBaseValues
 import tornadofx.*
 
 class DEDWorkspace : Workspace("DEDiscover") {
@@ -107,7 +106,7 @@ class DEDWorkspace : Workspace("DEDiscover") {
             menu("Data") {
                 item("Import").action {
                     tabbedModels.importDatatable()
-                    tabbedModels.selectTab(WorkspaceTopView.TABINDEX.DATATABLE)
+                    tabbedModels.selectTab(SessionTopView.TABINDEX.DATATABLE)
                 }
                 item("Export").action {
                     tabbedModels.exportDatatable()

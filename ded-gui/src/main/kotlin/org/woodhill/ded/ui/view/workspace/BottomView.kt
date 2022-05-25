@@ -1,4 +1,4 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import org.woodhill.ded.application.Styles
 import tornadofx.*

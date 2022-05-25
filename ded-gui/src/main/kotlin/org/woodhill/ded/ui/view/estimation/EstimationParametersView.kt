@@ -12,10 +12,10 @@ import org.woodhill.ded.ui.fxext.columnCheckboxContextMenu
 import org.woodhill.ded.ui.threading.performEstimation
 import org.woodhill.ded.ui.view.plots.ParamConfigView
 import org.woodhill.ded.ui.view.util.createDoubletextfield
-import org.woodhill.ded.workspace.DEDTabView
-import org.woodhill.ded.workspace.popups.expandParameterRangeDialog
-import org.woodhill.ded.workspace.popups.newLowerBound
-import org.woodhill.ded.workspace.popups.newUpperBound
+import org.woodhill.ded.ui.view.workspace.DEDTabView
+import org.woodhill.ded.ui.popups.expandParameterRangeDialog
+import org.woodhill.ded.ui.popups.newLowerBound
+import org.woodhill.ded.ui.popups.newUpperBound
 import tornadofx.*
 
 

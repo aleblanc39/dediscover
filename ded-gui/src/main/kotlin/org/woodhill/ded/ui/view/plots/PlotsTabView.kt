@@ -1,10 +1,10 @@
 package org.woodhill.ded.ui.view.plots
 
 import edu.rochester.urmc.cbim.jni.JSolver
-import org.woodhill.ded.ui.ProgressController
+import org.woodhill.ded.ui.view.ProgressController
 import org.woodhill.ded.ui.threading.performSimulationOnSets
 import org.woodhill.ded.ui.view.*
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class PlotsTabView: DEDTabView("Plots") {

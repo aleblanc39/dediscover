@@ -1,12 +1,12 @@
-package org.woodhill.ded.workspace
+package org.woodhill.ded.ui.view.workspace
 
 import javafx.stage.FileChooser
 import org.woodhill.ded.models.KModel
 import org.woodhill.ded.sbml.SBMLFileParser
 import org.woodhill.ded.sbml.XDESessionBuilder
-import org.woodhill.ded.workspace.popups.NewPackageUserQuery
-import org.woodhill.ded.workspace.popups.NewSessionBaseValues
-import org.woodhill.ded.workspace.popups.NewSessionUserQuery
+import org.woodhill.ded.ui.popups.NewPackageUserQuery
+import org.woodhill.ded.ui.popups.NewSessionBaseValues
+import org.woodhill.ded.ui.popups.NewSessionUserQuery
 import tornadofx.*
 import java.lang.Exception
 

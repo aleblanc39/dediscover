@@ -9,7 +9,7 @@ import org.woodhill.ded.properties.AlgorithmProperty
 import org.woodhill.ded.ui.threading.performEstimation
 import org.woodhill.ded.ui.view.EquationsChangeEvent
 import org.woodhill.ded.ui.view.util.getAlgorithmForm
-import org.woodhill.ded.workspace.DEDTabView
+import org.woodhill.ded.ui.view.workspace.DEDTabView
 import tornadofx.*
 
 class EstimationMethodsView : DEDTabView("Est: Methods") {
