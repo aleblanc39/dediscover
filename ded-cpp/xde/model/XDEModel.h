@@ -159,10 +159,7 @@ class XDEModel : public ThreadInterface, public XDEBase {
     void collectAllVariables();
 
     std::vector<std::string> allVariables;
-   
-    // std::vector<std::pair<std::string, unsigned> > delayExpressions;
-    // std::vector<std::vector<HistoryElement>> history;
-
+ 
 };
 
 #endif  // XDEMODEL_H

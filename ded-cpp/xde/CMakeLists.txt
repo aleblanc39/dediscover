@@ -42,7 +42,6 @@ set (sources
 ./solver/XDESolverWrapper.cc
 ./base/XDECSVFile.cc
 ./base/XDEBase.cc
-./base/AlgorithmResult.cc
 ./base/MemoryBank.cc
 ./base/XDEUtil.cc
 ./base/XDEMessage.cc

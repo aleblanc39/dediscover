@@ -53,12 +53,10 @@ inline XDEAlgorithm *getAlgorithm<NoClass>() {
     return NULL;
 }
 
+// TODO AL2021  This is where we create the methods when instantiating a
+// factory. Both methodMap and knownMethods are populated here. Template is the
+// actual algorithm type.
 
-// TODO AL2021  This is where we create the methods when instantiating a factory.
-// Both methodMap and knownMethods are populated here. Template is the actual algorithm type.
-
-// TODO All thew getMethodNane(), getShortDescription ... can be rewritted as T::
-// and made static.
 template <class T>
 inline void addKnownMethod(AlgorithmInfoMap &map,
                            std::vector<std::string> &knownMethods) {
@@ -188,7 +186,7 @@ class AlgorithmFactoryTemplate : public AlgorithmFactory {
  *
  */
 
-// Constructor. 
+// Constructor.
 template <class AlgorithmType, class T1, class T2, class T3, class T4, class T5,
           class T6, class T7, class T8>
 AlgorithmFactoryTemplate<AlgorithmType, T1, T2, T3, T4, T5, T6, T7,
