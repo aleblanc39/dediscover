@@ -4,10 +4,8 @@
 #include <base/XDEUtil.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/regex.hpp>
-#include <boost/tokenizer.hpp>
+#include <regex>
 
-using namespace boost;
 using namespace std;
 
 static void addToSet(const string &s, set<string> &aSet);
@@ -71,14 +69,14 @@ void ParsingResults::parseExpression(const string &expression) {
         XDEMessage::DEBUG2,
         string("ExpressionParser: parsing expression: ").append(expression));
 
-    static regex re("([^[:alpha:]_])?([[:alpha:]|_][[:word:]]*)(.*)");
+    static std::regex re("([^[:alpha:]_])?([[:alpha:]|_][[:alnum:]]*)(.*)");
 
-    cmatch what;
+    std::cmatch what;
     string match;
     string remainder(expression);
     bool moreTokens = true;
     while (moreTokens) {
-        bool ret = regex_search(remainder.c_str(), what, re);
+        bool ret = std::regex_search(remainder.c_str(), what, re);
         if (!ret) {
             moreTokens = false;
         } else {
@@ -87,8 +85,8 @@ void ParsingResults::parseExpression(const string &expression) {
             string token(what[2].first, what[2].second);
             XDEMessage::log(XDEMessage::DEBUG5,
                             string("Looking at: ").append(token));
-            trim(leftChar);
-            trim(rightChar);
+            boost::trim(leftChar);
+            boost::trim(rightChar);
 
             // If the character to the left is a digit then this need
             // to be e or E followed by +/- then numbers.
@@ -122,7 +120,7 @@ void ParsingResults::parseExpression(const string &expression) {
 
 void addToSet(const string &s, set<string> &aSet) {
     string s1(s);
-    trim(s1);
+    boost::trim(s1);
     XDE_ASSERT(s1.size() > 0);
     aSet.insert(s1);
 }

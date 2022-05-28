@@ -13,8 +13,6 @@
 #include <iterator>
 #include <vector>
 
-#include <boost/make_shared.hpp>
-
 using namespace std;
 using namespace std::placeholders;
 
@@ -79,7 +77,6 @@ void XDEModel::init() {
 }
 
 void XDEModel::collectAllVariables() {
-    allVariables.clear();
     allVariables = getAllNames(getDependentVariables());
     auto modelParams = getAllNames(getModelParameters());
     allVariables.insert(allVariables.end(), modelParams.begin(),

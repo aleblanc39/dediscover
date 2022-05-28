@@ -16,7 +16,7 @@ set (BOOST_LIBRARYDIR "/usr/lib/x86_64-linux-gnu/")
 set (BOOST_INCLUDEDIR "/usr/include")
 
 
-find_package(Boost  1.62.0  REQUIRED COMPONENTS filesystem regex system date_time thread)
+find_package(Boost  1.62.0  REQUIRED COMPONENTS filesystem  system date_time thread)
 #find_package(Boost  1.65.1 REQUIRED COMPONENTS filesystem regex system date_time)
 # find_package(Boost  REQUIRED  filesystem regex system date_time)
 if (NOT Boost_FOUND) 

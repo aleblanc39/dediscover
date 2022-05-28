@@ -4,7 +4,6 @@
 
 #include <TestUtils.h>
 #include <boost/cast.hpp>
-#include <boost/regex.hpp>
 
 #include <base/XDEBlas.h>
 

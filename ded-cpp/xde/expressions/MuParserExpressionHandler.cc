@@ -8,8 +8,7 @@
 #include <parser/ParserException.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/regex.hpp>
-
+#include <regex>
 #include "MuParserObjectsList.h"
 
 using namespace std;
@@ -196,8 +195,8 @@ ProcessedModelExpressionPtr MuParserExpressionHandler::generateCode(
 string MuParserExpressionHandler::generateCode(
     const ptc::ExpressionPtr expression, ProcessedModelExpressionPtr ptr,
     TermMuGenerator &generator) {
-    const std::string variable = "[[:alpha:]|_][[:word:]]*";
-    static boost::regex re(variable);
+    const std::string variable = "[[:alpha:]|_][[:alnum:]]*";
+    static std::regex re(variable);
 
     string newExpression =
         generateCode(expression->getFirstTerm(), ptr, generator);
@@ -213,8 +212,8 @@ string MuParserExpressionHandler::generateCode(
         newExpression.append(" " + op.first + " ");
         std::string ex = generateCode(op.second, ptr, generator);
 
-        boost::cmatch what;
-        if (boost::regex_match(ex.c_str(), re)) {
+        //boost::cmatch what;
+        if (std::regex_match(ex.c_str(), re)) {
             if (isWordReserved(ex)) {
                 throw ParserException(
                     generator.expressionHandler->getLineNumber(),
