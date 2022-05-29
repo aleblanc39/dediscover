@@ -41,7 +41,6 @@ set (sources
 ./solver/SambineDDEWrapper.cc
 ./solver/XDESolverWrapper.cc
 ./base/XDECSVFile.cc
-./base/XDEBase.cc
 ./base/MemoryBank.cc
 ./base/XDEUtil.cc
 ./base/XDEMessage.cc

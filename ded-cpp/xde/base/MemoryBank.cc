@@ -1,10 +1,6 @@
 #include "base/MemoryBank.h"
-
 #include <base/XDEUtil.h>
-
 #include <boost/lexical_cast.hpp>
-#include <iostream>
-
 #include "base/XDEException.h"
 
 using namespace std;
@@ -30,8 +26,8 @@ MemoryBank::~MemoryBank() {
 }
 
 double *MemoryBank::getLocation(string varName) {
-    map<string, double *>::const_iterator it;
-    it = varmap.find(varName);
+    //map<string, double *>::const_iterator it;
+    auto it = varmap.find(varName);
     if (it == varmap.end()) {
         if (nbAllocated == maxSize) {
             // Memory is full. Allocate another block.
@@ -79,7 +75,7 @@ int MemoryBank::createBlock(vector<string> symbolNames) {
         block = new double[nbSymbols];
         for (int i = 0; i < nbSymbols; i++) {
             double *loc = block + i;
-            map<string, double *>::iterator it = varmap.find(symbolNames[i]);
+            auto it = varmap.find(symbolNames[i]);
             if (it == varmap.end()) {
                 varmap.insert(pair<string, double *>(symbolNames[i], loc));
             } else {
