@@ -13,7 +13,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 */
 
 #include "basis_function.h"
-
+#include <cstddef>
 double baf::BasisFunction::Evaluate(const ParamCoord &paramCoord) const {
   return IsCoordinateInSupport(paramCoord) ? this->EvaluateOnSupport(paramCoord) : 0.0;
 }

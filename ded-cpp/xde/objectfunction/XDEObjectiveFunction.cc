@@ -7,6 +7,7 @@
 #include <parser/ModelParameter.h>
 
 #include <boost/bind.hpp>
+#include <cmath>
 
 using namespace std;
 
@@ -72,7 +73,7 @@ double XDEObjectiveFunction::computeSum(const TDoubleVector &parameters) {
                         string("Objective function call #") +
                             boost::lexical_cast<string>(nbCalls));
 
-    if (find_if(parameters.begin(), parameters.end(), isNaN) !=
+    if (find_if(parameters.begin(), parameters.end(), [](double d) { return std::isnan(d); }) !=
         parameters.end()) {
         XDEMessage::log(XDEMessage::WARNING,
                         "One of the parameters is NAN for objective function. "
@@ -93,8 +94,8 @@ double XDEObjectiveFunction::computeSum(const TDoubleVector &parameters) {
 
     // TODO As 2021 Clean up the isNaN mess. Using two different version here
     for (unsigned i = 0; i < nbValues; i++) {
-        if (!isNaN(values.observed[i])) {
-            if (!ISNAN(values.computed[i]) &&
+        if (!std::isnan(values.observed[i])) {
+            if (!std::isnan(values.computed[i]) &&
                 abs(values.observed[i]) != XDEUtil::XDE_INF &&
                 abs(values.computed[i]) != XDEUtil::XDE_INF) {
  

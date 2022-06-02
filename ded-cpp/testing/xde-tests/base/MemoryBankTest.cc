@@ -22,7 +22,6 @@ SCENARIO("Test Basic Memory Bank Functionality") {
 
         vector<string> blockA;
         blockA += "A", "A1", "A2";
-        double blockAValues[] = {10, 20, 30};
 
         for (unsigned i = 0; i < vars.size(); i++) {
             memory.setValue(vars[i], -((int)i));

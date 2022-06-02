@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 #include <initializer_list>
 #include <utility>
 #include <vector>
+#include <cstddef>
 
 #include "named_type.h"
 

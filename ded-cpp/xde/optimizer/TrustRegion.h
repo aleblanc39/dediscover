@@ -4,6 +4,7 @@
 
 #include "XDEOptimizer.h"
 #include <base/XDEUtil.h>
+#include <cmath>
 
 /**
  * \brief Wrapper around the TrustRegion method implemented
@@ -65,7 +66,7 @@ Note that this method will always use least squares, regardless of what is indic
         // taking the log of a negative value.
 
         for (auto i = 0; i < nbTerms; i++) {
-            if (XDEBase::isNaN(fx[i])) {
+            if (std::isnan(fx[i])) {
                 std::cerr << "Have a nan\n";
                 //fx[i] = XDEUtil::XDE_INF;
                 fx[i] = 100000;

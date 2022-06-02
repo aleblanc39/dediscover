@@ -1,6 +1,7 @@
 
 #include <mapping/NewWorkingData.h>
 #include <mapping/ModelMappingInfoSet.h>
+#include <cmath>
 #include <vector>
 
 using namespace std;
@@ -34,7 +35,7 @@ void NewWorkingData::initializeData() {
     for (unsigned i = 0; i < nbTimepoints; i++) {
         // TODO may not be required anymore if we expect caller to send good data.
         auto v = (originalTimepoints[i] == -XDEUtil::XDE_INF ||
-                    ISNAN(originalTimepoints[i]))
+                    std::isnan(originalTimepoints[i]))
                        ? XDEUtil::XDE_INF
                        : originalTimepoints[i];
             tableRowPtr.push_back(TableRowPtr(v, i));
@@ -115,7 +116,7 @@ void NewWorkingData::initializeData() {
         // Will be used when mapping simulation results.
 
         for (unsigned j = 0; j < nbCols; j++) {
-            if (!ISNAN(data(row, j))) {
+            if (!std::isnan(data(row, j))) {
                 dataMap.push_back(pair<unsigned, unsigned>(indx, j));
                 linearData.push_back(data(row, j));
             }

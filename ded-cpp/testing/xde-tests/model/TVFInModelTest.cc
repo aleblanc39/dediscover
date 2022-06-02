@@ -3,7 +3,7 @@
 #include <extra_parser_functions/LOCF.h>
 #include <model/XDEModel.h>
 #include <iostream>
-
+#include <cmath>
 #include "doctest.h"
 
 using namespace std;
@@ -41,6 +41,6 @@ SCENARIO("Have a model with a TVF, using dep var instead of time variable") {
         y[0] = 100;  // Will be current value of alpha
         model.initializeTVFunctions();
         model.compute(0, y, modelParams, yout);
-        THEN("Next value of alpha is nan"){CHECK(ISNAN(yout[0]));}
+        THEN("Next value of alpha is nan"){CHECK(std::isnan(yout[0]));}
     }
 }

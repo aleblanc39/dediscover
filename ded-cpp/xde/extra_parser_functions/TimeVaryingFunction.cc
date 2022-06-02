@@ -6,6 +6,7 @@
 
 #include "TVFunctionException.h"
 #include <boost/make_shared.hpp>
+#include <cmath>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ double TimeVaryingFunction::compute(double t) {
         // initialized = true;
     }
     double ret;
-    if (ISNAN(t) || disabled || t > maxTimePoint || t < minTimePoint)
+    if (std::isnan(t) || disabled || t > maxTimePoint || t < minTimePoint)
         // return outOfRangeValue;
         ret = outOfRangeValue;
     else
@@ -61,7 +62,7 @@ void TimeVaryingFunction::addControlPoints(const TDoubleVector &t,
     XDE_ASSERT(t.size() == v.size());
     unsigned nbValues = t.size();
     for (unsigned i = 0; i < nbValues; i++) {
-        if (!ISNAN(t[i]) && !ISNAN(v[i]))
+        if (!std::isnan(t[i]) && !std::isnan(v[i]))
             controlPoints.push_back(ControlPoint(t[i], v[i]));
     }
 }
@@ -185,7 +186,7 @@ TDoubleVector TimeVaryingFunction::getUsedTimepoints() {
     TDoubleVector retValues;
     extractSortedPoints(retTimes, retValues, AVERAGE_REPEATS);
     TDoubleVector::iterator tend =
-        std::remove_if(retTimes.begin(), retTimes.end(), XDEBase::isNaN);
+        std::remove_if(retTimes.begin(), retTimes.end(), [](double d) { return std::isnan(d); });
     retTimes.resize(retTimes.size() - (retTimes.end() - tend));
     return retTimes;
 }
@@ -222,7 +223,7 @@ void TimeVaryingFunction::extractSortedPoints(TDoubleVector &retTimes,
                 compareIndexedPoints);
 
     // Remove all the NaNs.
-    indexedPoints.erase(std::remove_if(indexedPoints.begin(), indexedPoints.end(), [](const IndexedPoint &pt){return ISNAN(pt.time) || ISNAN(pt.value);}), indexedPoints.end());
+    indexedPoints.erase(std::remove_if(indexedPoints.begin(), indexedPoints.end(), [](const IndexedPoint &pt){return std::isnan(pt.time) || std::isnan(pt.value);}), indexedPoints.end());
     // Copy the sorted values in the returned arrays. In case of
     // repeats, keep only the last one.
 
