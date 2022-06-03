@@ -5,7 +5,6 @@
 #include <extra_parser_functions/TimeVaryingFunctionList.h>
 #include <muParser.h>
 
-
 #include <string>
 
 class MuParserExpressionEvaluator;
@@ -31,7 +30,6 @@ class MuParserExpressionEvaluator {
      * in the code instead of string comparisons.
      *
      */
-    typedef enum { EQ = 0, LT, GT, LEQ, GEQ, NEQ } OperatorType;
     static double Indicator2(double lhs, double op, double rhs);
     static double Indicator3(double lhs, double op1, double middle, double op2,
                              double rhs);
@@ -73,9 +71,6 @@ class MuParserExpressionEvaluator {
     mu::Parser parser;  // This is the muParser.
     
     std::vector<std::string> variableNames;
-
-    static OperatorType getOperatorCode(std::string op);
-
     std::string expression;
     MemorySynchronizerPtr memorySynchronizer;
 

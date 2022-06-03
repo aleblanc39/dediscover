@@ -4,7 +4,6 @@
 #include <base/XDEMessage.h>
 #include <base/XDEUtil.h>
 
-#include <boost/assign/list_of.hpp>
 #include <boost/cast.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 #include <cmath>
@@ -18,19 +17,29 @@
 using namespace std;
 static double PI = acos(-1.0);
 
+typedef enum { EQ = 0, LT, GT, LEQ, GEQ, NEQ } OperatorType;
+static const std::map<std::string, OperatorType> operatorMap = {{"=", EQ},{"<", LT}, {"<=", LEQ}, {">", GT}, {">=", GEQ}, {"<>", NEQ}};
+static const OperatorType &getOperatorCode(string op) {
+       if (!operatorMap.count(op))
+        throw XDEException(string("Unrecognized operator: ").append(op));
+    return operatorMap.at(op);
+}
+
+
 const string MuParserExpressionEvaluator::TVFunctionName = "___TVFunction";
+
 // const string MuParserExpressionEvaluator::VarargsFunctionName =
 // "___VarargsFunction";
 const string MuParserExpressionEvaluator::MuParserFunctionName =
     "___MuParserObject";
+
 
 template <>
 double MuParserObjectsList::compute(unsigned indx) {
     return functions[indx]->compute();
 }
 
-std::set<std::string> MuParserExpressionEvaluator::additionalFunctions =
-    boost::assign::list_of("ind")("gamma_p")("piecewise")("if");
+std::set<std::string> MuParserExpressionEvaluator::additionalFunctions = {"ind", "gamma_p", "piecewise", "if"};
 
 MuParserExpressionEvaluator::~MuParserExpressionEvaluator() {
     XDEMessage::log(XDEMessage::DEBUG2,
@@ -69,7 +78,6 @@ MuParserExpressionEvaluator::MuParserExpressionEvaluator(
         }
 
         // Assign memory to the variables.
-        // varLocations = new double[variableNames.size()];
         for (unsigned i = 0; i < variableNames.size(); i++) {
             parser.DefineVar(variableNames[i],
                              memorySynchronizer->getLocation(variableNames[i]));
@@ -91,10 +99,10 @@ void MuParserExpressionEvaluator::remapMemory() {
 }
 
 double MuParserExpressionEvaluator::evaluate() {
-    mu::varmap_type variables = parser.GetVar();
+    // mu::varmap_type variables = parser.GetVar();
 
-    // Get the number of variables
-    mu::varmap_type::const_iterator item = variables.begin();
+    // // Get the number of variables
+    // mu::varmap_type::const_iterator item = variables.begin();
     return parser.Eval();
 }
 
@@ -126,11 +134,8 @@ double MuParserExpressionEvaluator::Indicator2(double lhs, double op,
     OperatorType iop = (OperatorType)((int)op);
 
     if (lhs > rhs && (iop == GEQ || iop == GT || iop == NEQ)) return 1;
-
     if (lhs == rhs && (iop == LEQ || iop == GEQ || iop == EQ)) return 1;
-
     if (lhs < rhs && (iop == LEQ || iop == LT || iop == NEQ)) return 1;
-
     return 0;
 }
 
@@ -191,19 +196,6 @@ std::string MuParserExpressionEvaluator::getMuParserFunctionString(
     return ret;
 }
 
-// Inefficient but simple. Should be ok for now.
-
-MuParserExpressionEvaluator::OperatorType
-MuParserExpressionEvaluator::getOperatorCode(string op) {
-    if (op == "=") return EQ;
-    if (op == "<") return LT;
-    if (op == "<=") return LEQ;
-    if (op == ">") return GT;
-    if (op == ">=") return GEQ;
-    if (op == "<>") return NEQ;
-
-    throw XDEException(string("Unrecognized operator: ").append(op));
-}
 
 // TODO: Move these functions to a separate class, as their number is very
 // likely to increase.
