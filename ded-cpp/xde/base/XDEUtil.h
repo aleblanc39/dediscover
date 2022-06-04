@@ -77,8 +77,8 @@ void xde_copy(T &copyTo, const T &copyFrom) {
  * Collect all names. When I have time, make function used a parameter
  *
  */
-template <class T>
-std::vector<std::string> getAllNames(const std::vector<T> &v) {
+template <typename Container, typename T = typename Container::value_type>
+std::vector<std::string> getAllNames(const Container &v) {
     std::vector<std::string> ret(v.size());
     std::transform(v.begin(), v.end(), ret.begin(),
                    [](T p) -> std::string { return p->getName(); });

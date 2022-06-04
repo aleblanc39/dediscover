@@ -16,22 +16,45 @@
 using namespace std;
 using namespace std::placeholders;
 
+
+template <class T>
+    void buildMSV(std::vector<T> &msv, const std::map<std::string, T> &newSymbols) {
+        typedef std::pair<std::string, T> entryType;
+        for (entryType e : newSymbols) {
+            msv.push_back(e.second);
+        }
+    }
+
+
 XDEModel::XDEModel(const string &equations) {
     XDEMessage::log(XDEMessage::DEBUG4,
                     string("Model used:\n").append(equations));
 
-
-    expressionHandler = std::make_shared<MuParserExpressionHandler>();
-    parser = std::make_shared<XDEParser>(expressionHandler, equations);
-
-    historyIntervalsPtr = parser -> getHistoryIntervals();
-    delayedVariableHandler = parser -> getDelayedVariableHandler();
-
-    if (equations.empty()) {
+   if (equations.empty()) {
         errorMessages.push_back(
             ErrorMessageType(0, "The equations string is empty."));
         return;
     }
+
+    expressionHandler = std::make_shared<MuParserExpressionHandler>();
+    auto parser = std::make_unique<XDEParser>(expressionHandler, equations);
+
+
+
+
+
+
+    buildMSV(dependentVariablesVector, parser -> getDependentVariables());
+    buildMSV(macrosVector, parser -> getMacros());
+    buildMSV(modelParametersVector, parser -> getModelParameters());
+    buildMSV(covariatesVector, parser -> getCovariates());
+
+    // TODO Create MSV vector from parser model symbol sets
+
+    historyIntervalsPtr = parser -> getHistoryIntervals();
+    delayedVariableHandler = parser -> getDelayedVariableHandler();
+
+ 
 
     if (parser->getErrorMessages().size() > 0) {
         ErrorMessageList erl = parser->getErrorMessages();
@@ -39,14 +62,14 @@ XDEModel::XDEModel(const string &equations) {
         return;
     }
     memorySynchronizer = expressionHandler->getMemorySynchronizer();
-    init();
+    init(*parser.get());
 }
 
 XDEModel::~XDEModel() {
     XDEMessage::log(XDEMessage::DEBUG2, "Into XDEModel destructor.");
 }
 
-void XDEModel::init() {
+void XDEModel::init(const XDEParser &parser) {
     try {
         XDEMessage::log(XDEMessage::DEBUG3, "Init called from xdemodel\n");
 
@@ -55,7 +78,7 @@ void XDEModel::init() {
     
         dependentVariablesBlockID = memorySynchronizer->createBlock(
             getAllNames(getDependentVariables()));
-        createEquationsObjects();
+        createEquationsObjects(parser);
         
         initializeConstantTVFunctions();
         collectAllVariables();
@@ -469,7 +492,7 @@ TDoubleMatrix XDEModel::computeCovariatesAtTimepoints(
  *
  */
 
-void XDEModel::createEquationsObjects() {
+void XDEModel::createEquationsObjects(const XDEParser &parser) {
     vector<string> delayVarNames;
     
     // TODO Remove from here. Put in own method that reurns the id
@@ -494,7 +517,7 @@ void XDEModel::createEquationsObjects() {
      * conditions containing an expression and macros used by initial
      * conditions are added to the constantEquations object.
      */
-    for (const string &s : parser->getOrderOfComputation()) {
+    for (const string &s : parser.getOrderOfComputation()) {
         bool added = false;
         std::vector<MacroPtr> macros = getMacros();
         std::vector<MacroPtr>::iterator it =

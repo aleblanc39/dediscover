@@ -29,9 +29,6 @@
 
 namespace ptc = ParseTreeComponents;
 
-class XDEParser;
-typedef std::shared_ptr<XDEParser> XDEParserPtr;
-
 typedef boost::variant<DependentVariablePtr, MacroPtr, CovariatePtr>
     ModelSymbolVariant;
 
@@ -74,7 +71,6 @@ class UsedSymbolsVisitor
  * that the XDEModel class will receive about the model comes
  * from an object from this class.
  *
- * Update AL2021: Parser is created with equations, can not be changed.
  */
 
 class XDEParser : public XDEBase {
@@ -86,60 +82,37 @@ class XDEParser : public XDEBase {
     }
 
 
+    const auto &getDependentVariables() const { return dependentVariables;}
+    const auto &getModelParameters() const {return modelParameters;}
+    const auto &getMacros() const { return macros; }
+    const auto &getCovariates() const {return covariates;}
 
-    const std::vector<DependentVariablePtr> &getDependentVariables() const {
-        return dependentVariablesVector;
-    }
-    const std::vector<ModelParameterPtr> &getModelParameters() const {
-        return modelParametersVector;
-    }
-    const std::vector<MacroPtr> &getMacros() const { return macrosVector; }
-    const std::vector<CovariatePtr> &getCovariates() const {
-        return covariatesVector;
-    }
-
-    // std::string getInitialConditionString(std::string x) {
-    //     return expressionHandler->getInitialConditionString(x);
-    // }
-
-    std::vector<std::string> getOrderOfComputation() {
+    const auto &getOrderOfComputation() const {
         return orderOfComputation;
     }
 
-    auto getHistoryIntervals() {return historyIntervals;}
+    auto getHistoryIntervals() const {return historyIntervals;}
     const auto &getDelayedVariableHandler(){return delayedVariableHandler;}
 
 
     std::vector<DelayedVariablePtr> getDelayedVariables() {
         return expressionHandler->getDelayedVariables();
     }
-    // std::map<std::string, unsigned> getDelayedVariableExpressions() {
-    //     return expressionHandler->getDelayedVariableExpressions();
-    // }
-
-
+    
     const ErrorMessageList &getErrorMessages() { return errorMessages; }
 
    protected:
     
     std::map<std::string, int> delayedVariableExpressions;
 
-    template <class T>
-    void buildMSV(std::vector<T> &msv, std::map<std::string, T> &newSymbols) {
-        typedef std::pair<std::string, T> entryType;
-        for (entryType e : newSymbols) {
-            msv.push_back(e.second);
-        }
-    }
-
     void validateDelayedVariables();
     HistoryIntervalsPtr<std::string, int>  extractHistory();
     DelayedVariableHandlerPtr<unsigned> createDelayedVariableObj();
 
-    std::vector<ModelParameterPtr> modelParametersVector;
-    std::vector<DependentVariablePtr> dependentVariablesVector;
-    std::vector<MacroPtr> macrosVector;
-    std::vector<CovariatePtr> covariatesVector;
+    // std::vector<ModelParameterPtr> modelParametersVector;
+    // std::vector<DependentVariablePtr> dependentVariablesVector;
+    // std::vector<MacroPtr> macrosVector;
+    // std::vector<CovariatePtr> covariatesVector;
 
     std::vector<std::string> orderOfComputation;
 

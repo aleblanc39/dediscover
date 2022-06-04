@@ -7,13 +7,15 @@
 # Your version of CMake may also cause problems.
 
 #set (BOOST_LIBRARYDIR $ENV{BOOST_ROOT})
+set (BOOST_LIBRARYDIR /home/alain/local/boost-install/1.66/lib)
+set (BOOST_INCLUDEDIR /home/alain/local/boost-install/1.66/include)
 #set  (BOOST_LIBRARYDIR "/usr/lib/x86_64-linux-gnu/")
 
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so" ".so.0" ".so.1" ".so.2" ".so.3" ".so.4" ".so.5" ".so.1.62.0")
 
 #set  (BOOST_LIBRARYDIR "/usr/lib64")
-set (BOOST_LIBRARYDIR "/usr/lib/x86_64-linux-gnu/")
-set (BOOST_INCLUDEDIR "/usr/include")
+# set (BOOST_LIBRARYDIR "/usr/lib/x86_64-linux-gnu/")
+# set (BOOST_INCLUDEDIR "/usr/include")
 
 
 find_package(Boost  1.62.0  REQUIRED COMPONENTS filesystem  system date_time thread)
@@ -27,7 +29,7 @@ endif (NOT Boost_FOUND)
 set (BOOST_LIBRARIES ${Boost_LIBRARIES}) # Just so I don't rewrite all makefiles
 set (LIBRARY_TYPE "SHARED")
   
-set (EXTRA_OPTIONS "-g  -Wno-deprecated -fPIC -std=c++17 -DLINUX -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")
+set (EXTRA_OPTIONS "-g  -Wno-deprecated -fPIC -std=c++17 -DBOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS -DLINUX -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")
 
 
 # TODO Move all the include, lib from thirdparty packages into 

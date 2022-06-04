@@ -35,6 +35,7 @@ class DelayedVariableHandler {
    public:
     // Pairs in delayExpressions are <varName, eqnID in ExpressionHandler>
     DelayedVariableHandler(
+        // TODO VALIDATE if order of var name is important.
         const std::vector<std::string> &varNames,
         const std::vector<std::pair<std::string, T>> delayVars,
         const std::vector<T> eqnIds);

@@ -51,13 +51,13 @@ V[t0] = 5595.81\n";
                 CHECK(depVars.size() == 3);
             }
             THEN("There is a dependent variable named T1") {
-                CHECK(find_symbol(depVars, "T1")->getName() == "T1");
+                CHECK(depVars.count("T1") == 1);
             }
             THEN("There is a dependent variable named TT") {
-                CHECK(find_symbol(depVars, "TT")->getName() == "TT");
+                CHECK(depVars.count("TT") == 1);
             }
             THEN("There is a dependent variable named V") {
-                CHECK(find_symbol(depVars, "V")->getName() == "V");
+                CHECK(depVars.count("V") == 1);
             }
             THEN("There are 6 model parameters") {
                 CHECK(modelParameters.size() == 6);

@@ -12,7 +12,6 @@
 #include <nvector/nvector_serial.h> /* serial N_Vector types, fcts., macros */
 
 #include <parser/XDEParser.h>
-
 #include <parser/HistoryIntervals.h>
 #include <parser/DelayedVariablesHandler.h>
 
@@ -35,26 +34,17 @@ class XDEModel : public ThreadInterface, public XDEBase {
    public:
     XDEModel(const std::string &equations);
 
-    static const std::string parserLineNO_flag;
-    static const std::string parserOccurence_flag;
-    static const std::string parserLineDef_flag;
+    // static const std::string parserLineNO_flag;
+    // static const std::string parserOccurence_flag;
+    // static const std::string parserLineDef_flag;
 
     virtual ~XDEModel();
 
     // TODO: create these vectors locally so we can get rid of references to the parser object here.
-    const auto &getDependentVariables() const {
-        return parser->getDependentVariables();
-    }
-    const auto &getModelParameters() const {
-        return parser->getModelParameters();
-    }
-    const auto &getMacros() const {
-        return parser->getMacros();
-    }
-    const auto &getCovariates() const {
-        return parser->getCovariates();
-    }
-
+    const auto &getDependentVariables() const { return dependentVariablesVector;}
+    const auto &getModelParameters() const { return modelParametersVector;}
+    const auto &getMacros() const { return macrosVector;}
+    const auto &getCovariates() const { return covariatesVector;}
 
     const std::vector<double> &getHistoryAtTime(double t);
 
@@ -103,7 +93,7 @@ class XDEModel : public ThreadInterface, public XDEBase {
 
     // Must be called before any computation is performed on the TV functions,
     // includes both the functions assigned through mapping and those hard-coded
-    // in the equations.
+    // in the equations.const XDEParser &parser
     void initializeTVFunctions();  // {parser -> initializeTVFunctions();}
     void initializeConstantTVFunctions();
     void initializeCovariates();
@@ -125,7 +115,6 @@ class XDEModel : public ThreadInterface, public XDEBase {
     const auto &getAllVariables() const { return allVariables; }
 
    protected:
-    XDEParserPtr parser;
     MemorySynchronizerPtr memorySynchronizer;
     ExpressionSetEvaluatorPtr constantEquations;
     ExpressionSetEvaluatorPtr timeDependentEquations;
@@ -141,7 +130,7 @@ class XDEModel : public ThreadInterface, public XDEBase {
                 "or with errors in the equations.");
     }
 
-    void init();
+    void init(const XDEParser &parser);
 
    private:
     ErrorMessageList errorMessages;
@@ -150,13 +139,18 @@ class XDEModel : public ThreadInterface, public XDEBase {
     HistoryIntervalsPtr<std::string, int> historyIntervalsPtr;
     DelayedVariableHandlerPtr<unsigned> delayedVariableHandler;
 
-    void createEquationsObjects();
+    void createEquationsObjects(const XDEParser &parser);
     int delayedVariablesBlockID;
 
     void computeMacrosAtTime(int timeIndex, const std::vector<double> &timepts,
                              const TDoubleMatrix &depVarValues);
 
     void collectAllVariables();
+
+    std::vector<ModelParameterPtr> modelParametersVector;
+    std::vector<DependentVariablePtr> dependentVariablesVector;
+    std::vector<MacroPtr> macrosVector;
+    std::vector<CovariatePtr> covariatesVector;
 
     std::vector<std::string> allVariables;
  

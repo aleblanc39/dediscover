@@ -54,11 +54,7 @@ void XDEParser::parseModel(string model) {
     processMacroCycles();
     if (errorMessages.size() > 0) return;
 
-    buildMSV(dependentVariablesVector, dependentVariables);
-    buildMSV(macrosVector, macros);
-    buildMSV(modelParametersVector, modelParameters);
-    buildMSV(covariatesVector, covariates);
-
+ 
     historyIntervals = extractHistory();
     delayedVariableHandler = createDelayedVariableObj();
     if (errorMessages.size() > 0) return;
@@ -524,11 +520,12 @@ HistoryIntervalsPtr<std::string, int> XDEParser::extractHistory() {
                  eqID)));
     }
 
-    std::vector<string> depVarNames(dependentVariablesVector.size());
+    // TODO VALIDATE!!!
+    std::vector<string> depVarNames(dependentVariables.size());
     std::transform(
-        dependentVariablesVector.begin(), dependentVariablesVector.end(),
+        dependentVariables.begin(), dependentVariables.end(),
         depVarNames.begin(),
-        [](DependentVariablePtr p) -> std::string { return p->getName(); });
+        [](pair<string, DependentVariablePtr> p) -> std::string { return p.first; });
 
     return std::make_shared<HistoryIntervals<string, int>>(
         depVarNames, historyIntervalsMap);
@@ -545,6 +542,9 @@ DelayedVariableHandlerPtr<unsigned> XDEParser::createDelayedVariableObj() {
     std::transform(delayedVariables.begin(), delayedVariables.end(), 
         delayVarsMapping.begin(), [](DelayedVariablePtr p)->pair<string, unsigned>{return std::pair(p->getVarName(), p->getExpressionID());});
 
-    return std::make_shared<DelayedVariableHandler<unsigned>>  (getAllNames(dependentVariablesVector), delayVarsMapping, ids);
+
+    vector<string> depVarNames(dependentVariables.size());
+    std::transform(dependentVariables.begin(), dependentVariables.end(), depVarNames.begin(), [](pair<string, DependentVariablePtr> p)->string{return p.first;});
+    return std::make_shared<DelayedVariableHandler<unsigned>>  (depVarNames, delayVarsMapping, ids);
 
 }

@@ -43,11 +43,6 @@ static DataTableMappingPtr createDataTableMapping() {
     return std::make_shared<DataTableMapping>(timepoints, formulas, data);
 }
 
-
-
-
-
-
 SCENARIO("Testing straightLineInterploation") {
     GIVEN("A made upoptimization result") {
         vector<double> lb = {0, 0, 1, 1};
@@ -66,6 +61,7 @@ SCENARIO("Testing straightLineInterploation") {
         // Validity of results not an issue here. 
 
         auto paramNames = getAllNames(model->getModelParameters());
+
         auto solver = std::make_shared<SundialsSolverWrapper>();
         auto parameterSet = std::make_shared<EstimationParameterSet>();
             
@@ -75,7 +71,6 @@ SCENARIO("Testing straightLineInterploation") {
         parameterSet -> addParameter(EstimationSymbolAttributes("death", 0, 0, 10, true));
         parameterSet -> addParameter(EstimationSymbolAttributes("Predator", 7, 0, 100, false));
         parameterSet -> addParameter(EstimationSymbolAttributes("Prey", 27, 0, 100, false));
-
         auto ciResults = nls.evaluate(optimizationResults, createDataTableMapping(), parameterSet, model, solver);
         THEN("We didn't crash") { CHECK(ciResults->getLowerBounds().size() == 4); }
 

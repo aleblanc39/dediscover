@@ -41,7 +41,10 @@ SCENARIO("A parsed model with many equations and values assigned") {
         handler->setVariableValue("delta", 30);
         handler->setVariableValue("N", 40);
         handler->setVariableValue("c", 50);
-        THEN("Macro temp_var should be set to 25"){CHECK(handler->compute(parser.getMacros()[0]->getExpressionObject()->getEquationID())== 25);}
+        auto macro_it = parser.getMacros().find("temp_var");
+        
+        THEN("The parser found the macro"){CHECK(macro_it != parser.getMacros().end());}
+        THEN("Macro temp_var should be set to 25"){CHECK(handler->compute(macro_it->second->getExpressionObject()->getEquationID())== 25);}
     }
 
     GIVEN("We compute the derivatives") {
@@ -58,25 +61,32 @@ SCENARIO("A parsed model with many equations and values assigned") {
         handler->setVariableValue("N", 40);
         handler->setVariableValue("c", 50);
 
+
+//    auto macro_it = parser.getMacros().find("temp_var");
+        
+//         THEN("The parser found the macro"){CHECK(macro_it != parser.getMacros().end());}
+//         THEN("Macro temp_var should be set to 25"){CHECK(handler->compute(macro_it->second->getExpressionObject()->getEquationID())== 25);}
+
         handler->setVariableValue("temp_var", 25);
         THEN("V should be set to 2450"){
-            auto param = find_if(depVars.begin(), depVars.end(), 
-            [](const DependentVariablePtr &p) {return p->getName() == "V";});
+
+
+            // auto param = find_if(depVars.begin(), depVars.end(), 
+            // [](const DependentVariablePtr &p) {return p->getName() == "V";});
+
+           auto param_it = depVars.find("V");
             CHECK(handler->compute(
-                              (*param)->getDerivativeExpression()->getEquationID())== 2450);
+                              param_it->second->getDerivativeExpression()->getEquationID())== 2450);
         }
 
         THEN("TT should be set to -11"){
-            auto param = find_if(depVars.begin(), depVars.end(), 
-            [](const DependentVariablePtr &p) {return p->getName() == "TT";});
-            CHECK(handler->compute(
-                              (*param)->getDerivativeExpression()->getEquationID())== -11);
+            auto param_it = depVars.find("TT");
+            CHECK(handler->compute(param_it->second->getDerivativeExpression()->getEquationID())== -11);
         }
         THEN("T1 should be set to -20"){
-            auto param = find_if(depVars.begin(), depVars.end(), 
-            [](const DependentVariablePtr &p) {return p->getName() == "T1";});
+            auto param_it = depVars.find("T1");
             CHECK(handler->compute(
-                              (*param)->getDerivativeExpression()->getEquationID())== -20);
+                              param_it->second->getDerivativeExpression()->getEquationID())== -20);
         }
     }
 }

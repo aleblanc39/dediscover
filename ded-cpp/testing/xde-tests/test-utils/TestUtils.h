@@ -39,22 +39,8 @@ template <class T> void printMatrix(T matrix) {
         std::cerr << std::endl;
     }
 }
-
-        //    find_if(macros.begin(), macros.end(),
-        //          [=](MacroPtr p) { return p->getName() == s; });
  
 
-template<typename T> std::shared_ptr<T> find_symbol(std::vector<std::shared_ptr<T>> params, const std::string &symbol) {
-    auto param = find_if(params.begin(), params.end(), 
-                [=](const std::shared_ptr<T> &p) {return p->getName() == symbol;});
-
-    if (param == params.end()) {
-        return NULL;
-    } else {
-        return *param;
-    }
-
-}
 
 
 template<typename T> int findElementIndex(std::vector<std::shared_ptr<T>> params, const std::string &symbol) {
