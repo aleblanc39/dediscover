@@ -158,7 +158,7 @@ ProcessedModelExpressionPtr MuParserExpressionHandler::generateCode(
     TermMuGenerator generator(ptr, this);
 
     string newExpression =
-        generateCode(expression->getFirstTerm(), ptr, generator);
+        generateCode(expression->getFirstTerm(), generator);
     if (expression->startsWithMinus()) newExpression = "-" + newExpression;
     if (isWordReserved(newExpression))
         throw ParserException(
@@ -168,7 +168,7 @@ ProcessedModelExpressionPtr MuParserExpressionHandler::generateCode(
 
     for (const ptc::OpTermType &op : expression->getOpTerms()) {
         newExpression.append(" " + op.first + " ");
-        std::string ex = generateCode(op.second, ptr, generator);
+        std::string ex = generateCode(op.second, generator);
         if (isWordReserved(ex))
             throw ParserException(
                 lineNumber,
@@ -199,7 +199,7 @@ string MuParserExpressionHandler::generateCode(
     static std::regex re(variable);
 
     string newExpression =
-        generateCode(expression->getFirstTerm(), ptr, generator);
+        generateCode(expression->getFirstTerm(),  generator);
     if (expression->startsWithMinus()) newExpression = "-" + newExpression;
 
     if (isWordReserved(newExpression))
@@ -210,7 +210,7 @@ string MuParserExpressionHandler::generateCode(
 
     for (const auto &op : expression->getOpTerms()) {
         newExpression.append(" " + op.first + " ");
-        std::string ex = generateCode(op.second, ptr, generator);
+        std::string ex = generateCode(op.second,  generator);
 
         //boost::cmatch what;
         if (std::regex_match(ex.c_str(), re)) {
@@ -228,7 +228,7 @@ string MuParserExpressionHandler::generateCode(
 }
 
 string MuParserExpressionHandler::generateCode(const ptc::TermPtr term,
-                                               ProcessedModelExpressionPtr ptr,
+                                               // ProcessedModelExpressionPtr ptr,
                                                TermMuGenerator &g) {
     ptc::TermVariant tv = term->getContents();
     return boost::apply_visitor(g, tv);

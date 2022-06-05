@@ -14,7 +14,6 @@
 
 #include <vector>
 
-#include <base/XDEBase.h>
 #include <boost/any.hpp>
 #include <boost/scoped_ptr.hpp>
 

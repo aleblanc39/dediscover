@@ -7,7 +7,6 @@
 #ifndef ALGORITHMRESULT_H_
 #define ALGORITHMRESULT_H_
 
-#include <base/XDEBase.h>
 
 #include <string>
 

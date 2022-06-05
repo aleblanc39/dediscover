@@ -1,7 +1,6 @@
 
 #include "EstimatorResult.h"
 
-#include <base/XDEBase.h>
 #include <base/XDEException.h>
 #include <base/XDEUtil.h>
 #include <math.h>

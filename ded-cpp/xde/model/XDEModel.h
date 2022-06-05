@@ -2,7 +2,6 @@
 #define XDEMODEL_H
 
 #include <base/ThreadInterface.h>
-#include <base/XDEBase.h>
 #include <cvode/cvode.h> /* prototypes for CVODE fcts., consts. */
 #include <base/XDEBlas.h>
 #include <expressions/ExpressionSetEvaluator.h>
@@ -29,7 +28,7 @@ typedef std::shared_ptr<XDEModel> ModelPtr;
  * perform computation on a valid model.
  */
 
-class XDEModel : public ThreadInterface, public XDEBase {
+class XDEModel : public ThreadInterface {
     
    public:
     XDEModel(const std::string &equations);

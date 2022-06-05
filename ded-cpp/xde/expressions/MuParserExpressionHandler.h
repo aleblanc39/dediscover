@@ -45,7 +45,8 @@ class MuParserExpressionHandler : public ExpressionHandler {
         const ParseTreeComponents::ExpressionPtr expression, int lineNO = -1);
     static std::string generateCode(
         const ParseTreeComponents::TermPtr expression,
-        ProcessedModelExpressionPtr ptr, TermMuGenerator &g);
+        // ProcessedModelExpressionPtr ptr, 
+        TermMuGenerator &g);
     static std::string generateCode(const ptc::ExpressionPtr expression,
                                     ProcessedModelExpressionPtr ptr,
                                     TermMuGenerator &generator);

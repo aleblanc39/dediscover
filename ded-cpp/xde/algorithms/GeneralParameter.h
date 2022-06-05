@@ -1,7 +1,6 @@
 #ifndef GENERAL_PARAMETER_H_
 #define GENERAL_PARAMETER_H_
 #include <memory>
-#include <base/XDEBase.h>
 #include <base/XDEException.h>
 
 #include <string>
@@ -20,7 +19,7 @@ typedef std::shared_ptr<GeneralParameter> GeneralParameterPtr;
  * include a list of options to handle the case of control vocabulary.
  */
 
-class GeneralParameter : public XDEBase {
+class GeneralParameter  {
    public:
     GeneralParameter();
     virtual ~GeneralParameter();

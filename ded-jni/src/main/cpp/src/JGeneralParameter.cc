@@ -34,11 +34,8 @@ JNIEXPORT jstring JNICALL
 Java_edu_rochester_urmc_cbim_jni_JGeneralParameter_getName(JNIEnv *env,
                                                            jobject obj) {
     try {
-        XDEBase *base = (XDEBase *)getBasePtr(env, obj);
-        // GeneralParameterPtr param =
-        // boost::any_cast<GeneralParameterPtr>(getNativePointer(env, obj));
-        GeneralParameter *param =
-            boost::polymorphic_cast<GeneralParameter *>(base);
+        GeneralParameterPtr param =
+        boost::any_cast<GeneralParameterPtr>(getNativePointer(env, obj));
         return env->NewStringUTF(param->getName().c_str());
     }
     JNI_EXCEPTIONS;

@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <base/XDEBlas.h>
-#include <base/XDEBase.h>
 
 
 class XDECSVFile;
@@ -21,7 +20,7 @@ typedef std::shared_ptr<XDECSVFile> XDECSVFilePtr;
  */
 
 
-class XDECSVFile: public XDEBase {
+class XDECSVFile {
 
  public:
     XDECSVFile();

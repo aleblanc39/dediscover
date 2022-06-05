@@ -2,7 +2,6 @@
 #define XDEALGORITHM_H_
 
 #include <algorithms/GenericParameter.h>
-#include <base/XDEBase.h>
 #include <base/XDEMessage.h>
 #include <parameters/ParameterSet.h>
 #include <base/ThreadInterface.h>
@@ -21,7 +20,7 @@ typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
  * class.
  */
 
-class XDEAlgorithm : public XDEBase, public ThreadInterface {
+class XDEAlgorithm :  public ThreadInterface {
    public:
     XDEAlgorithm();
     virtual ~XDEAlgorithm();

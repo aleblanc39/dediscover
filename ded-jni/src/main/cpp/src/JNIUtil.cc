@@ -5,14 +5,7 @@
 #include <cassert>
 using namespace std;
 
-jlong getBasePtr(JNIEnv *env, jobject obj) {
-    jclass cls = env->GetObjectClass(obj);
-    assert(cls != NULL);
 
-    jfieldID basePtr = env->GetFieldID(cls, "basePtr", "J");
-    assert(basePtr != NULL);
-    return env->GetLongField(obj, basePtr);
-}
 
 jlong getAlgorithmPtr(JNIEnv *env, jobject obj) {
     jclass cls = env->GetObjectClass(obj);

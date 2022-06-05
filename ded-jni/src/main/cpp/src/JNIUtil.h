@@ -5,7 +5,6 @@
 #include <algorithms/AlgorithmTemplates.h>
 #include <algorithms/XDEAlgorithm.h>
 #include <base/ThreadInterface.h>
-#include <base/XDEBase.h>
 #include <base/XDEException.h>
 #include <base/XDEProgrammingException.h>
 #include <base/XDEUtil.h>
@@ -76,7 +75,10 @@ void assignTheNativeObject(JNIEnv *env, jobject obj, T ptr) {
         (env)->CallVoidMethod(obj, setObjectIndex, jindx);
         jmethodID basePtr = env->GetMethodID(cls, "setBasePtr", "(J)V");
         assert(basePtr != NULL);
-        env->CallVoidMethod(obj, basePtr, (jlong)((XDEBase *)ptr.get()));
+
+        // TODO This seems like the only reason left to have an XDEBase object. Is it necessary?
+        env->CallVoidMethod(obj, basePtr, (jlong)(ptr.get()));
+        
     } catch (std::string s) {
         throwXDEException(env, s);
     }

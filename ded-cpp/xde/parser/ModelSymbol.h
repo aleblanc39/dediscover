@@ -2,7 +2,6 @@
 #ifndef MODELSYMBOL_H_
 #define MODELSYMBOL_H_
 
-#include <base/XDEBase.h>
 #include <base/XDEUtil.h>
 #include <base/XDEBlas.h>
 
@@ -20,7 +19,7 @@ typedef std::shared_ptr<ModelSymbol> ModelSymbolPtr;
  * \brief Base class for the symbols used in the model.
  */
 
-class ModelSymbol : public XDEBase {
+class ModelSymbol{
    public:
     ModelSymbol(std::string name, 
                 std::string description = "", bool timeDependent = false);
