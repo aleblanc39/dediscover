@@ -1,5 +1,6 @@
 #include <base/ThreadInterface.h>
 #include <base/XDEMessage.h>
+#include <base/CBIMDefinitions.h>
 
 ThreadInterface::ThreadInterface() {
     sleepTime = 1;

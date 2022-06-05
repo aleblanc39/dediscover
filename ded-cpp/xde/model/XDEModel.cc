@@ -39,11 +39,6 @@ XDEModel::XDEModel(const string &equations) {
     expressionHandler = std::make_shared<MuParserExpressionHandler>();
     auto parser = std::make_unique<XDEParser>(expressionHandler, equations);
 
-
-
-
-
-
     buildMSV(dependentVariablesVector, parser -> getDependentVariables());
     buildMSV(macrosVector, parser -> getMacros());
     buildMSV(modelParametersVector, parser -> getModelParameters());
@@ -53,8 +48,6 @@ XDEModel::XDEModel(const string &equations) {
 
     historyIntervalsPtr = parser -> getHistoryIntervals();
     delayedVariableHandler = parser -> getDelayedVariableHandler();
-
- 
 
     if (parser->getErrorMessages().size() > 0) {
         ErrorMessageList erl = parser->getErrorMessages();

@@ -1,7 +1,6 @@
 #ifndef GENERIC_PARAMETER_H
 #define GENERIC_PARAMETER_H
 #include <algorithms/GeneralParameter.h>
-#include <base/XDEBase.h>
 #include <base/XDEException.h>
 #include <base/XDEUtil.h>
 #include <parameters/ParameterRangeException.h>

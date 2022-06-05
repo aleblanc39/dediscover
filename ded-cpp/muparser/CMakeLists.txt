@@ -80,13 +80,13 @@ set_target_properties(muparser PROPERTIES
 # Install the export set for use with the install-tree
 export(TARGETS muparser FILE "${CMAKE_BINARY_DIR}/muparser-targets.cmake")
 
-if(ENABLE_SAMPLES)
-  add_executable(example1 samples/example1/example1.cpp)
-  target_link_libraries(example1 muparser)
+# if(ENABLE_SAMPLES)
+#   add_executable(example1 samples/example1/example1.cpp)
+#   target_link_libraries(example1 muparser)
 
-  add_executable(example2 samples/example2/example2.c)
-  target_link_libraries(example2 muparser)
-endif()
+#   add_executable(example2 samples/example2/example2.c)
+#   target_link_libraries(example2 muparser)
+# endif()
 
 # The GNUInstallDirs defines ${CMAKE_INSTALL_DATAROOTDIR}
 # See https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html

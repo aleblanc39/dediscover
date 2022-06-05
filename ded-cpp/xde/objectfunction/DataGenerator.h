@@ -3,7 +3,6 @@
 
 #include <algorithms/GeneralParameter.h>
 #include <base/CBIMDefinitions.h>
-#include <base/XDEBase.h>
 #include <base/XDEBlas.h>
 #include <model/XDEModel.h>
 #include <parameters/EstimationParameterSet.h>
@@ -21,7 +20,7 @@ typedef std::shared_ptr<DataGenerator> DataGeneratorPtr;
  * to send to the objective function all the pairs (observes, computed).
  */
 
-class DataGenerator : public XDEBase {
+class DataGenerator {
    public:
     /**
      * \brief Structure to handle the time-value pairs of the data

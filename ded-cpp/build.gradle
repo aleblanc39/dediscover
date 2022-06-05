@@ -67,6 +67,11 @@ cmake {
     // def.XDE_CPP_DIR="${rootDir}/ded-cpp"
 
     def.XDE_CPP_DIR="${rootDir}/ded-cpp"
+    // Local options.
+    def.CMAKE_C_COMPILER="gcc-8 "
+    def.CMAKE_CXX_COMPILER="g++-8 "
+    def.CMAKE_Fortran_COMPILER="/home/linuxbrew/.linuxbrew/bin/gfortran-8"
+
     ////////////////////
     // cmakeBuild parameters
     ////////////////////

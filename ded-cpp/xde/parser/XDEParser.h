@@ -5,7 +5,6 @@
 #ifndef XDEPARSER_H_
 #define XDEPARSER_H_
 
-#include <base/XDEBase.h>
 #include <base/XDEMessage.h>
 #include <base/XDEUtil.h>
 #include <expressions/ExpressionHandler.h>
@@ -73,7 +72,7 @@ class UsedSymbolsVisitor
  *
  */
 
-class XDEParser : public XDEBase {
+class XDEParser  {
    public:
     virtual ~XDEParser();
 

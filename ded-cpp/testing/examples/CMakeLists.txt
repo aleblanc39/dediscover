@@ -26,7 +26,7 @@ link_directories("${PROJECT_BINARY_DIR}/../../SplineLib/src/baf")
 find_library(PTHREAD pthread /usr/lib/x86_64-linux-gnu/)
 #find_library(XDE xde PATHS ${XDE_CPP_DIR}/build/cmake/xde)
 
-add_compile_options("-DLINUX")
+#add_compile_options("-DLINUX")
 
 foreach (i ${SRC_FILES})
     set_source_files_properties(${i} 

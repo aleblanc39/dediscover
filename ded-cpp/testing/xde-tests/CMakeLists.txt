@@ -35,7 +35,7 @@ link_directories("${PROJECT_BINARY_DIR}/../../SplineLib/src/baf")
 find_library(PTHREAD pthread /usr/lib/x86_64-linux-gnu/)
 #find_library(XDE xde PATHS ${XDE_CPP_DIR}/build/cmake/xde)
 
-add_compile_options("-DLINUX -DBOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS")
+#add_compile_options("-DLINUX -DBOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS")
 # Unit Testing
 
 

@@ -1,7 +1,6 @@
 #ifndef MAPPINGINFOSET_H
 #define MAPPINGINFOSET_H
 
-#include <base/XDEBase.h>
 #include <base/XDEBlas.h>
 
 #include <expressions/MemorySynchronizer.h>
@@ -15,7 +14,7 @@
 class MappingInfoSet;
 typedef std::shared_ptr<MappingInfoSet> MappingInfoSetPtr;
 
-class MappingInfoSet : public XDEBase {
+class MappingInfoSet {
    public:
     virtual ~MappingInfoSet();
 
