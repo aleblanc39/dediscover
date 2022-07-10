@@ -138,7 +138,7 @@ class XDEParser  {
 
    private:
     ParseTreePtr parseTree;
-    void parseModel(std::string equations);
+    void parseModel(const std::string &equations);
 
     ErrorMessageList errorMessages;
 

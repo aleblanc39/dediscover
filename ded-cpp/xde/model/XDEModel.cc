@@ -36,6 +36,7 @@ XDEModel::XDEModel(const string &equations) {
         return;
     }
 
+    
     expressionHandler = std::make_shared<MuParserExpressionHandler>();
     auto parser = std::make_unique<XDEParser>(expressionHandler, equations);
 

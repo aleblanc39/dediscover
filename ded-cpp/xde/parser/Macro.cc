@@ -3,12 +3,12 @@
 #include <base/XDEUtil.h>
 using namespace std;
 
-Macro::Macro(string macroName): IntermediateSymbol(macroName) {
+Macro::Macro(const string &macroName): IntermediateSymbol(macroName) {
     usedInInitialCondition = false;
     setTimeDependent(false);
 }
 
-Macro::Macro(string name, unsigned lineNO, int occurenceIndex) : 
+Macro::Macro(const string &name, unsigned lineNO, int occurenceIndex) : 
     IntermediateSymbol(name, lineNO, occurenceIndex) {
     usedInInitialCondition = false;
     setTimeDependent(false);

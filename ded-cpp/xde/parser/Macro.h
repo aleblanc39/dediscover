@@ -19,12 +19,12 @@ class Macro : public IntermediateSymbol {
 
 public:
 
-    Macro(std::string macroName);
-    Macro(std::string macroName, unsigned lineNO, int occurenceIndex);
+    Macro(const std::string &macroName);
+    Macro(const std::string &macroName, unsigned lineNO, int occurenceIndex);
     virtual ~Macro();
 
     void setUsedInInitialCondition(bool b) {usedInInitialCondition = b;}
-    bool isUsedInInitialCondition() {return usedInInitialCondition;}
+    bool isUsedInInitialCondition() const {return usedInInitialCondition;}
 
  private:
     bool usedInInitialCondition;

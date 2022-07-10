@@ -29,7 +29,7 @@ XDEParser::~XDEParser() {
  *
  */
 
-void XDEParser::parseModel(string model) {
+void XDEParser::parseModel(const std::string &model) {
     if (model == "") return;
     parseTree = std::make_shared<ParseTree>(model);
 

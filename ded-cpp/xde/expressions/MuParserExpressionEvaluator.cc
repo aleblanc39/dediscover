@@ -111,7 +111,7 @@ double MuParserExpressionEvaluator::evaluate() {
 // Return the location of a var. A map would be more elegant, but since
 // an expression is likely to contain only a few variables this is
 // probably faster to both execute and write.
-int MuParserExpressionEvaluator::getLocation(string var) {
+int MuParserExpressionEvaluator::getLocation(const std::string &var) {
     for (unsigned i = 0; i < variableNames.size(); i++)
         if (variableNames[i] == var) return i;
 

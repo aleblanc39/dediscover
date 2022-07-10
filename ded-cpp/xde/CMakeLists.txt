@@ -77,7 +77,6 @@ set (sources
 ./parameters/ParameterRangeException.cc
 ./expressions/TimeVaryingFunctionHandler.cc
 ./expressions/MuParserExpressionHandler.cc
-./expressions/ExpressionHandler.cc
 ./expressions/MuParserExpressionEvaluator.cc
 ./expressions/ExpressionSetEvaluator.cc
 ./expressions/MemorySynchronizer.cc

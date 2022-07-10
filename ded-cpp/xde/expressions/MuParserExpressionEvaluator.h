@@ -76,7 +76,7 @@ class MuParserExpressionEvaluator {
 
     double *varLocations;
 
-    int getLocation(std::string var);
+    int getLocation(const std::string &var);
     static const std::string TVFunctionName;
     static const std::string VarargsFunctionName;
     static const std::string MuParserFunctionName;

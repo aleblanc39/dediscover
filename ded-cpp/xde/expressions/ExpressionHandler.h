@@ -31,8 +31,8 @@ typedef std::shared_ptr<ExpressionHandler> ExpressionHandlerPtr;
 
 class ExpressionHandler {
    public:
-    ExpressionHandler();
-    virtual ~ExpressionHandler();
+    ExpressionHandler(){}
+    virtual ~ExpressionHandler(){}
 
     virtual int addExpression(std::string expression) = 0;
     virtual double compute(unsigned equationNO) const = 0;
