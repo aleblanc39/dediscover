@@ -1,11 +1,10 @@
 #ifndef MAPPINGFORMULA
 #define MAPPINGFORMULA
+#include <string>
+#include <expressions/MuParserExpressionEvaluator.h>
+#include <expressions/MemorySynchronizer.h>
 
-/**
- */
-
-#include <mapping/DataTableMapping.h>
-#include <model/XDEModel.h>
+//#include <mapping/DataTableMapping.h>
 
 class FormulaException {
    public:
@@ -17,11 +16,8 @@ class FormulaException {
 
 class MappingFormula {
    public:
-    static std::string validateFormula(ModelPtr model,
-                                       const std::string &formula);
     static std::string validateFormula(const std::vector<std::string> &variableNamesSet, const std::string &expression);
 
-    MappingFormula(ModelPtr model, const std::string &formula);
     MappingFormula(const std::vector<std::string> &variables, const std::string &formula, MemorySynchronizerPtr memorySynchronizer);
 
 

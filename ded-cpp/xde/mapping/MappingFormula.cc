@@ -1,18 +1,13 @@
 #include <mapping/MappingFormula.h>
 #include <mapping/ParsingResults.h>
 
+// TODO Too specific here. Only used for isFunctionDefined function. 
+// Should be passed as parameter
+#include <expressions/MuParserExpressionHandler.h>
+
+
 using namespace std;
 
-// Maybe just need the formula here.  Values used in working  data
-MappingFormula::MappingFormula(ModelPtr model, const string &formula) {
-    string errorMsg = MappingFormula::validateFormula(model, formula);
-    if (errorMsg != "") {
-        throw FormulaException(errorMsg);
-    }
-
-    evaluator = MuParserExpressionEvaluatorPtr(new MuParserExpressionEvaluator(
-        formula, model->getMemorySynchronizer()));
-}
 
 MappingFormula::MappingFormula(const std::vector<std::string> &variables,
                                const std::string &formula,
@@ -47,9 +42,7 @@ string MappingFormula::validateFormula(const vector<string> &variableNamesSet,
     }
     vector<string> symbols = results.getSymbolNames();
     it_end = symbols.end();
-    //vector<string>::iterator varNamesSetEnd = variableNamesSet.end();
     for (it = symbols.begin(); it != it_end; it++) {
-        // if (variableNamesSet.find(*it) == varNamesSetEnd)
         if (std::find(variableNamesSet.begin(), variableNamesSet.end(), *it) ==
             variableNamesSet.end())
 
@@ -66,9 +59,3 @@ string MappingFormula::validateFormula(const vector<string> &variableNamesSet,
     return "";
 }
 
-string MappingFormula::validateFormula(ModelPtr model,
-                                       const string &expression) {
-    // set<string> variableNamesSet(model->getAllVariables().begin(),
-    //                              model->getAllVariables().end());
-    return MappingFormula::validateFormula(model->getAllVariables(), expression);
-}

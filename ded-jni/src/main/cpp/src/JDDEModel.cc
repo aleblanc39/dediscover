@@ -191,8 +191,10 @@ Java_edu_rochester_urmc_cbim_jni_JDDEModel_computeFormulas_1nat(
 
         model->setModelParameterValues(modelParamValues);
         vector<MappingFormula> mappedFormulas;
+        vector<string> vars = model->getAllVariables();
+
         for (auto f : formulas) {
-            mappedFormulas.push_back(MappingFormula(model, f));
+            mappedFormulas.push_back(MappingFormula(vars, f, model->getMemorySynchronizer()));
         }
 
         std::cerr << "Creating the results\n";

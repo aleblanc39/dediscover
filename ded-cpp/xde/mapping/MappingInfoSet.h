@@ -5,6 +5,7 @@
 
 #include <expressions/MemorySynchronizer.h>
 #include <mapping/MappingFormula.h>
+#include <mapping/DataTableMapping.h>
 
 
 #include <set>
