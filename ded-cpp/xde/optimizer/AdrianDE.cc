@@ -1,4 +1,3 @@
-#include <algorithms/ConcreteParameters.h>
 #include <base/XDEMessage.h>
 #include <base/XDEUtil.h>
 #include <math.h>
@@ -30,21 +29,7 @@ const std::string AdrianDE::weightFactor = "Weight";
         minBounds.size(), de::mutation_strategy_arguments(weight, crossover))
 
 AdrianDE::AdrianDE() {
-    addToControlParameters(std::make_shared<IntParameter>(
-        maxGenerations, 200, 5, 0, true, false,
-        "Max number of generations before termination"));
-
-    addToControlParameters(std::make_shared<IntParameter>(
-        p_populationSize, 50, 5, 0, true, false, "Size of population"));
-
-    std::vector<int> options = {1, 2, 3, 4, 5};
-    addToControlParameters(
-        std::make_shared<IntParameter>(mutationStrategy, 1, options, 0, 0,
-                                         false, false, "Mutation Strategy: "));
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        crossoverFactor, 0.5, 0.0, 1.0, true, true, "The Crossover factor"));
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        weightFactor, 0.5, 0.0, 1.0, true, true, "The weight factor"));
+  
 }
 
 class AdObjectiveFunction {

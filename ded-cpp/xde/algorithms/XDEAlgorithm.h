@@ -22,30 +22,27 @@ typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
 
 class XDEAlgorithm :  public ThreadInterface {
    public:
-    XDEAlgorithm();
-    virtual ~XDEAlgorithm();
+    XDEAlgorithm(){}
+    virtual ~XDEAlgorithm(){}
 
     /** Method name to by used by the factories */
-    virtual std::string getMethodName() = 0;
+    // virtual std::string getMethodName() = 0;
 
-    /** Short method description for display */
-    virtual std::string getShortMethodDescription() = 0;
+    // virtual std::string getShortMethodDescription() = 0;
+    // virtual std::string getLongMethodDescription() = 0;
 
-    virtual std::string getLongMethodDescription() = 0;
+    // virtual std::vector<std::string> getMethodAttributes() {
+    //     return methodAttributes;
+    // }
 
-    virtual std::vector<std::string> getMethodAttributes() {
-        return methodAttributes;
-    }
-
-    std::vector<GeneralParameterPtr> getControlParameters();
-    std::vector<GeneralParameterPtr> getControlParameters() const;
+    //static std::vector<GeneralParameterPtr> getControlParameters();
 
     GeneralParameterPtr getCtrlParameter(std::string name);
     static GeneralParameterPtr getCtrlParameter(
         const std::vector<GeneralParameterPtr> params, std::string name);
 
     template <typename T>
-    void setParameterValue(std::string paramName, T newValue);
+    void setParameterValue(const std::string &paramName, const T &newValue);
 
     double getDoubleParameterValue(const std::string &paramName);
     int getIntParameterValue(const std::string &paramName);
@@ -53,7 +50,7 @@ class XDEAlgorithm :  public ThreadInterface {
     bool getBoolParameterValue(const std::string &paramName);
     
    protected:
-    std::vector<GeneralParameterPtr> controlParameters;
+    //std::vector<GeneralParameterPtr> controlParameters;
 
     void logAlgorithmInfo(XDEMessage::MsgLevel level = XDEMessage::INFO);
 
@@ -61,15 +58,15 @@ class XDEAlgorithm :  public ThreadInterface {
     std::vector<std::string> methodAttributes;
 
 
-    void addToControlParameters( GeneralParameterPtr p) {
-        controlParameters.push_back(p);
-    }
+    // void addToControlParameters( GeneralParameterPtr p) {
+    //     controlParameters.push_back(p);
+    // }
 
    private:
 };
 
 template <typename T>
-void XDEAlgorithm::setParameterValue(std::string paramName, T newValue) {
+void XDEAlgorithm::setParameterValue(const std::string &paramName, const T &newValue) {
     GeneralParameterPtr param = getCtrlParameter(paramName);
     if (param == NULL)
         throw XDEException("Trying to set value to unknown parameter: " +

@@ -7,23 +7,13 @@
 
 using namespace std;
 
-XDEAlgorithm::XDEAlgorithm() { }
 
-XDEAlgorithm::~XDEAlgorithm() {}
 
-/**
- * Copy constructor. Will only copy control parameters.
- */
+// GeneralParameterPtr XDEAlgorithm::getCtrlParameter(string name) {
+//     return getCtrlParameter(controlParameters, name);
+// }
 
-XDEAlgorithm::XDEAlgorithm(const XDEAlgorithm &a) {
- 
-}
-
-GeneralParameterPtr XDEAlgorithm::getCtrlParameter(string name) {
-    return getCtrlParameter(controlParameters, name);
-}
-
-// TODO Ust std::find
+// TODO Use std::find
 GeneralParameterPtr XDEAlgorithm::getCtrlParameter(
     const std::vector<GeneralParameterPtr> params, string name) {
     for (unsigned i = 0; i < params.size(); i++) {
@@ -34,24 +24,20 @@ GeneralParameterPtr XDEAlgorithm::getCtrlParameter(
     return GeneralParameterPtr();
 }
 
-vector<GeneralParameterPtr> XDEAlgorithm::getControlParameters() {
-    return controlParameters;
-}
-
-vector<GeneralParameterPtr> XDEAlgorithm::getControlParameters() const {
-    return controlParameters;
-}
+//vector<GeneralParameterPtr> XDEAlgorithm::getControlParameters() const {
+//    return controlParameters;
+//}
 
 void XDEAlgorithm::logAlgorithmInfo(XDEMessage::MsgLevel level) {
-    XDEMessage::log(level, getMethodName() + " called\n");
+//     XDEMessage::log(level, getMethodName() + " called\n");
 
-    for (const auto &p :  getControlParameters()) {
-        XDEMessage::log(level, getMethodName() + " ControlParameter (" +
-                                   p->getName() + "): " + p->getStringValue());
-    }
+//     for (const auto &p :  getControlParameters()) {
+//         XDEMessage::log(level, getMethodName() + " ControlParameter (" +
+//                                    p->getName() + "): " + p->getStringValue());
+//     }
 }
 
-
+// TODO_ALGM all static, add control parameters vector
 double XDEAlgorithm::getDoubleParameterValue(const std::string &paramName) {
     return ((GenericParameter<double> *)getCtrlParameter(paramName).get())->getValue();
 }

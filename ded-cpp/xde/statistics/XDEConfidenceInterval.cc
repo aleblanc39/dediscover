@@ -4,9 +4,16 @@ using namespace std;
 
 XDEConfidenceInterval::XDEConfidenceInterval() {
 
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        "alpha", 0.05, 0.0, 1.0, true, true, "Significance level."));
+    // TODO_ALGM
+   // addToControlParameters(std::make_shared<DoubleParameter>(
+    //     "alpha", 0.05, 0.0, 1.0, true, true, "Significance level."));
+
+ 
 }
+
+
+
+
 
 XDEConfidenceInterval::~XDEConfidenceInterval() {}
 

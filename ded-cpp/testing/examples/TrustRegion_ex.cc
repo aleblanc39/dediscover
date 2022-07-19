@@ -85,12 +85,7 @@ int main(int, char **) {
 
     std::cerr << "Completed test. Best val: " << result -> getOptimalValue() << std::endl;
 
-    // Compute confidence interval.
-    // virtual ConfidenceIntervalResultPtr evaluate(OptimizationResultsPtr optimizerResult,
-    //                                            DataTableMappingPtr datatableMapping,
-    //                                            EstimationParameterSetPtr parameterSet,
-    //                                            ModelPtr model,
-    //                                            SolverPtr solver)
+    
     auto ciresult = ci -> evaluate(result, datatable, parameterSet, modelPtr, solver);
     cerr << "Computed CI Result\n";
 

@@ -467,7 +467,6 @@ boost::any getNativePointer(JNIEnv *env, jobject obj) {
 
 jobjectArray getParameters(JNIEnv *env, XDEAlgorithm *algm) {
     try {
-        // XDEAlgorithm *algm = (XDEAlgorithm *)(getAlgorithmPtr(env, obj));
         vector<GeneralParameterPtr> controlParams =
             algm->getControlParameters();
 

@@ -2,6 +2,8 @@
 #define LEASTSQUARE_H_
 
 #include "objectfunction/XDEObjectiveFunction.h"
+#include <algorithms/ConcreteParameters.h>
+
 
 /**
  * \brief Class to compute least squares for use by the objective function.
@@ -14,23 +16,38 @@
 class LeastSquare : public XDEObjectiveFunction {
    public:
     LeastSquare();
-
     LeastSquare(DataGeneratorPtr d) : XDEObjectiveFunction(d) {}
+
+    static std::vector<GeneralParameterPtr> getControlParameters() {
+        std::vector<std::string> v = getValidFunctions();
+        return {
+            std::make_shared<StringParameter>(
+                getAppliedFunctionParameterName(), v[1], v, "", "", false,
+                false, "Function applied to the difference of the values"),
+
+            std::make_shared<BoolParameter>(
+                getNormalizedParameterName(), false, false, false, false, false,
+                "Indicates whether the data will be normalized."),
+
+            std::make_shared<BoolParameter>(
+                getLogValuesParameterName(), false, false, false, false, false,
+                "Indicates whether the log of the values will be used.")};
+    }
 
     virtual ~LeastSquare();
 
     // Methods from XDEAlgorithm
 
-    std::string getShortMethodDescription() {
-        return s_getShortMethodDescription();
-    }
+    // std::string getShortMethodDescription() {
+    //     return s_getShortMethodDescription();
+    // }
     static std::string s_getShortMethodDescription() {
         return "Least Squares Fitting";
     }
 
-    std::string getLongMethodDescription() {
-        return s_getLongMethodDescription();
-    }
+    // std::string getLongMethodDescription() {
+    //     return s_getLongMethodDescription();
+    // }
     static std::string s_getLongMethodDescription() {
         return std::string(
             "Least squares fitting directly to the observed data.  Implied "
@@ -42,7 +59,7 @@ class LeastSquare : public XDEObjectiveFunction {
             "a common sigma^2 across all variables.  ");
     }
 
-    std::string getMethodName() { return s_getMethodName(); }
+    // std::string getMethodName() { return s_getMethodName(); }
     static std::string s_getMethodName() { return "Least Squares"; }
 
     static std::string getLogValuesParameterName() { return "Log values"; }
@@ -53,9 +70,9 @@ class LeastSquare : public XDEObjectiveFunction {
     void preProcess();
 
     static std::vector<std::string> s_getMethodAttributes();
-    std::vector<std::string> getMethodAttributes() {
-        return s_getMethodAttributes();
-    }
+    // std::vector<std::string> getMethodAttributes() {
+    //     return s_getMethodAttributes();
+    // }
 
    protected:
    private:

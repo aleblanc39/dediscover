@@ -15,32 +15,36 @@ const std::string SambineDDEWrapper::hinit = "Init Step Size";
 const std::string SambineDDEWrapper::hmax = "Max Step Size";
 const std::string SambineDDEWrapper::maxSteps = "Max Steps";
 
-SambineDDEWrapper::SambineDDEWrapper() {
-    addToControlParameters(std::make_shared<DoubleParameter>(
+
+std::vector<GeneralParameterPtr> SambineDDEWrapper::getControlParameters() {
+    return {
+    std::make_shared<DoubleParameter>(
         relativeError, 1.0e-3, 0.0, 0.0, true, false,
         "relative error tolerance, default 0.001; it is required to be greater "
-        "than zero. To increase accuracy, rtol can be reduced;"));
+        "than zero. To increase accuracy, rtol can be reduced;"),
 
-    addToControlParameters(std::make_shared<DoubleParameter>(
+    std::make_shared<DoubleParameter>(
         absoluteError, 1.0e-6, 0.0, 0.0, true, false,
         "absolute error tolerance, default 1.0e-06; it is required to be "
-        "greater than zero. To increase accuracy, atoll can be reduced;"));
+        "greater than zero. To increase accuracy, atoll can be reduced;"),
 
-    addToControlParameters(std::make_shared<DoubleParameter>(
+    std::make_shared<DoubleParameter>(
         hinit, 0.001, 0.0, 0.0, true, false,
                             "initial step size, default 0.001; it is required "
-                            "to be greater than zero;"));
+                            "to be greater than zero;"),
 
-    addToControlParameters(std::make_shared<DoubleParameter>(
+    std::make_shared<DoubleParameter>(
         hmax, 1.0, 0.0, 0.0, true, false,
         "maximum step size, default 1.0; it is required to be greater than "
-        "zero and less than the whole time range;"));
+        "zero and less than the whole time range;"),
 
-    addToControlParameters(std::make_shared<IntParameter>(
+    std::make_shared<IntParameter>(
         maxSteps, (int)1.0e5, 1, 0, true, false,
         "maximum number of steps, default 10000; it is required to be greater "
-        "than one;Computation will stop if maximum steps exceeded."));
+        "than one;Computation will stop if maximum steps exceeded.")
+    };
 }
+
 
 void SambineDDEWrapper::performSimulation(
     ModelPtr model, const TDoubleVector& modelParameterValues,

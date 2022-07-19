@@ -1,12 +1,5 @@
 #include "ODEWrapper.h"
 
-ODEWrapper::ODEWrapper()
-{
-}
-
-ODEWrapper::~ODEWrapper()
-{
-}
 
 
 std::vector<std::string> ODEWrapper::s_getMethodAttributes() {

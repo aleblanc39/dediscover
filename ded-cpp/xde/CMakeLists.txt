@@ -65,7 +65,6 @@ set (sources
 ./parser/Macro.cc
 ./parser/SpiritParser.cc
 ./parser/ModelSymbol.cc
-./optimizer/DifferentialEvolution.cc
 ./optimizer/TrustRegion.cc
 ./optimizer/XDEOptimizer.cc
 ./optimizer/AdrianDE.cc

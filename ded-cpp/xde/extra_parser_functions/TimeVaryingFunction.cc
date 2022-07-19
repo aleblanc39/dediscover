@@ -19,9 +19,11 @@ TimeVaryingFunction::TimeVaryingFunction() {
     _containsVariableControls = true;
     initialized = false;
 
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        getOutOfRangeValueOption(), XDEUtil::XDE_NAN, 0, 0, false, false,
-        "Out of range value to use"));
+
+    // TODO_ALGM
+    // addToControlParameters(std::make_shared<DoubleParameter>(
+    //     getOutOfRangeValueOption(), XDEUtil::XDE_NAN, 0, 0, false, false,
+    //     "Out of range value to use"));
 }
 
 TimeVaryingFunction::~TimeVaryingFunction() {}

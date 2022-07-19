@@ -14,15 +14,15 @@
 
 class DDEWrapper : virtual public XDESolverWrapper {
  public:
-    DDEWrapper();
-    virtual ~DDEWrapper();
+    DDEWrapper(){}
+    virtual ~DDEWrapper(){}
 
     void setHistoryParas(TDoubleVector newHistoryParasValue) {historyParasValue = newHistoryParasValue;}
     TDoubleVector getHistoryParas() {return historyParasValue;}
     void setDelayParas(TDoubleVector newDelaysParasValue) {delaysParasValue = newDelaysParasValue;}
     TDoubleVector getDelayParas() {return delaysParasValue;}
 
-    std::vector<std::string> getMethodAttributes() {return s_getMethodAttributes();}
+    //std::vector<std::string> getMethodAttributes() {return s_getMethodAttributes();}
     static std::vector<std::string> s_getMethodAttributes();
 
     

@@ -22,9 +22,11 @@ class MfcatsSpline : public DerivableSpline {
     
 
     void init() {
-        addToControlParameters(std::make_shared<IntParameter>(
-        orderParam, 3, 2, 5, true, true,
-        "The order. Currently set to 3. Fixed. Till I work it out."));
+
+        // TODO_ALGM
+        // addToControlParameters(std::make_shared<IntParameter>(
+        // orderParam, 3, 2, 5, true, true,
+        // "The order. Currently set to 3. Fixed. Till I work it out."));
     }
 
     MfcatsSpline() {init();}

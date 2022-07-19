@@ -57,104 +57,14 @@ const std::string SundialsSolverWrapper::preconditioningParameterName =
 const std::string SundialsSolverWrapper::maxKrylovDimensionParameter =
     "Max dimension of Krylov Space";
 
-SundialsSolverWrapper::SundialsSolverWrapper() {
-    // controlParameters.clear();
-    auto v = getProblemTypes();
 
-    addToControlParameters(std::make_shared<StringParameter>(
-        problemTypeParameterName, v[0], v, "", "", false, false,
-        "Type of problem to simulate."));
 
-    // auto linearTypes = getLinearSolverNames();
-    // addToControlParameters(std::make_shared<StringParameter>(
-    //     linearSolverParameterName, linearTypes[0], linearTypes, "", "", false,
-    //     false, "Linear solver to use."));
 
-    // vector<string> preconditioningOptions = getPreconditioningOptions();
-    // controlParameters.push_back(GeneralParameterPtr
-    // 				(new
-    // StringParameter(getPreconditioningParameterName(),
-    // 						     preconditioningOptions[0],
-    // 						     preconditioningOptions,
-    // 						     "",
-    // 						     "",
-    // 						     false,
-    // 						     false,
-    // 						     "Preconditioning. Only
-    // applies to
-    // "
-    // 						     + cvpgmrOpt()
-    // 						     + ", " + cvpbcgOpt()
-    // 						     + " or " + cvptfgmrOpt()
-    // 						     + " linear solvers"
-    // 						     )));
 
-    // controlParameters.push_back(GeneralParameterPtr
-    // 				(new IntParameter
-    // 				 (getMaxKrylovDimensionParameterName(),
-    // 				  5,
-    // 				  1,
-    // 				  10,
-    // 				  true,
-    // 				  true,
-    // 				  "Maximum dimension of Krylov Space. Applies
-    // only to
-    // "
-    // 				  + cvpgmrOpt()
-    // 				  + ", " + cvpbcgOpt()
-    // 				  + " or " + cvptfgmrOpt()
-    // 				  + " linear solvers"
-    // 				  )));
 
-    addToControlParameters(std::make_shared<IntParameter>(
-        maxNumStepsParameterName, 500, 1, 0, false, false,
-        "The maximum number of steps to be taken \
-by the solver in its attempt to reach the next output time. Entering 0 will use the default of 500, a negative value disables the test."));
 
-    addToControlParameters(std::make_shared<IntParameter>(
-        maxErrTestFailsParameterName, 7, 1, 0, true, false,
-        "Maximum number of error failures allowed in one "
-        "step. Must be greater then 0."));
 
-    addToControlParameters(std::make_shared<IntParameter>(
-        maxNonlinItersParameterName, 3, 1, 0, true, false,
-        "Maximum number of non-linear solver iterations "
-        "allowed per step. Must be greater then 0."));
-
-    addToControlParameters(std::make_shared<IntParameter>(
-        maxConvFailsParameterName, 10, 1, 0, true, false,
-        "Maximum number of allowable non-linear solver convergence failures "
-        "per step. Must be greater then 0."));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        nonlinConvCoefParameterName, 0.1, 0.0001, 0, true, false,
-        "Safety factor. Must be greater than 0."));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        initStepSizeParameterName, 0.001, 0.0, 0.0, true, false,
-        "initial step size, default 0.001; it is required to be greater than "
-        "zero;"));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        minStepSizeParameterName, 1.0e-15, 0.0, 0.0, true, false,
-        "minimum step size, default 1.0e-15; it is required to be greater than "
-        "zero and less than the maximum step size;"));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        maxStepSizeParameterName, 1.0, 0.0, 0.0, true, false,
-        "maximum step size, default 1.0; it is required to be greater than "
-        "zero and less than the whole time range;"));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        rtolParamName, 1.0e-3, 0.0, 0.0, true, false,
-        "Relative error tolerance, default 0.001; it is required to be greater "
-        "than zero. To increase accuracy, rtol can be reduced;"));
-
-    addToControlParameters(std::make_shared<DoubleParameter>(
-        atolParamName, 1.0e-6, 0.0, 0.0, true, false,
-        "Absolute error tolerance, default 1.0e-06; it is required to be "
-        "greater than zero. To increase accuracy, atol can be reduced;"));
-}
+SundialsSolverWrapper::SundialsSolverWrapper() {}
 
 SundialsSolverWrapper::~SundialsSolverWrapper() {}
 

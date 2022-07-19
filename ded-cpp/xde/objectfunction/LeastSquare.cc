@@ -1,28 +1,14 @@
 #include "objectfunction/LeastSquare.h"
 
-#include <algorithms/ConcreteParameters.h>
 #include <base/CBIMDefinitions.h>
 
 #include <boost/lexical_cast.hpp>
-#include <boost/make_shared.hpp>
 
 using namespace std;
 
 LeastSquare::LeastSquare() {
     // controlParameters.clear();
-    std::vector<std::string> v = getValidFunctions();
-
-    addToControlParameters(std::make_shared<StringParameter>(
-        getAppliedFunctionParameterName(), v[1], v, "", "", false, false,
-        "Function applied to the difference of the values"));
-
-    addToControlParameters(std::make_shared<BoolParameter>(
-        getNormalizedParameterName(), false, false, false, false, false,
-        "Indicates whether the data will be normalized."));
-
-    addToControlParameters(std::make_shared<BoolParameter>(
-        getLogValuesParameterName(), false, false, false, false, false,
-        "Indicates whether the log of the values will be used."));
+   
 }
 
 LeastSquare::~LeastSquare() {}

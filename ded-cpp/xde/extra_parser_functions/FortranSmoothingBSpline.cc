@@ -28,17 +28,19 @@ const std::string FSmoothingBSpline::toleranceOption =
 const std::string FSmoothingBSpline::orderOption = "Order";
 FSmoothingBSpline::FSmoothingBSpline() {
 
-    addToControlParameters(std::make_shared<BoolParameter>(
-        gcvOption, true, false, true, false, false,
-        "Automatically determine tolerance using GCV"));
+    // TODO_ALGM
+    
+    // addToControlParameters(std::make_shared<BoolParameter>(
+    //     gcvOption, true, false, true, false, false,
+    //     "Automatically determine tolerance using GCV"));
 
-     addToControlParameters(std::make_shared<DoubleParameter>(
-        toleranceOption, -0.5, 2, 0, false, false,
-        "Tolerance level"));
+    //  addToControlParameters(std::make_shared<DoubleParameter>(
+    //     toleranceOption, -0.5, 2, 0, false, false,
+    //     "Tolerance level"));
 
-      addToControlParameters(std::make_shared<IntParameter>(
-        orderOption, 2, 1, 5, true, true,
-        "Order"));
+    //   addToControlParameters(std::make_shared<IntParameter>(
+    //     orderOption, 2, 1, 5, true, true,
+    //     "Order"));
 
   
 

@@ -62,9 +62,7 @@ EstimatorResultPtr SolverBasedEstimator::estimate(
 
         logAlgorithmInfo();
         logParameterInfo(parameterSet);
-        XDEMessage::log(XDEMessage::INFO,
-                        "Solver used: " + solver->getMethodName());
-
+        
         try {
             auto optimizerResult =
                 optimizer->optimize(objectiveFunction, parameterSet);
