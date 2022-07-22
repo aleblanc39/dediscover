@@ -1,5 +1,4 @@
 
-#include <TestUtils.h>
 #include <algorithms/XDEAlgorithm.h>
 #include <solver/SundialsSolverWrapper.h>
 #include "doctest.h"

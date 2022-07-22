@@ -1,4 +1,3 @@
-#include <TestUtils.h>
 #include <expressions/MuParserExpressionHandler.h>
 #include <parser/ParseTree.h>
 
