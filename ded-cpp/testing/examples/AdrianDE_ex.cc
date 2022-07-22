@@ -80,10 +80,10 @@ int main(int, char **) {
     int nfeval;
     int ndata;
 
-    ade.setParameterValue(AdrianDE::maxGenerations, 50);
-    ade.setParameterValue(AdrianDE::p_populationSize, 25);
+    auto controlParameters = AdrianDE::getControlParameters();
 
-
+    setParameterValue(controlParameters, AdrianDE::maxGenerations, 50);
+    setParameterValue(controlParameters, AdrianDE::p_populationSize, 25);
 
     DataGeneratorPtr dg(std::make_shared<SolvingDataGenerator>(modelPtr, solver, parameterSet, datatable));
     objf -> setDataGenerator(dg);

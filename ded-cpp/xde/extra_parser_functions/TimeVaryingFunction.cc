@@ -19,11 +19,6 @@ TimeVaryingFunction::TimeVaryingFunction() {
     _containsVariableControls = true;
     initialized = false;
 
-
-    // TODO_ALGM
-    // addToControlParameters(std::make_shared<DoubleParameter>(
-    //     getOutOfRangeValueOption(), XDEUtil::XDE_NAN, 0, 0, false, false,
-    //     "Out of range value to use"));
 }
 
 TimeVaryingFunction::~TimeVaryingFunction() {}
@@ -40,10 +35,7 @@ double TimeVaryingFunction::compute(double t) {
     // Unless explicitely initialized, will just return 0
 
     if (!initialized) {
-        //	cerr << "Unitialized tvf...\n";
         return 0;
-        // initialize();
-        // initialized = true;
     }
     double ret;
     if (std::isnan(t) || disabled || t > maxTimePoint || t < minTimePoint)
@@ -128,10 +120,9 @@ void TimeVaryingFunction::mapVariables() {
     //     handle both these cases.
 
     if (useOutOfRangeFromControl) {
-        outOfRangeValue = getDoubleParameterValue(getOutOfRangeValueOption());
-            // ((DoubleParameter *)getCtrlParameter(getOutOfRangeValueOption())
-            //      .get())
-            //     ->getValue();
+        // TODO_ALGM
+        outOfRangeValue = 0; //getDoubleParameterValue(getOutOfRangeValueOption());
+           
     } else {
         string s3 =
             boost::apply_visitor(ControlPointModifier(), outOfRangeEntry);

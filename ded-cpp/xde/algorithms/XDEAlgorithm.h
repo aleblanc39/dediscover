@@ -2,16 +2,14 @@
 #define XDEALGORITHM_H_
 
 #include <algorithms/GenericParameter.h>
+#include <base/ThreadInterface.h>
 #include <base/XDEMessage.h>
 #include <parameters/ParameterSet.h>
-#include <base/ThreadInterface.h>
 
 #include <boost/cast.hpp>
 #include <string>
 
-class XDEAlgorithm;
 
-typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
 
 /**
  * \brief Base virtual class for all the algorithm classes.
@@ -20,10 +18,12 @@ typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
  * class.
  */
 
-class XDEAlgorithm :  public ThreadInterface {
+//namespace xde_algorithm {
+
+class XDEAlgorithm : public ThreadInterface {
    public:
-    XDEAlgorithm(){}
-    virtual ~XDEAlgorithm(){}
+    XDEAlgorithm() {}
+    virtual ~XDEAlgorithm() {}
 
     /** Method name to by used by the factories */
     // virtual std::string getMethodName() = 0;
@@ -35,39 +35,48 @@ class XDEAlgorithm :  public ThreadInterface {
     //     return methodAttributes;
     // }
 
-    //static std::vector<GeneralParameterPtr> getControlParameters();
+    // static std::vector<GeneralParameterPtr> getControlParameters();
 
-    GeneralParameterPtr getCtrlParameter(std::string name);
-    static GeneralParameterPtr getCtrlParameter(
-        const std::vector<GeneralParameterPtr> params, std::string name);
-
-    template <typename T>
-    void setParameterValue(const std::string &paramName, const T &newValue);
-
-    double getDoubleParameterValue(const std::string &paramName);
-    int getIntParameterValue(const std::string &paramName);
-    std::string getStringParameterValue(const std::string &paramName);
-    bool getBoolParameterValue(const std::string &paramName);
-    
    protected:
-    //std::vector<GeneralParameterPtr> controlParameters;
-
     void logAlgorithmInfo(XDEMessage::MsgLevel level = XDEMessage::INFO);
-
     XDEAlgorithm(const XDEAlgorithm &a);
     std::vector<std::string> methodAttributes;
-
-
-    // void addToControlParameters( GeneralParameterPtr p) {
-    //     controlParameters.push_back(p);
-    // }
 
    private:
 };
 
+GeneralParameterPtr getCtrlParameter(
+    const std::vector<GeneralParameterPtr> &params, const std::string &name);
+
+double getDoubleParameterValue(const std::vector<GeneralParameterPtr> &params,
+                               const std::string &paramName) {
+    return ((GenericParameter<double> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+int getIntParameterValue(const std::vector<GeneralParameterPtr> &params,
+                         const std::string &paramName) {
+    return ((GenericParameter<int> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+std::string getStringParameterValue(
+    const std::vector<GeneralParameterPtr> &params,
+    const std::string &paramName) {
+    return ((GenericParameter<std::string> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+bool getBoolParameterValue(const std::vector<GeneralParameterPtr> &params,
+                           const std::string &paramName) {
+    return ((GenericParameter<bool> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
 template <typename T>
-void XDEAlgorithm::setParameterValue(const std::string &paramName, const T &newValue) {
-    GeneralParameterPtr param = getCtrlParameter(paramName);
+void setParameterValue(const std::vector<GeneralParameterPtr> &params,
+                       std::string &paramName, const T &newValue) {
+    GeneralParameterPtr param = getCtrlParameter(params, paramName);
     if (param == NULL)
         throw XDEException("Trying to set value to unknown parameter: " +
                            paramName);
@@ -75,6 +84,7 @@ void XDEAlgorithm::setParameterValue(const std::string &paramName, const T &newV
         boost::polymorphic_cast<GenericParameter<T> *>(param.get());
     p->setValue(newValue);
 }
+typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
 
-
+// }  // namespace xde_algorithm
 #endif /*XDEALGORITHM_H_*/

@@ -142,10 +142,6 @@ class TimeVaryingFunction : public XDEAlgorithm {
     void disableFunction() { disabled = true; }
     bool isDisabled() { return disabled; }
 
-    void setOutOfBoundDefaultValue(TimeVaryingEntry t) {
-        outOfRangeEntry = t;
-        useOutOfRangeFromControl = false;
-    }
 
     TDoubleVector getUsedTimepoints();
 
