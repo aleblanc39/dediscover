@@ -47,7 +47,7 @@ find_library(PTHREAD pthread /usr/lib/x86_64-linux-gnu/)
 
 
 
-add_library(test_main OBJECT test-utils/test_main.cc)
+add_library(test_main OBJECT test-utils/test_main.cc )
 
 foreach (i ${SRC_FILES})
     set_source_files_properties(${i} 

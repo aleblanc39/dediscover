@@ -12,5 +12,5 @@ export XDE_CPP_DIR=$HOME/projects/public-dediscover/dediscover/ded-cpp
 
 BUILD_DIRECTORY=$HOME/ded-cpp-build
 
-cmake -D XDE_CPP_DIR=$HOME/projects/public-dediscover/dediscover/ded-cpp         -S $1  -B $BUILD_DIRECTORY/$1
+cmake -D XDE_CPP_DIR=$HOME/projects/public-dediscover/dediscover/ded-cpp  -S $1  -B $BUILD_DIRECTORY/$1
 make -C $BUILD_DIRECTORY/$1

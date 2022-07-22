@@ -28,7 +28,6 @@ include_directories(
 
 
 # find_library(PTHREAD pthread /usr/lib/x86_64-linux-gnu/)
-#find_library(XDE xde PATHS ${XDE_CPP_DIR}/build/cmake/xde)
 
 #add_compile_options("-DLINUX -DBOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS")
 # Unit Testing
@@ -44,8 +43,8 @@ include_directories(
 
 add_library(test_main OBJECT ../test-utils/test_main.cc )
 
-
-
+message("Build dir: ", ${BUILD_DIR})
+find_library(XDE_BASE NAMES xde_base PATHS ${BUILD_DIR})
 foreach (i ${SRC_FILES})
     set_source_files_properties(${i} 
         PROPERTIES
@@ -54,6 +53,6 @@ foreach (i ${SRC_FILES})
 
     get_filename_component(executable ${i} NAME_WE )
     add_executable(${executable}  ${i} $<TARGET_OBJECTS:test_main>)
-    target_link_libraries(${executable} xde   ${BOOST_LIBRARIES})
+    target_link_libraries(${executable} ${XDE_BASE}   ${BOOST_LIBRARIES})
     add_test(NAME ${executable} COMMAND ${executable})
 endforeach (i ${SRC_FILES})
