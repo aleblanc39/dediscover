@@ -16,6 +16,8 @@ find_library(GFORTRAN gfortran PATHS /usr/lib/gcc/x86_64-linux-gnu/8 /usr/lib64 
 find_library(LAPACK  NAMES lapack  PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib64 /usr/lib)
 find_library(BLAS NAMES blas PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib /usr/lib64)
 
+add_subdirectory(base)
+
 set (sources 
 ./mapping/MappingFormula.cc
 ./mapping/NewWorkingData.cc
@@ -40,11 +42,11 @@ set (sources
 ./solver/SundialsSolverWrapper.cc
 ./solver/SambineDDEWrapper.cc
 ./solver/XDESolverWrapper.cc
-./base/XDECSVFile.cc
-./base/MemoryBank.cc
-./base/XDEUtil.cc
-./base/XDEMessage.cc
-./base/ThreadInterface.cc
+# ./base/XDECSVFile.cc
+# ./base/MemoryBank.cc
+# ./base/XDEUtil.cc
+# ./base/XDEMessage.cc
+# ./base/ThreadInterface.cc
 ./estimator/SolverBasedEstimator.cc
 ./estimator/XDEEstimator.cc
 ./model/XDEModel.cc
@@ -110,6 +112,7 @@ link_directories("${PROJECT_BINARY_DIR}/../SplineLib/src/baf")
 add_library(xde  ${LIBRARY_TYPE} ${sources} )
 
 target_link_libraries(xde ${EXTRA_OPTIONS}
+  xde_base
   ${SPLINELIB}
   ${SPLINEBAF}
   ${SUNDIALS_CVODE}
@@ -120,6 +123,8 @@ target_link_libraries(xde ${EXTRA_OPTIONS}
   ${GFORTRAN}
   ${MUPARSER}
   ${BOOST_LIBRARIES}
+
+
 #  ${CMATH}
 )
 message("Done with cmake.")

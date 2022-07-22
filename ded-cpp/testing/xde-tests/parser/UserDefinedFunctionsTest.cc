@@ -1,6 +1,5 @@
-#include <TestUtils.h>
-
 #include <parser/XDEParser.h>
+#include <expressions/MuParserExpressionHandler.h>
 #include <doctest.h>
 
 using namespace std;
