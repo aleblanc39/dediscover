@@ -17,6 +17,8 @@ find_library(LAPACK  NAMES lapack  PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib64 /
 find_library(BLAS NAMES blas PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib /usr/lib64)
 
 add_subdirectory(base)
+add_subdirectory(algorithms)
+
 
 set (sources 
 ./mapping/MappingFormula.cc
@@ -30,7 +32,7 @@ set (sources
 ./extra_parser_functions/MfcatsSpline.cc
 ./extra_parser_functions/LOCF.cc
 ./extra_parser_functions/TVFunctionMapping.cc
-./extra_parser_functions/FortranSmoothingBSpline.cc
+# ./extra_parser_functions/FortranSmoothingBSpline.cc
 ./statistics/EstimatorResult.cc
 ./statistics/NLSSummary.cc
 ./statistics/XDEConfidenceInterval.cc
@@ -70,10 +72,10 @@ set (sources
 ./optimizer/TrustRegion.cc
 ./optimizer/XDEOptimizer.cc
 ./optimizer/AdrianDE.cc
-./algorithms/GeneralParameter.cc
-./algorithms/XDEAlgorithm.cc
-./algorithms/GenericParameter.cc
-./algorithms/AlgorithmTemplates.cc
+# ./algorithms/GeneralParameter.cc
+# ./algorithms/XDEAlgorithm.cc
+# ./algorithms/GenericParameter.cc
+# ./algorithms/AlgorithmTemplates.cc
 ./parameters/EstimationSymbolAttributes.cc
 ./parameters/ParameterRangeException.cc
 ./expressions/TimeVaryingFunctionHandler.cc

@@ -25,18 +25,6 @@ class XDEAlgorithm : public ThreadInterface {
     XDEAlgorithm() {}
     virtual ~XDEAlgorithm() {}
 
-    /** Method name to by used by the factories */
-    // virtual std::string getMethodName() = 0;
-
-    // virtual std::string getShortMethodDescription() = 0;
-    // virtual std::string getLongMethodDescription() = 0;
-
-    // virtual std::vector<std::string> getMethodAttributes() {
-    //     return methodAttributes;
-    // }
-
-    // static std::vector<GeneralParameterPtr> getControlParameters();
-
    protected:
     void logAlgorithmInfo(XDEMessage::MsgLevel level = XDEMessage::INFO);
     XDEAlgorithm(const XDEAlgorithm &a);
@@ -49,29 +37,16 @@ GeneralParameterPtr getCtrlParameter(
     const std::vector<GeneralParameterPtr> &params, const std::string &name);
 
 double getDoubleParameterValue(const std::vector<GeneralParameterPtr> &params,
-                               const std::string &paramName) {
-    return ((GenericParameter<double> *)getCtrlParameter(params, paramName).get())
-        ->getValue();
-}
-
+                               const std::string &paramName);
 int getIntParameterValue(const std::vector<GeneralParameterPtr> &params,
-                         const std::string &paramName) {
-    return ((GenericParameter<int> *)getCtrlParameter(params, paramName).get())
-        ->getValue();
-}
+                         const std::string &paramName); 
 
 std::string getStringParameterValue(
     const std::vector<GeneralParameterPtr> &params,
-    const std::string &paramName) {
-    return ((GenericParameter<std::string> *)getCtrlParameter(params, paramName).get())
-        ->getValue();
-}
+    const std::string &paramName);
 
 bool getBoolParameterValue(const std::vector<GeneralParameterPtr> &params,
-                           const std::string &paramName) {
-    return ((GenericParameter<bool> *)getCtrlParameter(params, paramName).get())
-        ->getValue();
-}
+                           const std::string &paramName); 
 
 template <typename T>
 void setParameterValue(const std::vector<GeneralParameterPtr> &params,
@@ -86,5 +61,4 @@ void setParameterValue(const std::vector<GeneralParameterPtr> &params,
 }
 typedef std::shared_ptr<XDEAlgorithm> AlgorithmPtr;
 
-// }  // namespace xde_algorithm
 #endif /*XDEALGORITHM_H_*/

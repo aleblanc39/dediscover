@@ -20,6 +20,7 @@ class NLSSummary: public XDEConfidenceInterval {
 	virtual ~NLSSummary(){}
 
 	ConfidenceIntervalResultPtr evaluate(
+				const std::vector<GeneralParameterPtr> &controlParams,
     			OptimizationResultsPtr estimatorResult,
 				DataTableMappingPtr datatableMapping,
     			EstimationParameterSetPtr parameterSet,

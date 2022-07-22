@@ -7,7 +7,6 @@
 
 using namespace std;
 
-namespace xde_algorithm {
 
 GeneralParameterPtr getCtrlParameter(
     const std::vector<GeneralParameterPtr> &params, const std::string &name) {
@@ -17,6 +16,31 @@ GeneralParameterPtr getCtrlParameter(
         }
     }
     return GeneralParameterPtr();
+}
+
+double getDoubleParameterValue(const std::vector<GeneralParameterPtr> &params,
+                               const std::string &paramName) {
+    return ((GenericParameter<double> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+int getIntParameterValue(const std::vector<GeneralParameterPtr> &params,
+                         const std::string &paramName) {
+    return ((GenericParameter<int> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+std::string getStringParameterValue(
+    const std::vector<GeneralParameterPtr> &params,
+    const std::string &paramName) {
+    return ((GenericParameter<std::string> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
+}
+
+bool getBoolParameterValue(const std::vector<GeneralParameterPtr> &params,
+                           const std::string &paramName) {
+    return ((GenericParameter<bool> *)getCtrlParameter(params, paramName).get())
+        ->getValue();
 }
 
 
@@ -51,5 +75,3 @@ void XDEAlgorithm::logAlgorithmInfo(XDEMessage::MsgLevel level) {
 //     return ((GenericParameter<bool> *)getCtrlParameter(paramName).get())
 //         ->getValue();
 // }
-
-}  // namespace xde_algorithm

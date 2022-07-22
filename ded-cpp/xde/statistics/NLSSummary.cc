@@ -33,6 +33,7 @@ using namespace std::placeholders;
 
 // TODO AL2020: Use smart pointers?
 ConfidenceIntervalResultPtr NLSSummary::evaluate(
+    const std::vector<GeneralParameterPtr> &controlParams,
     OptimizationResultsPtr optimizationResults, 
     DataTableMappingPtr datatableMapping,
     EstimationParameterSetPtr parameterSet,
@@ -43,7 +44,7 @@ ConfidenceIntervalResultPtr NLSSummary::evaluate(
 
     dataGenerator->preProcess();
 
-    double alpha = getDoubleParameterValue(getAlphaParameterName());
+    double alpha = getDoubleParameterValue(controlParams, getAlphaParameterName());
     TDoubleVector res;
     TDoubleVector linearData = dataGenerator->getFixedData();
     XDE_ASSERT(linearData.size() > 3);
