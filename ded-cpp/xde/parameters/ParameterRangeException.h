@@ -11,8 +11,8 @@
 
 class ParameterRangeException {
  public:
-    ParameterRangeException();
-    virtual ~ParameterRangeException();
+    ParameterRangeException(){}
+    virtual ~ParameterRangeException(){}
 
     std::string getParameterName() {return name;}
     bool hasMinValue() {return hasMin;}

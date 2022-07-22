@@ -43,7 +43,7 @@ include_directories(
 
 add_library(test_main OBJECT ../test-utils/test_main.cc )
 
-message("Build dir: ", ${BUILD_DIR})
+message("Build dir: " ${BUILD_DIR})
 find_library(XDE_BASE NAMES xde_base PATHS ${BUILD_DIR})
 foreach (i ${SRC_FILES})
     set_source_files_properties(${i} 

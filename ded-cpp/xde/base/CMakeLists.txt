@@ -23,6 +23,7 @@ set (sources
 ./XDEUtil.cc
 ./XDEMessage.cc
 ./ThreadInterface.cc
+./XDEMessage.cc
 
 )
 

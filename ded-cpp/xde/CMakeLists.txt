@@ -32,7 +32,6 @@ set (sources
 ./extra_parser_functions/MfcatsSpline.cc
 ./extra_parser_functions/LOCF.cc
 ./extra_parser_functions/TVFunctionMapping.cc
-# ./extra_parser_functions/FortranSmoothingBSpline.cc
 ./statistics/EstimatorResult.cc
 ./statistics/NLSSummary.cc
 ./statistics/XDEConfidenceInterval.cc
@@ -44,11 +43,7 @@ set (sources
 ./solver/SundialsSolverWrapper.cc
 ./solver/SambineDDEWrapper.cc
 ./solver/XDESolverWrapper.cc
-# ./base/XDECSVFile.cc
-# ./base/MemoryBank.cc
-# ./base/XDEUtil.cc
-# ./base/XDEMessage.cc
-# ./base/ThreadInterface.cc
+
 ./estimator/SolverBasedEstimator.cc
 ./estimator/XDEEstimator.cc
 ./model/XDEModel.cc
@@ -72,12 +67,8 @@ set (sources
 ./optimizer/TrustRegion.cc
 ./optimizer/XDEOptimizer.cc
 ./optimizer/AdrianDE.cc
-# ./algorithms/GeneralParameter.cc
-# ./algorithms/XDEAlgorithm.cc
-# ./algorithms/GenericParameter.cc
-# ./algorithms/AlgorithmTemplates.cc
+
 ./parameters/EstimationSymbolAttributes.cc
-./parameters/ParameterRangeException.cc
 ./expressions/TimeVaryingFunctionHandler.cc
 ./expressions/MuParserExpressionHandler.cc
 ./expressions/MuParserExpressionEvaluator.cc
@@ -114,6 +105,7 @@ add_library(xde  ${LIBRARY_TYPE} ${sources} )
 
 target_link_libraries(xde ${EXTRA_OPTIONS}
   xde_base
+  xde_algorithms
   ${SPLINELIB}
   ${SPLINEBAF}
   ${SUNDIALS_CVODE}
