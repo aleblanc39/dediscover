@@ -13,12 +13,14 @@ public:
 
     const std::string paramName;
     const std::any value;
-   
 };
 
 class ParameterValueMap
 {
 public:
+
+    ParameterValueMap(){}
+
     template <typename T>
     ParameterValueMap(const T &values)
     {
@@ -28,7 +30,7 @@ public:
         }
     }
 
-    std::any getValue(const std::string &paramName)
+    std::any getValue(const std::string &paramName) const
     {
         auto value = paramValues.find(paramName);
         if (value == paramValues.end())
@@ -39,6 +41,45 @@ public:
         {
             return value->second;
         }
+    }
+
+
+    // This will cover the most common cases. If the value is a vector or a set then the
+    // conversion will be done at the calling site. 
+    double getDoubleParameterValue(const std::string &paramName, double defaultValue = 0) const {
+
+        auto val = getValue(paramName);
+        if (!val.has_value()) {
+            return defaultValue;
+        }
+        return std::any_cast<double>(val);
+    }
+
+    int getIntParameterValue(const std::string &paramName, const int defaultValue = 0) const
+    {
+        auto val = getValue(paramName);
+        if (!val.has_value()) {
+            return defaultValue;
+        }
+       return std::any_cast<int>(val);
+    }
+
+    std::string getStringParameterValue(const std::string &paramName, const std::string &defaultValue = "") const
+    {
+        auto val = getValue(paramName);
+        if (!val.has_value()) {
+            return defaultValue;
+        }
+        return std::any_cast<std::string&>(val);
+    }
+
+    bool getBoolParameterValue(const std::string &paramName, const  bool defaultValue = false) const
+    {
+        auto val = getValue(paramName);
+        if (!val.has_value()) {
+            return defaultValue;
+        }
+        return std::any_cast<bool>(val);
     }
 
 private:

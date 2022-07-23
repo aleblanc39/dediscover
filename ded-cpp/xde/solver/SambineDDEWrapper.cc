@@ -49,7 +49,7 @@ std::vector<GeneralParameterPtr> SambineDDEWrapper::getControlParameters() {
 void SambineDDEWrapper::performSimulation(
     ModelPtr model, const TDoubleVector& modelParameterValues,
     const TDoubleVector& initialConditionValues, TDoubleVector& tout,
-    TDoubleMatrix& yout) {
+    TDoubleMatrix& yout, const ParameterValueMap &pvm) {
     XDE_ASSERT(initialConditionValues.size() > 0);
 
     /** TODO: ModelParamterValues should have already been assigned. Should
@@ -78,11 +78,13 @@ void SambineDDEWrapper::performSimulation(
                model->nbDelayExpressions(), 1};
 
     o1.tspan = XDEUtil::getDoubleVector(tspan);
-    o1.rerr = {getDoubleParameterValue(relativeError)};
-    o1.aerr = {getDoubleParameterValue(absoluteError)};
-    o1.opts.hinit =getDoubleParameterValue(hinit);
-    o1.opts.hmax = getDoubleParameterValue(hmax);
-    o1.opts.max_steps = getIntParameterValue(maxSteps);
+    o1.rerr = {pvm.getDoubleParameterValue(relativeError)};
+    o1.aerr = {pvm.getDoubleParameterValue(absoluteError)};
+    o1.opts.hinit =pvm.getDoubleParameterValue(hinit);
+    o1.opts.hmax = pvm.getDoubleParameterValue(hmax);
+    o1.opts.max_steps = pvm.
+    
+    getIntParameterValue(maxSteps);
     DdeSol sol = DdeIntegrator<Dde>(o1)();
 
     tout.resize(sol.t.size());

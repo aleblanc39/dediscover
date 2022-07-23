@@ -15,7 +15,7 @@
 
 class LeastSquare : public XDEObjectiveFunction {
    public:
-    LeastSquare();
+    LeastSquare(){}
     LeastSquare(DataGeneratorPtr d) : XDEObjectiveFunction(d) {}
 
     static std::vector<GeneralParameterPtr> getControlParameters() {
@@ -34,7 +34,7 @@ class LeastSquare : public XDEObjectiveFunction {
                 "Indicates whether the log of the values will be used.")};
     }
 
-    virtual ~LeastSquare();
+    ~LeastSquare(){}
 
     // Methods from XDEAlgorithm
 
@@ -69,10 +69,11 @@ class LeastSquare : public XDEObjectiveFunction {
 
     void preProcess();
 
-    static std::vector<std::string> s_getMethodAttributes();
-    // std::vector<std::string> getMethodAttributes() {
-    //     return s_getMethodAttributes();
-    // }
+    static std::vector<std::string> s_getMethodAttributes() {
+        return {};
+    }
+
+    
 
    protected:
    private:

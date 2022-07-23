@@ -22,8 +22,9 @@ class DDEWrapper : virtual public XDESolverWrapper {
     void setDelayParas(TDoubleVector newDelaysParasValue) {delaysParasValue = newDelaysParasValue;}
     TDoubleVector getDelayParas() {return delaysParasValue;}
 
-    //std::vector<std::string> getMethodAttributes() {return s_getMethodAttributes();}
-    static std::vector<std::string> s_getMethodAttributes();
+    static auto s_getMethodAttributes() {
+        return std::vector<std::string>{"DDE"};
+    }
 
     
  protected:

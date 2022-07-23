@@ -59,29 +59,21 @@ class SundialsSolverWrapper : public ODEWrapper {
         return "Class to implement the SundialsSolver wrapper.";
     }
 
-    // Methods from XDEAlgorithm
-    // std::string getShortMethodDescription() {
-    //     return s_getShortMethodDescription();
-    // }
     static std::string s_getShortMethodDescription() {
         return "Solvers provided by Sundials";
     }
 
-    // std::string getLongMethodDescription() {
-    //     return s_getLongMethodDescription();
-    //}
-    static std::string s_getLongMethodDescription() {
+   static std::string s_getLongMethodDescription() {
         return std::string("Sundials solvers.")
             .append("Can be used for both stiff and non-stiff problems..");
     }
 
-    //   std::string getMethodName() { return s_getMethodName(); }
     static std::string s_getMethodName() { return "SundialsSolver Solver"; }
 
     static int runSundial(realtype t, N_Vector y, N_Vector ydot,
                           void *user_data);
 
-    std::vector<GeneralParameterPtr> getControlParameters() {
+    static std::vector<GeneralParameterPtr> getControlParameters() {
         auto v = getProblemTypes();
 
         return {std::make_shared<StringParameter>(
@@ -149,7 +141,8 @@ by the solver in its attempt to reach the next output time. Entering 0 will use 
     virtual void performSimulation(ModelPtr model,
                                    const TDoubleVector &modelParameterValues,
                                    const TDoubleVector &initialConditionValues,
-                                   TDoubleVector &tout, TDoubleMatrix &yout);
+                                   TDoubleVector &tout, TDoubleMatrix &yout,
+                                   const ParameterValueMap &pvm);
 
    private:
     // Options for stiff/non-stiff

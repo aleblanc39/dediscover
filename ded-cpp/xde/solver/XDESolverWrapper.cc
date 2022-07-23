@@ -38,7 +38,6 @@ void XDESolverWrapper::setTSpan(const TDoubleVector &newTSpan) {
     useDefaultTspan = false;
 }
 
-vector<string> XDESolverWrapper::getAttributes() { return vector<string>(); }
 
 // AL2020 Check if either of the following 2 methods is ever called.
 // Also, should SimulationParameterSet be a const? SolverResult returned instead of
@@ -47,10 +46,11 @@ vector<string> XDESolverWrapper::getAttributes() { return vector<string>(); }
 // result object on every call could be problematic.
 void XDESolverWrapper::solve(ModelPtr model,
                              SimulationParameterSet &parameterSet,
-                             SolverResult &solverResult) {
+                             SolverResult &solverResult,
+                             const ParameterValueMap &pvm) {
     TDoubleVector tout;
     TDoubleMatrix yout;
-    solve(model, parameterSet, tout, yout);
+    solve(model, parameterSet, tout, yout, pvm);
     vector<string> varNames;
     const vector<DependentVariablePtr> & depVars = model->getDependentVariables();
     std::transform(depVars.begin(), depVars.end(), varNames.begin(), [](DependentVariablePtr p) -> string {return p-> getName();});
@@ -62,7 +62,7 @@ void XDESolverWrapper::solve(ModelPtr model,
 
 void XDESolverWrapper::solve(ModelPtr model,
                              SimulationParameterSet &parameterSet,
-                             TDoubleVector &tout, TDoubleMatrix &yout) {
+                             TDoubleVector &tout, TDoubleMatrix &yout, const ParameterValueMap &pvm) {
     // First get the names of the model parameters in the correct
     // order.
     vector<string> modelParamNames =  getAllNames(model->getModelParameters());
@@ -80,7 +80,7 @@ void XDESolverWrapper::solve(ModelPtr model,
     for (const auto &s : initialConditionNames) {
         initialConditionValues[i++] = parameterSet.getParameter(s).getValue();
     }
-    solve(model, modelParamValues, initialConditionValues, tout, yout);
+    solve(model, modelParamValues, initialConditionValues, tout, yout, pvm);
 }
 
 /**
@@ -93,11 +93,10 @@ TDoubleVector workingInitialConditionValues;
 void XDESolverWrapper::solve(ModelPtr model,
                              const TDoubleVector &modelParameterValues,
                              const TDoubleVector &initialConditionValues,
-                             TDoubleVector &tout, TDoubleMatrix &yout) {
+                             TDoubleVector &tout, TDoubleMatrix &yout, const ParameterValueMap &pvm) {
     // If tspan has not been set explicitly create it from the start time, stop time, interval.
     if (useDefaultTspan) setTSpan();
 
-    // setFunctionPointer(functionName, model);
 
     // TODO performSimulation probably does not need the model
     // parameter values, since they are ignored anyway by the model
@@ -121,7 +120,7 @@ void XDESolverWrapper::solve(ModelPtr model,
 
     // cerr << "Will perform simulation: tspan used: " << tspan << endl;
     performSimulation(model, modelParameterValues,
-                      workingInitialConditionValues, tout, yout);
+                      workingInitialConditionValues, tout, yout, pvm);
     // cerr << "Done simulation: tout returned: " << tout << endl;
 }
 

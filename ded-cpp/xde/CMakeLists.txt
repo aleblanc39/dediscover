@@ -18,6 +18,7 @@ find_library(BLAS NAMES blas PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib /usr/lib6
 
 add_subdirectory(base)
 add_subdirectory(algorithms)
+add_subdirectory(solver)
 
 
 set (sources 
@@ -37,12 +38,7 @@ set (sources
 ./statistics/XDEConfidenceInterval.cc
 ./statistics/MathUtil.cc
 ./statistics/nls_summary.cc
-./solver/DDEWrapper.cc
-./solver/SolverResult.cc
-./solver/ODEWrapper.cc
-./solver/SundialsSolverWrapper.cc
-./solver/SambineDDEWrapper.cc
-./solver/XDESolverWrapper.cc
+
 
 ./estimator/SolverBasedEstimator.cc
 ./estimator/XDEEstimator.cc
@@ -68,7 +64,6 @@ set (sources
 ./optimizer/XDEOptimizer.cc
 ./optimizer/AdrianDE.cc
 
-./parameters/EstimationSymbolAttributes.cc
 ./expressions/TimeVaryingFunctionHandler.cc
 ./expressions/MuParserExpressionHandler.cc
 ./expressions/MuParserExpressionEvaluator.cc

@@ -91,7 +91,7 @@ int SundialsSolverWrapper::runSundial(realtype t, N_Vector y, N_Vector ydot,
 void SundialsSolverWrapper::performSimulation(
     ModelPtr model, const TDoubleVector &modelParameterValues,
     const TDoubleVector &initialConditionValues, TDoubleVector &tout,
-    TDoubleMatrix &yout) {
+    TDoubleMatrix &yout, const ParameterValueMap &pvm) {
     int flag;
     unsigned nbVariables = initialConditionValues.size();
 
@@ -113,17 +113,18 @@ void SundialsSolverWrapper::performSimulation(
     // for (auto d: tspan) std::cerr << d << ", "; std::cerr << std::endl;
 
 
-    string problemType = getStringParameterValue(problemTypeParameterName);
-    double atol = getDoubleParameterValue(atolParamName);
-    double rtol = getDoubleParameterValue(rtolParamName);
-    int maxNumSteps = getIntParameterValue(maxNumStepsParameterName);
-    int maxErrTestFails = getIntParameterValue(maxErrTestFailsParameterName);
-    int maxNonlinIters = getIntParameterValue(maxNonlinItersParameterName);
-    int maxConvFails = getIntParameterValue(maxConvFailsParameterName);
-    double nlscoef = getDoubleParameterValue(nonlinConvCoefParameterName);
-    double hinit = getDoubleParameterValue(initStepSizeParameterName);
-    double hmin = getDoubleParameterValue(minStepSizeParameterName);
-    double hmax = getDoubleParameterValue(maxStepSizeParameterName);
+    // TODO Add the default values, where appropriate.
+    string problemType = pvm.getStringParameterValue(problemTypeParameterName);
+    double atol = pvm.getDoubleParameterValue(atolParamName);
+    double rtol = pvm.getDoubleParameterValue(rtolParamName);
+    int maxNumSteps = pvm.getIntParameterValue(maxNumStepsParameterName);
+    int maxErrTestFails = pvm.getIntParameterValue(maxErrTestFailsParameterName);
+    int maxNonlinIters = pvm.getIntParameterValue(maxNonlinItersParameterName);
+    int maxConvFails = pvm.getIntParameterValue(maxConvFailsParameterName);
+    double nlscoef = pvm.getDoubleParameterValue(nonlinConvCoefParameterName);
+    double hinit = pvm.getDoubleParameterValue(initStepSizeParameterName);
+    double hmin = pvm.getDoubleParameterValue(minStepSizeParameterName);
+    double hmax = pvm.getDoubleParameterValue(maxStepSizeParameterName);
 
     // TODO Some test here. Safety Factor  != 0
 

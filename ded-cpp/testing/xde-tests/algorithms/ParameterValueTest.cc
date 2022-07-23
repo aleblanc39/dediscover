@@ -53,5 +53,14 @@ SCENARIO("Testing ParameterValueSet") {
             CHECK_FALSE(!pvs.getValue("p2").has_value());
         }
 
+        THEN("Check getting a value directly") {
+            CHECK(pvs.getIntParameterValue("p1", 40)==12);
+        }
+
+        THEN("Check default value ") {
+            CHECK(pvs.getIntParameterValue("noparam", 40)==40);
+        }
+
+
     }
 }

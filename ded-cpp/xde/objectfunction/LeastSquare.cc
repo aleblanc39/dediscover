@@ -1,22 +1,8 @@
 #include "objectfunction/LeastSquare.h"
-
 #include <base/CBIMDefinitions.h>
-
 #include <boost/lexical_cast.hpp>
 
 using namespace std;
-
-LeastSquare::LeastSquare() {
-    // controlParameters.clear();
-   
-}
-
-LeastSquare::~LeastSquare() {}
-
-vector<string> LeastSquare::s_getMethodAttributes() {
-    vector<string> attrs = {"solving"};
-    return attrs;
-}
 
 /**
  * Preprocessing step. The computeSum method of this class will be

@@ -7,7 +7,6 @@ message("bin dir for xde_algorithms: ${PROJECT_BINARY_DIR}")
 set (sources 
 
 ./GeneralParameter.cc
-./XDEAlgorithm.cc
 ./GenericParameter.cc
 ./AlgorithmTemplates.cc
 )

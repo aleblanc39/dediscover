@@ -23,8 +23,8 @@ class EstimationSymbolAttributes : public SymbolAttributes {
           estimatedFlag(estimated) {
         setName(name);
     }
-    EstimationSymbolAttributes();
-    virtual ~EstimationSymbolAttributes();
+    EstimationSymbolAttributes(){}
+    ~EstimationSymbolAttributes(){}
 
     double getInitialValue() const { return initialValue; }
     double getMinValue() const { return minValue; }
@@ -42,8 +42,5 @@ class EstimationSymbolAttributes : public SymbolAttributes {
     double maxValue;
     bool estimatedFlag;
 };
-
-std::ostream &operator<<(std::ostream &out,
-                         const EstimationSymbolAttributes &o);
 
 #endif

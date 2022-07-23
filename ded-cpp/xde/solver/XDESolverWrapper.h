@@ -3,6 +3,7 @@
 
 #include <algorithms/ConcreteParameters.h>
 #include <algorithms/XDEAlgorithm.h>
+#include <algorithms/ParameterValue.h>
 #include <base/XDEBlas.h>
 
 
@@ -44,22 +45,22 @@ class XDESolverWrapper : public XDEAlgorithm {
      * the estimator, and the second when the results of the
      * simulation will be presented to a user.
      */
+    void solve(
+        ModelPtr model, SimulationParameterSet &parameterSet,
+               SolverResult &solverResult, const ParameterValueMap &parameterValueMap = ParameterValueMap());
     void solve(ModelPtr model, SimulationParameterSet &parameterSet,
-               SolverResult &solverResult);
-    void solve(ModelPtr model, SimulationParameterSet &parameterSet,
-               TDoubleVector &tout, TDoubleMatrix &yout);
+               TDoubleVector &tout, TDoubleMatrix &yout, const ParameterValueMap &parameterValueMap = ParameterValueMap());
     void solve(ModelPtr model, const TDoubleVector &modelParameterValues,
                const TDoubleVector &initialConditionValues, TDoubleVector &tout,
-               TDoubleMatrix &yout);
+               TDoubleMatrix &yout, const ParameterValueMap &parameterValueMap = ParameterValueMap());
 
     // Should this one be protected?
     virtual void performSimulation(ModelPtr model,
                                    const TDoubleVector &modelParameterValues,
                                    const TDoubleVector &initialConditionValues,
                                    TDoubleVector &tout,
-                                   TDoubleMatrix &yout) = 0;
+                                   TDoubleMatrix &yout, const ParameterValueMap &parameterValueMap) = 0;
 
-    static std::vector<std::string> getAttributes();
 
     virtual double estimateMemoryUse(ModelPtr model);
 
@@ -79,12 +80,7 @@ class XDESolverWrapper : public XDEAlgorithm {
 
    protected:
     TDoubleVector tspan;
-
-    void setModelParasValue(const TDoubleVector &newModelParasValue);
-    void setInitCondsValue(const TDoubleVector &newInitCondsValue);
-
     bool useDefaultTspan;
-
     double startTime;
     double stopTime;
     double stepSize;
