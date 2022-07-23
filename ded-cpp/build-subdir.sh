@@ -21,6 +21,9 @@ make -C ${SRC_BUILD_DIR}
 
 echo Executing tests?  ${SRC_BUILD_DIR}
 
+# Delete the build directory for the tests. Could instead look at the result of the first make.
+rm -rf $BUILD_DIRECTORY/$TEST_DIR
+
 cmake -D XDE_CPP_DIR=${PROJECT_HOME}  -D BUILD_DIR=${SRC_BUILD_DIR} -S $TEST_DIR -B $BUILD_DIRECTORY/$TEST_DIR
 make -C $BUILD_DIRECTORY/$TEST_DIR 
 make -C $BUILD_DIRECTORY/$TEST_DIR test

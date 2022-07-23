@@ -1,5 +1,6 @@
 #include <algorithms/ParameterValue.h>
-#include<any>
+#include <any>
+#include <unordered_set>
 #include <vector>
 #include "doctest.h"
 using namespace std;
@@ -25,14 +26,32 @@ SCENARIO("Looking at individual values")
     }
 }
 
-SCENARIO("Testing ParameterVAlueSet") {
+SCENARIO("Testing ParameterValueSet") {
 
     GIVEN("A ParameterValueSet") {
+    //     auto values = std::set<ParameterValue> {
+    //         {"p1", std::make_any<int>(12)},
+    //         {"p2", std::make_any<std::string &>("hello")}
+    //     };
+        auto values = std::vector<ParameterValue> {
+            {"p1", std::make_any<int>(12)},
+            {"p2", std::make_any<std::string &>("hello")}
+        };
 
+        ParameterValueMap pvs(values);
 
+        THEN("The ParameterValueMap contains an element (p1, 12)") {
+            CHECK(std::any_cast<int>(pvs.getValue("p1")) == 12);
+        }
+        THEN("The ParameterValueMap contains an element (p2, hello)") {
+            CHECK(std::any_cast<std::string>(pvs.getValue("p2")).compare("hello") == 0);
+        }
+        THEN("We recognize an non-existing parameter") {
+            CHECK_FALSE(pvs.getValue("noparam").has_value());
+        }
+        THEN("We recognize an non-existing parameter") {
+            CHECK_FALSE(!pvs.getValue("p2").has_value());
+        }
 
-        
     }
-
-
 }
