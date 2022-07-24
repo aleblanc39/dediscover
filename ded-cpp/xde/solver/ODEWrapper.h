@@ -15,9 +15,9 @@ class ODEWrapper : virtual public XDESolverWrapper
 public:
    ODEWrapper() {}
    virtual ~ODEWrapper() {}
-   std::vector<std::string> s_getMethodAttributes()
+   static std::vector<std::string> s_getMethodAttributes()
    {
-      return std::vector<std::string>{"ODE"};
+      return {"ODE"};
    }
 };
 

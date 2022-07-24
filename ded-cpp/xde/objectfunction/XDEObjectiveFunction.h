@@ -3,6 +3,7 @@
 
 #include <algorithms/XDEAlgorithm.h>
 #include "DataGenerator.h"
+#include <algorithms/ParameterValue.h>
 
 class XDEObjectiveFunction;
 
@@ -47,7 +48,7 @@ class XDEObjectiveFunction : public XDEAlgorithm {
 
     virtual double estimateResultingObjectSize() { return 0; }
 
-    virtual void preProcess() = 0;
+    virtual void preProcess(const ParameterValueMap &pvm ) = 0;
     auto getDataGenerator() { return dataGenerator; }
 
     void setDataGenerator(const DataGeneratorPtr &p) { dataGenerator = p; }

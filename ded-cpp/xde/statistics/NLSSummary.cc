@@ -43,7 +43,7 @@ ConfidenceIntervalResultPtr NLSSummary::evaluate(
 
     dataGenerator->preProcess();
 
-    double alpha = pvm.getDoubleParameterValue(getAlphaParameterName());
+    double alpha = pvm.getDoubleParameterValue(getAlphaParameterName(), 0.5);
     TDoubleVector res;
     TDoubleVector linearData = dataGenerator->getFixedData();
     XDE_ASSERT(linearData.size() > 3);

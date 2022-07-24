@@ -22,8 +22,7 @@ XDEOptimizer::XDEOptimizer() {
 
 XDEOptimizer::~XDEOptimizer() {
 }
-void XDEOptimizer::preProcess(EstimationParameterSetPtr parameterSet/*,
-								      ModelPtr model*/) {
+void XDEOptimizer::preProcess(EstimationParameterSetPtr parameterSet, const ParameterValueMap &objFncParamValues) {
     XDE_ASSERT(objectiveFunction != NULL);
 
     // Because the optimizer will call the objective function multiple
@@ -38,7 +37,7 @@ void XDEOptimizer::preProcess(EstimationParameterSetPtr parameterSet/*,
     // each time is initialized by the solver, since it will be useless most of the time.
 
     //model -> initializeConstantTVFunctions();
-    objectiveFunction -> preProcess();
+    objectiveFunction -> preProcess(objFncParamValues);
     setBounds(estimatedParameters);
 }
 
@@ -87,7 +86,9 @@ OptimizationResultsPtr XDEOptimizer::optimize(ObjectiveFunctionPtr objfcn,
     // TODO Use std::function here, 
 
     objectiveFunction = objfcn;
-    preProcess(parameterSet/*, objectiveFunction -> getDataGenerator() -> getModel()*/);
+
+    // TODO Send actual pvm for the obj fcn (first), then actually crete the obj fcn here.
+    preProcess(parameterSet, {});
     return performOptimization(pvm);
     //ndata = boost::numeric_cast<unsigned>(objectiveFunction -> computeNumObservations());
 }

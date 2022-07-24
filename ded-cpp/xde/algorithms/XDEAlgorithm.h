@@ -26,9 +26,7 @@ class XDEAlgorithm : public ThreadInterface {
     virtual ~XDEAlgorithm() {}
 
    protected:
-    void logAlgorithmInfo(XDEMessage::MsgLevel level = XDEMessage::INFO);
-    XDEAlgorithm(const XDEAlgorithm &a);
-    //std::vector<std::string> methodAttributes;
+    void logAlgorithmInfo(XDEMessage::MsgLevel level = XDEMessage::INFO){}
 
    private:
 };

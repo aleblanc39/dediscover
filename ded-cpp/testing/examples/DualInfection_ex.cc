@@ -88,14 +88,16 @@ int main(int, char **) {
     int nfeval;
     int ndata;
 
-    ade.setParameterValue(AdrianDE::maxGenerations, 25);
-    ade.setParameterValue(AdrianDE::p_populationSize, 10);
+    auto pvm = ParameterValueMap(vector<ParameterValue>{});
+
+    // ade.setParameterValue(AdrianDE::maxGenerations, 25);
+    // ade.setParameterValue(AdrianDE::p_populationSize, 10);
 
     DataGeneratorPtr dg(std::make_shared<SolvingDataGenerator>(
         modelPtr, solver, parameterSet, datatable));
     objf->setDataGenerator(dg);
 
-    auto result = ade.optimize(objf, parameterSet);
+    auto result = ade.optimize(objf, parameterSet, pvm);
 
     std::cerr << "Completed test. Best val: " << result->getOptimalValue()
               << std::endl;
@@ -108,7 +110,9 @@ int main(int, char **) {
     //                                            EstimationParameterSetPtr
     //                                            parameterSet, ModelPtr model,
     //                                            SolverPtr solver)
+
+    // TODO Real value for last parameter. First figure out which one is needed
     auto ciresult =
-        ci->evaluate(result, datatable, parameterSet, modelPtr, solver);
+        ci->evaluate(result, datatable, parameterSet, modelPtr, solver, {});
     cerr << "Computed CI Result\n";
 }

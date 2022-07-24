@@ -66,7 +66,9 @@ class XDEOptimizer : public XDEAlgorithm {
     // TODO: rename setBounds. Actually assigns initial values as well.
     void setBounds(
         const std::vector<EstimationSymbolAttributes> &estimatedParameters);
-    void preProcess(EstimationParameterSetPtr parameterSet);
+
+    // TODO Should pass objFcn instead
+    void preProcess(EstimationParameterSetPtr parameterSet, const ParameterValueMap &objFcnParamValues);
 };
 
 #endif /*XDEOPTIMIZERWRAPPER_H_*/

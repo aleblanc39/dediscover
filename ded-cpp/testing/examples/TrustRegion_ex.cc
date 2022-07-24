@@ -79,14 +79,14 @@ int main(int, char **) {
     DataGeneratorPtr dg(std::make_shared<SolvingDataGenerator>(modelPtr, solver, parameterSet, datatable));
     objf -> setDataGenerator(dg);
     std::cerr << "Will log values\n";
-    objf -> setParameterValue(LeastSquare::getLogValuesParameterName(), true);
+    //objf -> setParameterValue(LeastSquare::getLogValuesParameterName(), true);
 
-    auto result = ade.optimize(objf, parameterSet);
-
+    auto pvm = ParameterValueMap(vector<ParameterValue>{{LeastSquare::getLogValuesParameterName(), true}});
+    auto result = ade.optimize(objf, parameterSet, pvm);
     std::cerr << "Completed test. Best val: " << result -> getOptimalValue() << std::endl;
 
     
-    auto ciresult = ci -> evaluate(result, datatable, parameterSet, modelPtr, solver);
+    auto ciresult = ci -> evaluate(result, datatable, parameterSet, modelPtr, solver, {});
     cerr << "Computed CI Result\n";
 
 }

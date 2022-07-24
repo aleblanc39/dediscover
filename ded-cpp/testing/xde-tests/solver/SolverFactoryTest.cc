@@ -17,14 +17,11 @@ SCENARIO("Create solvers from a Solver Factory") {
         string expectedSolvers[] = {SundialsSolverWrapper::s_getMethodName(),
                                     SambineDDEWrapper::s_getMethodName()};
 
-        THEN("There should be 5 solvers created properly")
+        THEN("There should be some solvers created properly")
         CHECK(knownSolvers.size() ==
               sizeof(expectedSolvers) / sizeof(expectedSolvers[0]));
-        CHECK(factory.createMethod(SundialsSolverWrapper::s_getMethodName())
-                  ->getMethodName()
-                  .compare(SundialsSolverWrapper::s_getMethodName()) == 0);
-        CHECK(factory.createMethod(SambineDDEWrapper::s_getMethodName())
-                  ->getMethodName()
-                  .compare(SambineDDEWrapper::s_getMethodName()) == 0);
+        CHECK(typeid(*factory.createMethod(SundialsSolverWrapper::s_getMethodName())) == typeid(SundialsSolverWrapper));
+        CHECK(typeid(*factory.createMethod(SambineDDEWrapper::s_getMethodName())) == typeid(SambineDDEWrapper));
+                  
     }
 }

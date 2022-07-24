@@ -101,6 +101,9 @@ add_library(xde  ${LIBRARY_TYPE} ${sources} )
 target_link_libraries(xde ${EXTRA_OPTIONS}
   xde_base
   xde_algorithms
+  xde_solver
+  xde_optimizer
+  xde_estimator
   ${SPLINELIB}
   ${SPLINEBAF}
   ${SUNDIALS_CVODE}
