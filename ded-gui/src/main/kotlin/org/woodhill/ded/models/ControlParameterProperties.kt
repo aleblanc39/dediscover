@@ -1,5 +1,6 @@
 package org.woodhill.ded.models
 
+import edu.rochester.urmc.cbim.jni.Algorithm
 import edu.rochester.urmc.cbim.jni.JGeneralParameter
 import javafx.beans.property.*
 import javafx.event.EventTarget
@@ -11,15 +12,17 @@ import org.woodhill.ded.ui.view.util.integertextfield
 import org.woodhill.ded.util.parseControlParameters
 import org.woodhill.ded.util.stringPairsToJson
 import tornadofx.*
+import kotlin.reflect.KClass
 
 /**
  * Class to handle control parameters present in many circumstances.
  */
 
-class ControlParameterProperties(controlParams: List<JGeneralParameter> = mutableListOf(), valuesAsJson: String = "") {
+//class ControlParameterProperties(controlParams: List<JGeneralParameter> = mutableListOf(), valuesAsJson: String = "") {
+class ControlParameterProperties(clazz: KClass<out Algorithm>, algmName: String, valuesAsJson: String = "") {
 
     private val paramProperties = mutableMapOf<String, Any>()
-    private val _controlParams = controlParams.toMutableList()
+    private val _controlParams = Algorithm.getControlParameters(clazz.java, algmName)
 
     fun paramValues(): List<Pair<String, Any>> = paramProperties.toList()
 
@@ -201,14 +204,14 @@ class ControlParameterProperties(controlParams: List<JGeneralParameter> = mutabl
     }
 
     fun paramsAsJson(): String = stringPairsToJson(paramProperties.map { it ->
-        Pair<String, String>(
+        Pair(
             it.key,
             (it.value as Property<*>).value.toString()
         )
     }.toList())
 
     init {
-        updateControlParams(controlParams)
+        updateControlParams(Algorithm.getControlParameters(clazz.java, algmName))
         if (valuesAsJson == "") {
             assignDefaults()
         } else {

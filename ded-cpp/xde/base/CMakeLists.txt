@@ -2,7 +2,7 @@ project (xde_base CXX)
 cmake_minimum_required(VERSION 3.0)
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so" ".so.0" ".so.1" ".so.2" ".so.3" ".so.4" ".so.5" ".so.1.62.0")
 include ("../../xde-config.cmake")
-message("bin dir for xde: ${PROJECT_BINARY_DIR}")
+message("bin dir for base: ${PROJECT_BINARY_DIR}")
 
 
 set (SUNDIALS_CVODE sundials_cvode)

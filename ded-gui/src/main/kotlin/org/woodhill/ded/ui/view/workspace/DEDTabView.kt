@@ -14,7 +14,7 @@ import tornadofx.View
 import tornadofx.onChange
 
 abstract class DEDTabView( title: String = "") : View(title) {
-    override val scope = super.scope as TabbedModelsView.SessionScope
+    final override val scope = super.scope as TabbedModelsView.SessionScope
     val model = scope.model
     val sessionElements: SessionElements = scope.model.item
 

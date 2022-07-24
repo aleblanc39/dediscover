@@ -10,7 +10,7 @@ import tornadofx.getValue
 import tornadofx.observableListOf
 import tornadofx.setValue
 
-class  AlgorithmProperty(algm: String, val clazz: KClass<out Algorithm>, controlParamsAsJson: String) {
+class  AlgorithmProperty(algm: String, private val clazz: KClass<out Algorithm>, controlParamsAsJson: String) {
 
     enum class JSON_FIELDS(val key:String) {
         NAME("name"),
@@ -20,8 +20,7 @@ class  AlgorithmProperty(algm: String, val clazz: KClass<out Algorithm>, control
     val nameProperty = SimpleStringProperty(algm)
     var name by nameProperty
 
-    var algmInstance = Algorithm.createMethod(clazz.java, algm)
-    val controlParamsProperties =  ControlParameterProperties(algmInstance.controlParameters.asList(), controlParamsAsJson)
+    val controlParamsProperties =  ControlParameterProperties(clazz, name, controlParamsAsJson)
 
 
     val algmLongDescProperty = SimpleStringProperty("")
@@ -41,8 +40,8 @@ class  AlgorithmProperty(algm: String, val clazz: KClass<out Algorithm>, control
     }
 
     fun setDescriptions() {
-        algmShortDesc = algmInstance.shortMethodDescription
-        algmLongDesc = algmInstance.longMethodDescription
+        algmShortDesc = Algorithm.getShortMethodDescription(clazz.java, name);
+        algmLongDesc = Algorithm.getLongMethodDescription(clazz.java, name)
     }
 
 
@@ -60,8 +59,7 @@ class  AlgorithmProperty(algm: String, val clazz: KClass<out Algorithm>, control
     fun updateAlgm() {
         if (name == null)
             return
-        algmInstance = Algorithm.createMethod(clazz.java, name)
-        controlParamsProperties.updateControlParams(algmInstance.controlParameters.asList())
+        controlParamsProperties.updateControlParams(Algorithm.getControlParameters(clazz.java, name))
         setDescriptions()
     }
 

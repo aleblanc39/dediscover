@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.0)
 include(CTest)
 enable_testing()
 
-include(${XDE_CPP_DIR}/xde-config.cmake)
 message("XDE_CPP_DIR: "  ${XDE_CPP_DIR})
+include(${XDE_CPP_DIR}/xde-config.cmake)
 file (GLOB_RECURSE  SRC_FILES "*Test.cc")
 
 include_directories(

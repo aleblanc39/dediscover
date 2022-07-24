@@ -32,20 +32,6 @@ class AlgorithmPropertyTest {
         println(x.toJsonString())
     }
 
-    @Test
-    fun getAlgmInstanca() {
-        val methodName = JSolver.s_getAvailableMethods()[0]
-        val x = AlgorithmProperty(methodName, JSolver::class, "")
-        assertEquals(methodName, x.algmInstance.getjMethodName())
 
-    }
 
-    @Test
-    fun getControlParamsProperties() {
-        val methodName = JSolver.s_getAvailableMethods()[0]
-        val x = AlgorithmProperty(methodName, JSolver::class, "")
-        for (p in x.algmInstance.controlParameters) {
-            println(p.name)
-        }
-    }
 }

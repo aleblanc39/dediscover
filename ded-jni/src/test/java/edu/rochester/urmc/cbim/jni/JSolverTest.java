@@ -21,18 +21,7 @@ public class JSolverTest {
     }
 
 
-    @Test
-    public void testMethodCreation() {
-        try {
-            JSolver solver = Algorithm.createMethod(JSolver.class, JSolver.s_getAvailableMethods()[0]);
-            for (JGeneralParameter p: solver.getControlParameters()) {
-                System.out.println("Param name: " + p.getName());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail();
-        }
-    }
+
 
     @Test
     public void getMethodName() {

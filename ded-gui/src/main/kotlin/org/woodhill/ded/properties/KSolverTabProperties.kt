@@ -1,5 +1,6 @@
 package org.woodhill.ded.properties
 
+import edu.rochester.urmc.cbim.jni.Algorithm
 import edu.rochester.urmc.cbim.jni.JSolver
 import org.woodhill.ded.models.KModel
 import tornadofx.onChange
@@ -24,7 +25,8 @@ class KSolverTabProperties(model: KModel) : KTabProperties(model) {
         put(ALGM_PROPERTIES, algmProperties.toJsonString())
     }
 
-    private fun updateSolver() = algmProperties.controlParamsProperties.updateControlParams(algmProperties.algmInstance.controlParameters.asList())
+    private fun updateSolver() =
+        algmProperties.controlParamsProperties.updateControlParams(Algorithm.getControlParameters(JSolver::class.java, algmProperties.name))
 
     init {
         algmProperties.nameProperty.onChange {

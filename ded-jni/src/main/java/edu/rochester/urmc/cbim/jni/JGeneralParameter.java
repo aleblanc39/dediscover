@@ -27,7 +27,7 @@ public class JGeneralParameter extends XDEBase {
     public native String getDescription() throws XDEException;
 
     public native Object getValue() throws XDEException;
-    public native void setValue(Object o) throws ParameterRangeException, XDEException;
+    //public native void setValue(Object o) throws XDEException;
 
     public native Object getMin();
     public native Object getMax();

@@ -17,7 +17,7 @@ fun getAlgorithmForm(ev: EventTarget, algmProperties: AlgorithmProperty, filter:
             field("Name") {
                 combobox(
                     algmProperties.nameProperty,
-                    algmProperties.availableMethods //getAvailableMethods(filter).asObservable()
+                    algmProperties.availableMethods
                 ) {
                 }
             }
@@ -51,14 +51,6 @@ fun getAlgorithmForm(ev: EventTarget, algmProperties: AlgorithmProperty, filter:
     )
     return retForm
 
-}
-
-// TODO Seems weird here. Only called on algm creation.
-
-fun updateControlParamValues(values: ControlParameterProperties, algm: Algorithm?) = values.paramValues().forEach {
-    if (algm != null) {
-        algm.getControlParameter(it.first).value = (it.second as Property<*>).value
-    }
 }
 
 

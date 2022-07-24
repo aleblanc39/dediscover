@@ -11,24 +11,6 @@ import edu.rochester.urmc.cbim.jni.exception.XDEException;
 
 public abstract class Algorithm  extends Threadable {
 
-    // This variable will be used by the JNI code to set a pointer to
-    // the C++ algorithm, object.
-    private long algorithmPtr;
-
-    public Algorithm() {
-    }
-
-
-    /**
-     * AL 2020
-     * Some java method wrappers around the native methods so I can mock the classes
-     * @return
-     * @throws XDEException
-     */
-
-    public String getjMethodName() {
-        return getMethodName();
-    }
 
     final static String method_name = "s_getAvailableMethods";
 
@@ -50,31 +32,51 @@ public abstract class Algorithm  extends Threadable {
     }
 
 
-    public native String getMethodName() throws XDEException;
-    public native String getShortMethodDescription() throws XDEException;
-    public native String getLongMethodDescription() throws XDEException;
-    public native String[] getMethodAttributes() throws XDEException;
 
-    public static <T extends Algorithm> T createMethod(Class<T> clazz, String name) throws XDEException {
+    final static String controlParamsMethodName = "s_getControlParameters";
+    /**
+     * Return the control parameters associated to the algorithm which is a subclass of class
+     * @param clazz
+     * @param name
+     * @return
+     * @param <T>
+     * @throws Exception
+     */
+    public static <T extends Algorithm> List<JGeneralParameter> getControlParameters(Class<T> clazz, String name) throws Exception{
         try {
-            Class[] parameterTypes = {String.class};
-            return clazz.getConstructor(parameterTypes).newInstance(name);
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
-            ex.printStackTrace();
-            throw new XDEException(ex.getMessage());
+            Method m = clazz.getMethod(controlParamsMethodName);
+            JGeneralParameter[] params = (JGeneralParameter []) m.invoke(name);
+            return Arrays.asList(params);
+        } catch (NoSuchMethodException ex) {
+            System.err.println("No method named " + method_name + " defined for class " + clazz.getName());
+            throw ex;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw e;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 
-    public JGeneralParameter getControlParameter(String paramName)
-            throws XDEException {
-        JGeneralParameter controlParameters[] = getControlParameters();
-        for (JGeneralParameter p : controlParameters) {
-            if (p.getName().equals(paramName)) {
-                return p;
-            }
-        }
-        return null;
-    }
+
+    public static native <T extends Algorithm>  String getMethodName(Class<T> clazz, String name) throws XDEException;
+    public static native <T extends Algorithm> String getShortMethodDescription(Class<T> clazz, String name) throws XDEException;
+    public static native <T extends Algorithm> String getLongMethodDescription(Class<T> clazz, String name) throws XDEException;
+    public static native <T extends Algorithm> String[] getMethodAttributes(Class<T> clazz, String name) throws XDEException;
+
+
+//    public static <T extends Algorithm> T createMethod(Class<T> clazz, String name) throws XDEException {
+//        try {
+//            Class[] parameterTypes = {String.class};
+//            return clazz.getConstructor(parameterTypes).newInstance(name);
+//        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
+//            ex.printStackTrace();
+//            throw new XDEException(ex.getMessage());
+//        }
+//    }
+
+
 
     /**
      * Will leave room for getControlParameters to ignore some of the parameters by allowing it
@@ -82,19 +84,5 @@ public abstract class Algorithm  extends Threadable {
      * return the 3 time parameters, allowing the JNI code to use getAllControlParameters to access the time parameters.
      *
      */
-    public JGeneralParameter[] getjControlParameters() {
-        return getControlParameters();
-    }
 
-    public native JGeneralParameter[] getControlParameters();
-
-    public void setDefaults() throws XDEException, ParameterRangeException {
-        JGeneralParameter[] ctrlParas = getControlParameters();
-        // ctrlParas should not be empty or null
-        if ((ctrlParas != null) && (ctrlParas.length > 0)) {
-            for (JGeneralParameter ctrlPara : ctrlParas) {
-                ctrlPara.setValue(ctrlPara.getDefault());
-            }
-        }
-    }
 }

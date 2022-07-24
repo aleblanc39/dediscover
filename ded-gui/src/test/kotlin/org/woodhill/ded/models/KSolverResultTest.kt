@@ -73,11 +73,7 @@ class KSolverResultTest {
             every {jgetResults()} returns getResults(5, 3)
         }
 
-        println("Moking the jsolver")
-        val jsolverMock = mockk<JSolver> {
-            every {getjMethodName()} returns  "RK 45"
-            every {getjControlParameters()} returns arrayOf<JGeneralParameter>()
-        }
+
         println("Moking the xdecsv file")
 
         val macroResultMock = mockk<JXDECSVFile> {

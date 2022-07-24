@@ -12,8 +12,7 @@ import tornadofx.titledpane
 
 class SimMethodTabView() : DEDTabView("Sim: Methods") {
 
-    val solverTabProperties = model.item.solverTabProperties
-    //fun pg() = ProgressController.getProgressControler(scope, {},{},{})
+    private val solverTabProperties = model.item.solverTabProperties
 
     private val simtabPoperties = model.item.simTabProperties
     private var initialized = false;

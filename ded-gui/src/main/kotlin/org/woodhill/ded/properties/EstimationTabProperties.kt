@@ -2,7 +2,6 @@ package org.woodhill.ded.properties
 
 import edu.rochester.urmc.cbim.jni.*
 import org.woodhill.ded.models.KModel
-import org.woodhill.ded.ui.view.util.updateControlParamValues
 
 enum class ESTIMATION_PROPERTY_TAGS {
     ALGM_OPTIMIZER,
@@ -50,16 +49,17 @@ class EstimationTabProperties(model: KModel): KTabProperties(model) {
     }
 
     // TODO: Is that right? Seems to assume will only be call once
-    val solver:JSolver by lazy { getSolverObject() }
+ //   val solver:JSolver by lazy { getSolverObject() }
 
-    private fun getSolverObject():JSolver = createAlgmObject(JSolver::class.java, solverAlgm())
-    fun getCIObject():JConfidenceInterval = createAlgmObject(JConfidenceInterval::class.java, ciAlgm())
-    fun getObjFcnObject():JObjectiveFunction = createAlgmObject(JObjectiveFunction::class.java, objectiveFcnAlgm())
-    fun getOptimizerObject():JOptimizer = createAlgmObject(JOptimizer::class.java, optimizerAlgm())
+//    private fun getSolverObject():JSolver = createAlgmObject(JSolver::class.java, solverAlgm())
+//    fun getCIObject():JConfidenceInterval = createAlgmObject(JConfidenceInterval::class.java, ciAlgm())
+//    fun getObjFcnObject():JObjectiveFunction = createAlgmObject(JObjectiveFunction::class.java, objectiveFcnAlgm())
+//    fun getOptimizerObject():JOptimizer = createAlgmObject(JOptimizer::class.java, optimizerAlgm())
 
-    fun  <T : Algorithm?> createAlgmObject(clazz: Class<T>, props: AlgorithmProperty): T {
-        val algmObject = Algorithm.createMethod(clazz, props.name)
-        updateControlParamValues(props.controlParamsProperties, algmObject)
-        return algmObject
-    }
+//    private fun  <T : Algorithm?> createAlgmObject(clazz: Class<T>, props: AlgorithmProperty): T {
+////        val algmObject = Algorithm.createMethod(clazz, props.name)
+////        updateControlParamValues(props.controlParamsProperties, algmObject)
+////        return algmObject
+//        return
+//    }
 }

@@ -63,15 +63,14 @@ cmake {
     //buildSharedLibs=true
     // define arbitrary CMake parameters. The below adds -Dtest=hello to cmake command line.
     //def.test='hello'
-    //    def.XDE_CPP_DIR='/home/alain/projects/ded-cpp-2'
     // def.XDE_CPP_DIR="${rootDir}/ded-cpp"
 
-    def.XDE_CPP_DIR="${rootDir}/ded-cpp"
+    def.XDE_CPP_DIR="$rootDir/ded-cpp"
     // Local options.
     def.CMAKE_C_COMPILER="gcc-8 "
     def.CMAKE_CXX_COMPILER="g++-8 "
     // Uncomment/modify tis line if your fortran compiler is in an unusual location.
-    // def.CMAKE_Fortran_COMPILER="/home/linuxbrew/.linuxbrew/bin/gfortran-8"
+    def.CMAKE_Fortran_COMPILER="/home/linuxbrew/.linuxbrew/bin/gfortran-8"
 
     ////////////////////
     // cmakeBuild parameters

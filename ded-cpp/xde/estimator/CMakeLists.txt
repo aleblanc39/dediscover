@@ -22,11 +22,11 @@ include_directories(
   ../../muparser/include
 )
 
-find_library(XDE_BASE xde_base ${PROJECT_BINARY_DIR}/../base)
+#find_library(XDE_BASE xde_base ${PROJECT_BINARY_DIR}/../base)
 add_library(xde_estimator  ${LIBRARY_TYPE} ${sources} )
 
 target_link_libraries(xde_estimator ${EXTRA_OPTIONS}
   ${BOOST_LIBRARIES}
-  ${XDE_BASE}
+  # ${XDE_BASE}
 )
 message("Done with xde_estimator cmake.")

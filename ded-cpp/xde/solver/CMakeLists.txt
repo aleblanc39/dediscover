@@ -28,11 +28,11 @@ include_directories(
   ../../muparser/include
 )
 
-find_library(XDE_ALGORITHMS xde_algorithms ${PROJECT_BINARY_DIR}/../algorithms)
+# find_library(XDE_ALGORITHMS xde_algorithms ${PROJECT_BINARY_DIR}/../algorithms)
 add_library(xde_solver  ${LIBRARY_TYPE} ${sources} )
 
 target_link_libraries(xde_solver ${EXTRA_OPTIONS}
   ${BOOST_LIBRARIES}
-  ${XDE_ALGORITHMS}
+  #${XDE_ALGORITHMS}
 )
 message("Done with xde_solver cmake.")
