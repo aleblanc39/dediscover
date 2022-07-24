@@ -4,7 +4,7 @@
 #include "objectfunction/XDEObjectiveFunction.h"
 #include <algorithms/ConcreteParameters.h>
 
-
+#include <algorithms/ParameterValue.h>
 /**
  * \brief Class to compute least squares for use by the objective function.
  *
@@ -36,18 +36,10 @@ class LeastSquare : public XDEObjectiveFunction {
 
     ~LeastSquare(){}
 
-    // Methods from XDEAlgorithm
-
-    // std::string getShortMethodDescription() {
-    //     return s_getShortMethodDescription();
-    // }
     static std::string s_getShortMethodDescription() {
         return "Least Squares Fitting";
     }
 
-    // std::string getLongMethodDescription() {
-    //     return s_getLongMethodDescription();
-    // }
     static std::string s_getLongMethodDescription() {
         return std::string(
             "Least squares fitting directly to the observed data.  Implied "
@@ -67,7 +59,7 @@ class LeastSquare : public XDEObjectiveFunction {
         return "Applied Function";
     }
 
-    void preProcess();
+    void preProcess(const ParameterValueMap &pvm = ParameterValueMap());
 
     static std::vector<std::string> s_getMethodAttributes() {
         return {};

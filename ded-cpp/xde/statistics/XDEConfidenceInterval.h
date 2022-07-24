@@ -30,7 +30,8 @@ class XDEConfidenceInterval : public XDEAlgorithm {
                                                DataTableMappingPtr datatableMapping,
                                                EstimationParameterSetPtr parameterSet,
                                                ModelPtr model,
-                                               SolverPtr solver) = 0;
+                                               SolverPtr solver,
+                                               const ParameterValueMap &pvm) = 0;
     DataGeneratorPtr getDataGenerator() { return dataGenerator; }
     std::vector<double *> parameterMapping;
 

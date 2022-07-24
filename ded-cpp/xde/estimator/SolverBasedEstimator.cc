@@ -25,6 +25,11 @@ using namespace std;
 }
 
 
+// TODO Change signature to send solver name + solver param values, same with optimizer.
+// Should maybe create the solver with the control params, so they are not copied every time. 
+// They should not change during the execution. Currently parameter is passed during solve().
+// Would mean adding a virtual assignControlParams() to the base solver, implement in each subclass
+
 SolverBasedEstimator::SolverBasedEstimator(ModelPtr model, SolverPtr s,
                                            ObjectiveFunctionPtr o,
                                            OptimizerPtr opt,
@@ -32,7 +37,7 @@ SolverBasedEstimator::SolverBasedEstimator(ModelPtr model, SolverPtr s,
     : XDEEstimator(model, s, o, opt, m) {}
 
 EstimatorResultPtr SolverBasedEstimator::estimate(
-    EstimationParameterSetPtr parameterSet) {
+    EstimationParameterSetPtr parameterSet, const ParameterValueMap &pvm) {
         // TODO Have the optimizer fill in the names in the result objects.
         // Shouldn't have to be done here.
         vector<string> names = parameterSet->getParameterNames(
@@ -65,7 +70,7 @@ EstimatorResultPtr SolverBasedEstimator::estimate(
         
         try {
             auto optimizerResult =
-                optimizer->optimize(objectiveFunction, parameterSet);
+                optimizer->optimize(objectiveFunction, parameterSet, pvm);
 
             auto rss = computeRSS(optimizerResult, parameterSet);
 

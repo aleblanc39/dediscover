@@ -1,13 +1,15 @@
 #include "optimizer/XDEOptimizer.h"
 
+//TODO Very specific here. Should not be needed
 #include <parser/ModelParameter.h>
 #include <parser/DependentVariable.h>
 
 #include <boost/cast.hpp>
 
-using namespace std;
-
 #include <parameters/EstimationSymbolAttributes.h>
+#include <algorithms/ParameterValue.h>
+
+using namespace std;
 
 
 double XDEOptimizer::computeObjectiveFunction(const TDoubleVector &params, void *user_data) {
@@ -69,7 +71,8 @@ void XDEOptimizer::setBounds(const vector<EstimationSymbolAttributes> &estimated
  */
 
 OptimizationResultsPtr XDEOptimizer::optimize(ObjectiveFunctionPtr objfcn,
-			    EstimationParameterSetPtr parameterSet) {
+			    EstimationParameterSetPtr parameterSet,
+                const ParameterValueMap &pvm) {
 
     /**
      * preProcess will set up the bounds and initial values based on
@@ -85,6 +88,6 @@ OptimizationResultsPtr XDEOptimizer::optimize(ObjectiveFunctionPtr objfcn,
 
     objectiveFunction = objfcn;
     preProcess(parameterSet/*, objectiveFunction -> getDataGenerator() -> getModel()*/);
-    return performOptimization();
+    return performOptimization(pvm);
     //ndata = boost::numeric_cast<unsigned>(objectiveFunction -> computeNumObservations());
 }

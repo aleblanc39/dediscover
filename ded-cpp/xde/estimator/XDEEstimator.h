@@ -35,10 +35,9 @@ class XDEEstimator : public XDEAlgorithm {
     virtual ~XDEEstimator();
 
     virtual EstimatorResultPtr estimate(
-        EstimationParameterSetPtr parameterSet) = 0;
+        EstimationParameterSetPtr parameterSet, const ParameterValueMap &) = 0;
 
     /** Utility method to create a parameter set based on the model. */
-    static EstimationParameterSetPtr createDefaultParameterSet(ModelPtr model, bool estimateDepVars = false);
 
     OptimizerPtr getOptimizer();
     OptimizerPtr getOptimizer() const { return optimizer; }

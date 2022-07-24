@@ -2,9 +2,6 @@
 #define XDEOBJECTFUNCTION_H_
 
 #include <algorithms/XDEAlgorithm.h>
-
-
-
 #include "DataGenerator.h"
 
 class XDEObjectiveFunction;

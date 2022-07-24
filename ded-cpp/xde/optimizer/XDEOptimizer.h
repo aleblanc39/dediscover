@@ -2,6 +2,7 @@
 #define XDEOPTIMIZERWRAPPER_H_
 
 #include <algorithms/XDEAlgorithm.h>
+#include <algorithms/ParameterValue.h>
 #include <objectfunction/XDEObjectiveFunction.h>
 #include <optimizer/OptimizationResults.h>
 
@@ -34,14 +35,15 @@ class XDEOptimizer : public XDEAlgorithm {
     // bestval        the best (minimum) value of objective function
     // nfeval         number of function evaluation
     OptimizationResultsPtr optimize(ObjectiveFunctionPtr objectiveFunction,
-                          EstimationParameterSetPtr parameterSet);
+                          EstimationParameterSetPtr parameterSet,
+                          const ParameterValueMap &pvm);
 
     virtual double estimateResultingObjectSize() { return 0; }
 
    protected:
     ObjectiveFunctionPtr objectiveFunction;
 
-    virtual OptimizationResultsPtr performOptimization() = 0;
+    virtual OptimizationResultsPtr performOptimization(const ParameterValueMap &pvm) = 0;
 
     /**
      * Static function used to compute the objective function. The

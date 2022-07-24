@@ -61,7 +61,7 @@ void run_optimization(de::differential_evolution &diffeval, bool &done) {
     done = true;
 }
 
-OptimizationResultsPtr AdrianDE::performOptimization() {
+OptimizationResultsPtr AdrianDE::performOptimization(const ParameterValueMap &pvm) {
     de::constraints constraints(minBounds.size(), -1.0e6, 1.0e6);
 
     for (int i = 0; i < minBounds.size(); i++) {
@@ -80,7 +80,7 @@ OptimizationResultsPtr AdrianDE::performOptimization() {
     // Control Parameters
 
     auto termObject = de::max_gen_termination_strategy{
-        getIntParameterValue(maxGenerations)};
+        pvm.getIntParameterValue(maxGenerations)};
 
     
     de::termination_strategy ts(termObject);
@@ -90,9 +90,9 @@ OptimizationResultsPtr AdrianDE::performOptimization() {
 
     de::mutation_strategy_ptr _mutationStrategy;
 
-    double weight = getDoubleParameterValue(weightFactor);
-    double crossover = getDoubleParameterValue(crossoverFactor);
-    switch (getIntParameterValue(mutationStrategy)) {
+    double weight = pvm.getDoubleParameterValue(weightFactor);
+    double crossover = pvm.getDoubleParameterValue(crossoverFactor);
+    switch (pvm.getIntParameterValue(mutationStrategy)) {
         case 1:
             _mutationStrategy = MAKE_MUTATION_STRATEGY(1);
             break;
@@ -123,7 +123,7 @@ OptimizationResultsPtr AdrianDE::performOptimization() {
     //                                               mutation_arguments));
 
     bool minimize = true;
-    unsigned populationSize = getIntParameterValue(p_populationSize);
+    unsigned populationSize = pvm.getIntParameterValue(p_populationSize);
 
     de::differential_evolution diffeval(
         minBounds.size(), populationSize, processors, constraints, minimize, ts,

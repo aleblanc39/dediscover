@@ -12,12 +12,12 @@ using namespace std;
  * parameters that will be used.
  *
  */
-void LeastSquare::preProcess() {
+void LeastSquare::preProcess(const ParameterValueMap &pvm ) {
     nbCalls = 0;
     XDE_ASSERT(dataGenerator != NULL);
-    bool logData = getBoolParameterValue(getLogValuesParameterName());
-    string lossFunction = getStringParameterValue(getAppliedFunctionParameterName());
-    bool applyWeights = getBoolParameterValue(getNormalizedParameterName());
+    bool logData = pvm.getBoolParameterValue(getLogValuesParameterName());
+    string lossFunction = pvm.getStringParameterValue(getAppliedFunctionParameterName());
+    bool applyWeights = pvm.getBoolParameterValue(getNormalizedParameterName(), false);
  
     DataGenerator::ScalingMode scalingMode = DataGenerator::NONE;
     if (applyWeights) {

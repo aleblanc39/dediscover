@@ -26,19 +26,12 @@ class SolverBasedEstimator : public XDEEstimator {
                          DataTableMappingPtr m);
     virtual ~SolverBasedEstimator(){};
 
-    std::string getMethodName() { return s_getMethodName(); }
     static std::string s_getMethodName() { return "Object Function Estimator"; }
 
-    std::string getShortMethodDescription() {
-        return s_getShortMethodDescription();
-    }
     static std::string s_getShortMethodDescription() {
         return "Object Function Estimator for Least Square and Max Likelihood";
     }
 
-    std::string getLongMethodDescription() {
-        return s_getLongMethodDescription();
-    }
     static std::string s_getLongMethodDescription() {
         return "A longer description.";
     }
@@ -47,7 +40,7 @@ class SolverBasedEstimator : public XDEEstimator {
         return std::vector<std::string>();
     }
 
-    EstimatorResultPtr estimate(EstimationParameterSetPtr parameterSet);
+    EstimatorResultPtr estimate(EstimationParameterSetPtr parameterSet, const ParameterValueMap &pvm);
 
     double estimateResultingObjectSize();
 

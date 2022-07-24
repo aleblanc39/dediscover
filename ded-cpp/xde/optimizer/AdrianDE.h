@@ -61,7 +61,7 @@ class AdrianDE : public XDEOptimizer {
     }
 
    protected:
-    OptimizationResultsPtr performOptimization();
+    OptimizationResultsPtr performOptimization(const ParameterValueMap &pvm);
 
    private:
 };

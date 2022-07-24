@@ -14,7 +14,7 @@ TrustRegion::TrustRegion() {}
 
 TrustRegion::~TrustRegion() {}
 
-OptimizationResultsPtr TrustRegion::performOptimization() {
+OptimizationResultsPtr TrustRegion::performOptimization(const ParameterValueMap&) {
     unsigned nbParams = initialValues.size();
     double *lb = (double *)malloc(nbParams * sizeof(double));
     double *ub = (double *)malloc(nbParams * sizeof(double));

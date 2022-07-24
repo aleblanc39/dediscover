@@ -26,7 +26,6 @@ class TrustRegion : public XDEOptimizer {
 
     // Methods from XDEAlgorithm
     static std::string s_getMethodName() { return "Trust Region"; }
-    std::string getMethodName() { return s_getMethodName(); }
 
     std::string getShortMethodDescription() {
         return s_getShortMethodDescription();
@@ -36,9 +35,6 @@ class TrustRegion : public XDEOptimizer {
                "approach";
     }
 
-    std::string getLongMethodDescription() {
-        return s_getLongMethodDescription();
-    }
     static std::string s_getLongMethodDescription() {
         return "The Trust-Region method implements the algorithm of Coleman and Li, first published around 1994.\
 Note that this method will always use least squares, regardless of what is indicated in the objective function";
@@ -47,7 +43,7 @@ Note that this method will always use least squares, regardless of what is indic
 
 
     static std::vector<std::string> s_getMethodAttributes() {
-		return std::vector<std::string>();
+		return {};
 	}
 
 
@@ -80,7 +76,7 @@ Note that this method will always use least squares, regardless of what is indic
     double estimateResultingObjectSize(){return 0;}
 
    protected:
-    virtual OptimizationResultsPtr performOptimization();
+    virtual OptimizationResultsPtr performOptimization(const ParameterValueMap &pvm);
 };
 
 #endif // TRUST_REGION_H

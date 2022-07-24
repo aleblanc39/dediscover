@@ -19,6 +19,8 @@ find_library(BLAS NAMES blas PATHS /usr/lib/x86_64-linux-gnu/ /usr/lib /usr/lib6
 add_subdirectory(base)
 add_subdirectory(algorithms)
 add_subdirectory(solver)
+add_subdirectory(optimizer)
+add_subdirectory(estimator)
 
 
 set (sources 
@@ -28,6 +30,7 @@ set (sources
 ./mapping/ModelMappingInfoSet.cc
 ./mapping/MappingInfoSet.cc
 ./mapping/DataTableMapping.cc
+
 ./extra_parser_functions/TimeVaryingFunction.cc
 ./extra_parser_functions/BoostSpline.cc
 ./extra_parser_functions/MfcatsSpline.cc
@@ -40,14 +43,14 @@ set (sources
 ./statistics/nls_summary.cc
 
 
-./estimator/SolverBasedEstimator.cc
-./estimator/XDEEstimator.cc
+
 ./model/XDEModel.cc
 ./objectfunction/LeastSquare.cc
 ./objectfunction/DataGenerator.cc
 ./objectfunction/XDEObjectiveFunction.cc
 ./objectfunction/SolvingDataGenerator.cc
 ./objectfunction/ParameterMapping.cc
+
 ./parser/ProcessedModelExpression.cc
 ./parser/ModelParameter.cc
 ./parser/Covariate.cc
@@ -60,9 +63,6 @@ set (sources
 ./parser/Macro.cc
 ./parser/SpiritParser.cc
 ./parser/ModelSymbol.cc
-./optimizer/TrustRegion.cc
-./optimizer/XDEOptimizer.cc
-./optimizer/AdrianDE.cc
 
 ./expressions/TimeVaryingFunctionHandler.cc
 ./expressions/MuParserExpressionHandler.cc
