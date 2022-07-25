@@ -25,6 +25,7 @@ public class JTimeVaryingFunction extends Algorithm {
 
     public native void nat_setControlPoints(double[][] points);
     public native void nat_addControlPoints(double[][] points);
+    // Never used directly. TVF for covariates only computed through model.computeMacros
     public native double compute(double v);
     public native void nat_initialize();
 

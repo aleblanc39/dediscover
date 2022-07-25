@@ -70,7 +70,7 @@ cmake {
     def.CMAKE_C_COMPILER="gcc-8 "
     def.CMAKE_CXX_COMPILER="g++-8 "
     // Uncomment/modify tis line if your fortran compiler is in an unusual location.
-    def.CMAKE_Fortran_COMPILER="/home/linuxbrew/.linuxbrew/bin/gfortran-8"
+    // def.CMAKE_Fortran_COMPILER="/home/linuxbrew/.linuxbrew/bin/gfortran-8"
 
     ////////////////////
     // cmakeBuild parameters
